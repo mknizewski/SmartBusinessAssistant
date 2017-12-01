@@ -1,0 +1,2 @@
+# SmartBusinessAssistant
+Master thesis
