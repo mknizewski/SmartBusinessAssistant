@@ -4,6 +4,7 @@
     cat.getInfo();
 });
 
+// ts przystosowany do uzycia wywolan z JS oraz jQuery
 // przykładowe użycie TypeScript 
 // do nauki - potem do wyjebki
 // pełna dokumentacja -> https://www.tutorialspoint.com/typescript/

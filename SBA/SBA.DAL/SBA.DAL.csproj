@@ -6,7 +6,13 @@
 
   <ItemGroup>
     <Folder Include="Context\InferenceDb\" />
-    <Folder Include="Context\WebDb\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Inference\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SBA.DAL\SBA.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
