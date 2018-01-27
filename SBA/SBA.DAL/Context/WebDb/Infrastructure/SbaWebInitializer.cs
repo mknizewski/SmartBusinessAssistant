@@ -25,6 +25,22 @@ namespace SBA.DAL.Context.WebDb.Infrastructure
                 configurations.ForEach(x => context.Configurations.Add(x));
                 context.SaveChanges();
             }
+
+            if (!context.Files.Any())
+            {
+                var files = new List<File>
+                {
+                    new File
+                    {
+                        Id = (int) File.Type.ArticleJson,
+                        Name = "Artykuł w postaci JSON",
+                        InsertTime = DateTime.Now
+                    }
+                };
+
+                files.ForEach(x => context.Files.Add(x));
+                context.SaveChanges();
+            }
         }
     }
 }

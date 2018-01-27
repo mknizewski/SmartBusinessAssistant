@@ -21,6 +21,7 @@ namespace SBA.Web
 
             bundles.Add(new StyleBundle("~/Content/mainCss").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/business-frontpage.css",
                       "~/Content/site.css"));
 
             // Użycie Lessa, przykład
