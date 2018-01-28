@@ -1,7 +1,5 @@
 ﻿$(() => {
-    let cat = new Example("Mruczek", 6);
-
-    cat.getInfo();
+    
 });
 
 // ts przystosowany do uzycia wywolan z JS oraz jQuery

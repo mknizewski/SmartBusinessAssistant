@@ -12,7 +12,8 @@ namespace SBA.Web
                         "~/Scripts/jquery.validate*",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/TypeScript/main.js"));
+                        "~/Scripts/TypeScript/main.js",
+                        "~/Scripts/TypeScript/helpers.js"));
 
             // Użyj wersji deweloperskiej biblioteki Modernizr do nauki i opracowywania rozwiązań. Następnie, kiedy wszystko będzie
             // gotowe do produkcji, użyj narzędzia do kompilowania ze strony https://modernizr.com, aby wybrać wyłącznie potrzebne testy.
@@ -21,7 +22,6 @@ namespace SBA.Web
 
             bundles.Add(new StyleBundle("~/Content/mainCss").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/business-frontpage.css",
                       "~/Content/site.css"));
 
             // Użycie Lessa, przykład
