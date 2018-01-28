@@ -1,4 +1,5 @@
-﻿using SBA.DAL.Context.WebDb.Entity;
+﻿using SBA.DAL.Context.WebDb.Common;
+using SBA.DAL.Context.WebDb.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,8 +17,8 @@ namespace SBA.DAL.Context.WebDb.Infrastructure
                 {
                     new Configuration
                     {
-                        Key = "InitlalKey",
-                        Name = "InitialValue",
+                        Key = ConfigurationKeys.ArticleJsonPath,
+                        Name = "D:\\SbaWebData\\",
                         InsertTime = DateTime.Now
                     }
                 };

@@ -1,4 +1,5 @@
-﻿using SBA.Web.Infrastructure.ContextInitializer;
+﻿using SBA.Web.Infrastructure.BackgroundJobs;
+using SBA.Web.Infrastructure.ContextInitializer;
 using SBA.Web.Infrastructure.Factory;
 using SBA.Web.Infrastructure.IoC;
 using SimpleInjector;
@@ -21,6 +22,8 @@ namespace SBA.Web
             Depedencies.Register();
             DependencyResolver.SetResolver(SimpleFactory.Resolver);
             ContextInitializer.SbaWebInitializer.Init();
+            BackgroundJobsConfigurator.Configure();
+            BackgroundJobsConfigurator.RegisterBackgroundJobs();
         }
     }
 }

@@ -2,16 +2,12 @@
 
 namespace SBA.Web.Controllers
 {
-    public class NewsController : Controller
+    public partial class NewsController : BaseController
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public virtual ActionResult Index() =>
+            View();
 
-        public ActionResult Read(int id)
-        {
-            return View();
-        }
+        public virtual ActionResult Read(int id) => 
+            View();
     }
 }

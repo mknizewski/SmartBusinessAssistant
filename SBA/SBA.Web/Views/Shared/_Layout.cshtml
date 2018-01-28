@@ -1,14 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using SBA.Web.Infrastructure.Alert
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title — moja aplikacja platformy ASP.NET</title>
+    <title>@ViewBag.Title — WebCoding S.A</title>
     @Styles.Render("~/Content/mainCss")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <div class="loader" id="loadingSpinner" style="display: none;">
+    </div>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -26,10 +30,10 @@
                         @Html.ActionLink("O nas", "About", "Home")
                     </li>
                     <li>
-                        @Html.ActionLink("Aktualności", "About", "Home")
+                        @Html.ActionLink("Aktualności", "Index", "News")
                     </li>
                     <li>
-                        @Html.ActionLink("Kontakt", "Contact", "Home")
+                        @Html.ActionLink("Kontakt", "Index", "Contact")
                     </li>
                 </ul>
             </div>
@@ -39,22 +43,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="tagline">Business Name or Tagline</h1>
+                    <h1 class="tagline">WebCoding S.A</h1>
                 </div>
             </div>
         </div>
     </header>
     <div class="container">
-        <hr>
+        <br />
+        <div id="tempMessage">
+            @Html.RenderAlert()
+        </div>
         @RenderBody()
     </div>
-    <hr>
     <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
-            </div>
-        </div>
+        @* Do ogarnięcia *@
     </footer>
 
     @Scripts.Render("~/bundles/mainJs")

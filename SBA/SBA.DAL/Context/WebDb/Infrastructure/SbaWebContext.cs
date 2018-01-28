@@ -10,6 +10,7 @@ namespace SBA.DAL.Context.WebDb.Infrastructure
         public DbSet<Configuration> Configurations { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         public SbaWebContext() 
             : base(ContextName)
