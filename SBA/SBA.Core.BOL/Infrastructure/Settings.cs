@@ -1,4 +1,6 @@
-﻿namespace SBA.Core.BOL.Infrastructure
+﻿using System.IO;
+
+namespace SBA.Core.BOL.Infrastructure
 {
     public static class Settings
     {

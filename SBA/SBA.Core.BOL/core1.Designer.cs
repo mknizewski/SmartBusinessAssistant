@@ -61,10 +61,10 @@ namespace SBA.Core.BOL {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("F:\\\\Magisterka\\\\Logs\\\\core.log")]
-        public string LogPath {
+        [global::System.Configuration.DefaultSettingValueAttribute("F:\\\\Magisterka\\\\Logs\\\\Core\\\\{0}\\\\core.log")]
+        public string LogPathPattern {
             get {
-                return ((string)(this["LogPath"]));
+                return ((string)(this["LogPathPattern"]));
             }
         }
     }

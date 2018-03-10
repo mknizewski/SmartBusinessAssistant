@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SBA.Core.BOL.Infrastructure;
+using System;
 using System.Threading.Tasks;
 
 namespace SBA.Core.BOL.Threads
@@ -9,24 +10,46 @@ namespace SBA.Core.BOL.Threads
         public Task Job { get; set; }
         public abstract void DoJob();
 
-        private void StartOutput() =>
-            Console.WriteLine("Started thread: {0} at {1} [{2}]",
+        private void StartOutput()
+        {
+            string output = string.Format("Started thread: {0} at {1} [{2}]\n",
                 ExcecutionPlan.ThreadName,
-                DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 Job.Id);
 
-        private void EndOutput() =>
-            Console.WriteLine("Ended thread: {0} at {1} [{2}]",
+            Console.Write(output);
+            SimpleFactory
+                .GetLogger()
+                .RegisterLog(output);
+        }
+            
+
+        private void EndOutput()
+        {
+            string output = string.Format("Ended thread: {0} at {1} [{2}]\n",
                 ExcecutionPlan.ThreadName,
-                DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 Job.Id);
 
-        private void ExceptionOutput(Exception ex) =>
-            Console.WriteLine("Exception on thread: {0} at {1}\nMessage: {2}\nInnerMessage: {3}",
+            Console.Write(output);
+            SimpleFactory
+                .GetLogger()
+                .RegisterLog(output);
+        }
+
+        private void ExceptionOutput(Exception ex)
+        {
+            string output = string.Format("Exception on thread: {0} at {1}\nMessage: {2}\nInnerMessage: {3}\n",
                 ExcecutionPlan.ThreadName,
-                DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 ex.Message,
                 ex?.InnerException?.Message);
+
+            Console.Write(output);
+            SimpleFactory
+                .GetLogger()
+                .RegisterLog(output);
+        }
 
         private void UpdateExcecutationPlan()
         {
@@ -45,7 +68,7 @@ namespace SBA.Core.BOL.Threads
                     StartOutput();
                     DoJob();
                 }
-                catch (Exception ex) // TODO: Rejestrować ex do pliku .log
+                catch (Exception ex)
                 {
                     ExceptionOutput(ex);
                 }

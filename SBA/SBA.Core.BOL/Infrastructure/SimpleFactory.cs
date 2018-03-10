@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SBA.Core.BOL.Managers;
+using System;
 
 namespace SBA.Core.BOL.Infrastructure
 {
@@ -12,5 +13,8 @@ namespace SBA.Core.BOL.Infrastructure
 
         public static I Get<T, I>() where T : I, new() =>
             new T();
+
+        public static ILoggerManager GetLogger() =>
+            new LoggerManager();
     }
 }
