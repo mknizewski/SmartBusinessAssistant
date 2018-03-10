@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SBA.Core.BOL" GeneratedClassName="core">
+  <Profiles />
+  <Settings>
+    <Setting Name="SocketServerIp" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="WebIp" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="SocketServerPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">669</Value>
+    </Setting>
+    <Setting Name="MaxConnectionsAllowed" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="LogPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">F:\\Magisterka\\Logs\\core.log</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
