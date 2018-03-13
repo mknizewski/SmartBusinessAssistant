@@ -1,5 +1,4 @@
 ﻿using SBA.BOL.Web.Service;
-using SBA.DAL.Context.WebDb.Service.Articles;
 using SimpleInjector;
 
 namespace SBA.Web.Infrastructure.IoC.Service

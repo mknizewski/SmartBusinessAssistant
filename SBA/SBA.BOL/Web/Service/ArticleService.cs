@@ -1,10 +1,9 @@
 ﻿using SBA.BOL.Web.Models;
-using SBA.BOL.Web.Service;
 using SBA.DAL.Context.WebDb.Repository.Articles;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SBA.DAL.Context.WebDb.Service.Articles
+namespace SBA.BOL.Web.Service
 {
     public interface IArticleService
     {
