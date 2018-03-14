@@ -45,6 +45,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>core.settings</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\NotAllowedDomainException.cs" />
     <Compile Include="Infrastructure\Configurator\GarbageCollector\GarbageCollectorConfigurator.cs" />
     <Compile Include="Infrastructure\Configurator\IConfigurator.cs" />
     <Compile Include="Infrastructure\Configurator\Threads\ServerSocketConfigurator.cs" />

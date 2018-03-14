@@ -61,7 +61,7 @@ namespace SBA.Core.BOL {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("F:\\\\Magisterka\\\\Logs\\\\Core\\\\{0}\\\\core.log")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Projekty\\SmartBusinessAssistant\\Logs\\Core\\{0}\\core.log")]
         public string LogPathPattern {
             get {
                 return ((string)(this["LogPathPattern"]));

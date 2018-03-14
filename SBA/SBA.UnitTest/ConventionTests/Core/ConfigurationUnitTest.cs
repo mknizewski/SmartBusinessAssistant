@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SBA.Core.BOL.Infrastructure;
-using SBA.Core.BOL.Infrastructure.Configurator;
-using SBA.Core.BOL.Threads;
 using System.Linq;
 using System.Reflection;
 

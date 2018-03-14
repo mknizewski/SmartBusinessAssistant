@@ -1,13 +1,9 @@
-﻿using SimpleInjector.Integration.Web.Mvc;
-using System;
+﻿using System;
 
-namespace SBA.Web.Infrastructure.Factory
+namespace SBA.BOL.Web.Common.Factory
 {
     public static class SimpleFactory
     {
-        public static SimpleInjectorDependencyResolver Resolver =>
-            new SimpleInjectorDependencyResolver(MvcApplication.Container);
-
         public static T Get<T>() where T : new() =>
            new T();
 

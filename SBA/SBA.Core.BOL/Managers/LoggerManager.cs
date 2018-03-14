@@ -6,14 +6,23 @@ namespace SBA.Core.BOL.Managers
 {
     public interface ILoggerManager
     {
-        void RegisterLog(string log);
+        void RegisterLogToFile(string log);
+        void RegisterLogToConsole(string log, bool appendNewLine = true);
     }
 
     public class LoggerManager : ILoggerManager
     {
         private object _lockObject = new object();
 
-        public void RegisterLog(string log)
+        public void RegisterLogToConsole(string log, bool appendNewLine = true)
+        {
+            if (appendNewLine)
+                Console.WriteLine(log);
+            else
+                Console.Write(log);
+        }
+
+        public void RegisterLogToFile(string log)
         {
             lock (_lockObject)
             {
@@ -26,6 +35,11 @@ namespace SBA.Core.BOL.Managers
 
                 File.AppendAllText(pathToLog, log);
             }
+        }
+
+        public void RegisterLogToFile(string log, bool appendNewLine = true)
+        {
+            throw new NotImplementedException();
         }
     }
 }
