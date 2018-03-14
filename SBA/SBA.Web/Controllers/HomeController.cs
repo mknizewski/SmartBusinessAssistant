@@ -7,9 +7,15 @@ namespace SBA.Web.Controllers
     public partial class HomeController : BaseController
     {
         private readonly IConfigurationService _configurationService;
+        private readonly IClientSocketService _clientSocketService;
 
-        public HomeController(IConfigurationService configurationService) =>
+        public HomeController(
+            IConfigurationService configurationService,
+            IClientSocketService clientSocketService)
+        {
             _configurationService = configurationService;
+            _clientSocketService = clientSocketService;
+        }
 
         public virtual ActionResult Index()
         {
@@ -23,8 +29,7 @@ namespace SBA.Web.Controllers
         /// <returns></returns>
         public virtual ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.Message = _clientSocketService.ExchangeDataWithCore("test_data");
             return View(_configurationService.GetConfigurations());
         }
     }

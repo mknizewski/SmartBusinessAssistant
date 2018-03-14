@@ -17,10 +17,8 @@ namespace SBA.Core.BOL.Threads
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 Job.Id);
 
-            Console.Write(output);
-            SimpleFactory
-                .GetLogger()
-                .RegisterLog(output);
+            SimpleFactory.GetLogger().RegisterLogToConsole(output, false);
+            SimpleFactory.GetLogger().RegisterLogToFile(output);
         }
             
 
@@ -31,10 +29,8 @@ namespace SBA.Core.BOL.Threads
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 Job.Id);
 
-            Console.Write(output);
-            SimpleFactory
-                .GetLogger()
-                .RegisterLog(output);
+            SimpleFactory.GetLogger().RegisterLogToConsole(output, false);
+            SimpleFactory.GetLogger().RegisterLogToFile(output);
         }
 
         private void ExceptionOutput(Exception ex)
@@ -45,10 +41,8 @@ namespace SBA.Core.BOL.Threads
                 ex.Message,
                 ex?.InnerException?.Message);
 
-            Console.Write(output);
-            SimpleFactory
-                .GetLogger()
-                .RegisterLog(output);
+            SimpleFactory.GetLogger().RegisterLogToConsole(output, false);
+            SimpleFactory.GetLogger().RegisterLogToFile(output);
         }
 
         private void UpdateExcecutationPlan()

@@ -15,7 +15,7 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="LogPathPattern" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">F:\\Magisterka\\Logs\\Core\\{0}\\core.log</Value>
+      <Value Profile="(Default)">D:\Projekty\SmartBusinessAssistant\Logs\Core\{0}\core.log</Value>
     </Setting>
   </Settings>
 </SettingsFile>

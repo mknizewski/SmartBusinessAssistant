@@ -9,8 +9,8 @@ namespace SBA.Web.Infrastructure.ContextInitializer
         {
             public static void Init()
             {
-                var dbContext = SimpleFactory.CreateInstance<SbaWebContext>();
-                var dbInitialzer = SimpleFactory.CreateInstance<DAL.Context.WebDb.Infrastructure.SbaWebInitializer>();
+                var dbContext = SimpleFactory.Get<SbaWebContext>();
+                var dbInitialzer = SimpleFactory.Get<DAL.Context.WebDb.Infrastructure.SbaWebInitializer>();
 
                 dbInitialzer.InitializeDatabase(dbContext);
             }
