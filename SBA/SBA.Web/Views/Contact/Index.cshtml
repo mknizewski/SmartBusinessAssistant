@@ -134,41 +134,6 @@
     </div>
 </div>
 
-@using (Html.BeginForm(MVC.Contact.Send(), FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-3">
-                <div class="form-area">
-                    <form role="form">
-                        <br style="clear:both">
-                        <h3 style="margin-bottom: 25px; text-align: center;">Formularz kontaktowy</h3>
-                        <div class="form-group">
-                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Imię i nazwisko" })
-                        </div>
-                        <div class="form-group">
-                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "E-mail" })
-                        </div>
-                        <div class="form-group">
-                            @Html.TextBoxFor(x => x.MobileNumber, new { @class = "form-control", @placeholder = "Telefon kontaktowy" })
-                        </div>
-                        <div class="form-group">
-                            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", @placeholder = "Temat" })
-                        </div>
-                        <div class="form-group">
-                            @Html.TextAreaFor(x => x.Message, new { @class = "form-control", @placeholder = "Wiadomość", @rows = "7" })
-                        </div>
-                        <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-4"></div>
-        </div>
-}
-
 <style>
     .faqHeader {
         font-size: 27px;
@@ -200,3 +165,80 @@
         color: #454444;
     }
 </style>
+
+
+
+<div id="contact-container">
+    <div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-lg-12">
+					<h1 class="display-4">W czym możemy Ci pomóc?</h1>
+					<p class="lead"><small>Formularz kontaktowy</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8 col-xs-12">
+				<div class="well">
+					<form>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="form-group">
+								<label for="name">Imię i nazwisko *</label>
+								<input type="text" class="form-control maxWidthForInput" id="name" name="name" required>
+								<small id="nameHelp" class="form-text text-muted">Podaj prawdziwe dane osobowe.</small>
+							</div>
+							<div class="form-group">
+								<label for="email">Email *</label>
+								<input type="email" class="form-control maxWidthForInput" id="email" placeholder="name@example.com" required>
+								<small id="emailHelp" class="form-text text-muted">Na ten adres odpowiemy na Twoją wiadomość.</small>
+							</div>
+							<div class="form-group">
+								<label for="category">Kategoria *</label>
+								<select id="category" name="category" class="form-control maxWidthForInput" required>
+									<optgroup label="Wybierz kategorię wiadomości:">
+										<option value="customer">Obsługa klienta</option>
+										<option value="support">Problemy techniczne</option>
+										<option value="invoice">Faktury i płatności</option>
+										<option value="complaint">Reklamacje</option>
+										<option value="other">Inne</option>
+									</optgroup>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="form-group">
+								<label for="subject">Temat *</label>
+								<input type="text" class="form-control maxWidthForInput" name="subject" id="subject"  required>
+							</div>
+							<div class="form-group">
+								<label for="message">Wiadomość *</label>
+								<textarea name="message" id="message" class="form-control maxWidthForInput" rows="6"  placeholder="" required></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary btn-block pull-right" id="btnContactUs">Wyślij wiadomość</button>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<form>
+				<legend><span class="glyphicon glyphicon-globe"></span> Dane teleadresowe:</legend>
+				<address>
+					<h3>WebCoding S.A.</h3>
+					Białystok, Dojlidy <br>
+					NIP: 664-19-95-787<br>
+					<br>
+					<abbr title="Telefon">T:</abbr>
+					+48 793 967 770<br>
+					<abbr title="E-mail">E:</abbr>
+					<a href="mailto:#">biuro@webcodingsa.pl</a>
+				</address>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,47 +1,72 @@
-﻿@{
+﻿@Styles.Render("~/Content/homeIndex")
+@{
     ViewBag.Title = "Home Page";
 }
 
+
 <div class="row">
-    <div class="col-sm-8">
-        <h2>What We Do</h2>
-        <p>Introduce the visitor to the business using clear, informative text. Use well-targeted keywords within your sentences to make sure search engines can find the business.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et molestiae similique eligendi reiciendis sunt distinctio odit? Quia, neque, ipsa, adipisci quisquam ullam deserunt accusantium illo iste exercitationem nemo voluptates asperiores.</p>
-        <p>
-            <a class="btn btn-default btn-lg" href="#">Call to Action &raquo;</a>
-        </p>
-    </div>
-    <div class="col-sm-4">
-        <h2>Contact Us</h2>
-        <address>
-            <strong>Start Bootstrap</strong>
-            <br>3481 Melrose Place
-            <br>Beverly Hills, CA 90210
-            <br>
-        </address>
-        <address>
-            <abbr title="Phone">P:</abbr>(123) 456-7890
-            <br>
-            <abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
-        </address>
-    </div>
-</div>
-<!-- /.row -->
-<hr>
-<div class="row">
-    <div class="col-sm-4">
-        <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-        <h2>Marketing Box #1</h2>
-        <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
-    </div>
-    <div class="col-sm-4">
-        <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-        <h2>Marketing Box #2</h2>
-        <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-    </div>
-    <div class="col-sm-4">
-        <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-        <h2>Marketing Box #3</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-    </div>
-</div>
+		<div class="col-md-5 col-lg-5">
+			<!-- artigo em destaque -->
+			<div class="featured-article">
+				<a href="#">
+					<img src="http://placehold.it/482x350" alt="" class="thumb">
+				</a>
+				<div class="block-title">
+					<h2>Lorem ipsum dolor asit amet</h2>
+					<p class="by-author"><small>By Jhon Doe</small></p>
+					<div class="btn-group pull-right">
+    					<a class="btn btn-sm btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook"><i class="fa fa-facebook"></i></a>
+    					<a class="btn btn-sm btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter"><i class="fa fa-twitter"></i></a>
+    					<a class="btn btn-sm btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google"><i class="fa fa-google"></i></a>
+    				</div>
+				</div>
+			</div>
+			<!-- /.featured-article -->
+		</div>
+		<div class="col-md-7 col-lg-7">
+			<ul class="media-list main-list">
+			  <li class="media">
+			    <a class="pull-left" href="#">
+			      <img class="media-object" src="http://placehold.it/150x90" alt="...">
+			    </a>
+			    <div class="media-body">
+			      <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
+			      <p class="by-author">By Jhon Doe</p>
+			    </div>
+				<div class="btn-group pull-right">
+    				<a class="btn btn-sm btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook"><i class="fa fa-facebook"></i></a>
+    				<a class="btn btn-sm btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter"><i class="fa fa-twitter"></i></a>
+    				<a class="btn btn-sm btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google"><i class="fa fa-google"></i></a>
+    			</div>
+			  </li>
+			  <li class="media">
+			    <a class="pull-left" href="#">
+			      <img class="media-object" src="http://placehold.it/150x90" alt="...">
+			    </a>
+			    <div class="media-body">
+			      <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
+			      <p class="by-author">By Jhon Doe</p>
+			    </div>
+				<div class="btn-group pull-right">
+    				<a class="btn btn-sm btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook"><i class="fa fa-facebook"></i></a>
+    				<a class="btn btn-sm btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter"><i class="fa fa-twitter"></i></a>
+    				<a class="btn btn-sm btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google"><i class="fa fa-google"></i></a>
+    			</div>
+			  </li>
+			  <li class="media">
+			    <a class="pull-left" href="#">
+			      <img class="media-object" src="http://placehold.it/150x90" alt="...">
+			    </a>
+			    <div class="media-body">
+			      <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
+			      <p class="by-author">By Jhon Doe</p>
+			    </div>
+				<div class="btn-group pull-right">
+    				<a class="btn btn-sm btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook"><i class="fa fa-facebook"></i></a>
+    				<a class="btn btn-sm btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter"><i class="fa fa-twitter"></i></a>
+    				<a class="btn btn-sm btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google"><i class="fa fa-google"></i></a>
+    			</div>
+			  </li>
+			</ul>
+		</div>		
+	</div>

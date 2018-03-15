@@ -1,4 +1,5 @@
-﻿using System.Web.Optimization;
+﻿using SBA.Web.Infrastructure.BundleTransform;
+using System.Web.Optimization;
 
 namespace SBA.Web
 {
@@ -22,14 +23,22 @@ namespace SBA.Web
 
             bundles.Add(new StyleBundle("~/Content/mainCss").Include(
                       "~/Content/bootstrap.css",
+                      "~/bower_components/font-awesome/css/font-awesome.css",
+                      "~/bower_components/bootstrap-social/bootstrap-social.css",
                       "~/Content/site.css"));
 
             // Użycie Lessa, przykład
+            var lessBundle = new Bundle("~/Content/mainLess").Include(
+                "~/Content/Less/style.less");
+            lessBundle.Transforms.Add(new LessTransform());
+            lessBundle.Transforms.Add(new CssMinify());
+            bundles.Add(lessBundle);
 
-            //var lessBundle = new Bundle("~/My/Less").IncludeDirectory("~/My", "*.less");
-            //lessBundle.Transforms.Add(new LessTransform());
-            //lessBundle.Transforms.Add(new CssMinify());
-            //bundles.Add(lessBundle);
+            var lessHomeIndexBundle = new Bundle("~/Content/homeIndex").Include(
+                "~/Content/Less/homeIndex.less");
+            lessHomeIndexBundle.Transforms.Add(new LessTransform());
+            lessHomeIndexBundle.Transforms.Add(new CssMinify());
+            bundles.Add(lessHomeIndexBundle);
 
             // Minifikacja
             BundleTable.EnableOptimizations = true;
