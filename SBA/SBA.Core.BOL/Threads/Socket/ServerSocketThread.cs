@@ -19,7 +19,7 @@ namespace SBA.Core.BOL.Threads.Socket
             _loggerManager = SimpleFactory.GetLogger();
         }
 
-        public override void DoJob()
+        public override void DoJob(params string[] jobParams)
         {
             var isListing = true;
             var serverSocket = SimpleFactory

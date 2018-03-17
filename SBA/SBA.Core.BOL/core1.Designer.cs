@@ -67,5 +67,32 @@ namespace SBA.Core.BOL {
                 return ((string)(this["LogPathPattern"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("005607192447384902306:qqcyt3itmec")]
+        public string CseEngineId {
+            get {
+                return ((string)(this["CseEngineId"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AIzaSyDMMvG30YwPxuV6x8KucspB4Ga2mGlW4wY")]
+        public string CseEngineApiKey {
+            get {
+                return ((string)(this["CseEngineApiKey"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.googleapis.com/customsearch/v1?q={0}&cx={1}&key={2}")]
+        public string GoogleCseApiUrlPath {
+            get {
+                return ((string)(this["GoogleCseApiUrlPath"]));
+            }
+        }
     }
 }
