@@ -13,7 +13,7 @@ namespace SBA.Core.BOL.Infrastructure.Configurator.GoogleCse
                 ExecuteTime = ExcecutionPlan.PreThreadTime.Hour,
                 WorkAsSingleton = true,
                 RunManually = true,
-                ForceFirstRun = true
+                ForceRun = false
             }
         };
     }

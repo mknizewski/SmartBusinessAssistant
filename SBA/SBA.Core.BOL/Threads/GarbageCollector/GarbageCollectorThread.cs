@@ -4,7 +4,7 @@ namespace SBA.Core.BOL.Threads.GarbageCollector
 {
     public class GarbageCollectorThread : BaseThread, IThread
     {
-        public override void DoJob(params string[] jobParams) => 
+        public override void DoJob() => 
             GC.Collect();
     }
 }

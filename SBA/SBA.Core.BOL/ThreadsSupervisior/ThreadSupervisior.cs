@@ -20,8 +20,8 @@ namespace SBA.Core.BOL.ThreadsSupervisior
             _threadWorkflow = SimpleFactory.Get<ThreadWorkflow>();
         }
 
-        public static ThreadSupervisior GetSupervisior() => 
-            new ThreadSupervisior();
+        public static void InitSupervisior() => 
+            Settings.Supervisior = new ThreadSupervisior();
 
         public ThreadSupervisior RegisterThreads()
         {
@@ -42,6 +42,15 @@ namespace SBA.Core.BOL.ThreadsSupervisior
             }
 
             return this;
+        }
+
+        public void ForceRun(string taskName, params string[] jobParams)
+        {
+            var thread = _threads
+                .FirstOrDefault(x => x.ExcecutionPlan.ThreadName == taskName);
+
+            thread.ExcecutionPlan.ForceRun = true;
+            thread.ExcecutionPlan.Parameters = jobParams;
         }
 
         public void Supervise()

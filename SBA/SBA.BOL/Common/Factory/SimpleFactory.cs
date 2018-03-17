@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SBA.BOL.Web.Common.Factory
+namespace SBA.BOL.Common.Factory
 {
     public static class SimpleFactory
     {
