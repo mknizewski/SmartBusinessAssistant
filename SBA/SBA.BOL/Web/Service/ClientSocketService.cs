@@ -1,4 +1,4 @@
-﻿using SBA.BOL.Web.Common.Factory;
+﻿using SBA.BOL.Common.Factory;
 using System;
 using System.Configuration;
 using System.Net.Sockets;

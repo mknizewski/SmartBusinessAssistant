@@ -7,8 +7,8 @@ namespace SBA.Core.BOL.Infrastructure
         public static void Run(string[] args)
         {
             InputParamsHandler.HandleParams(args);
-            ThreadSupervisior
-                .GetSupervisior()
+            ThreadSupervisior.InitSupervisior();
+            Settings.Supervisior
                 .RegisterThreads()
                 .Supervise();
         }

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace SBA.DAL.Context.InferenceDb.Entity
+namespace SBA.BOL.Inference.Models
 {
-    public class CseData
+    public class CseDataModel
     {
-        [Key]
         public int Id { get; set; }
 
         public string Query { get; set; }

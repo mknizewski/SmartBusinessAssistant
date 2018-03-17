@@ -19,7 +19,7 @@ namespace SBA.Core.BOL.Threads.Socket
             _loggerManager = SimpleFactory.GetLogger();
         }
 
-        public override void DoJob(params string[] jobParams)
+        public override void DoJob()
         {
             var isListing = true;
             var serverSocket = SimpleFactory
@@ -56,6 +56,8 @@ namespace SBA.Core.BOL.Threads.Socket
                     recvSocket.Send(Encoding.ASCII.GetBytes(dataToDeliver));
                     _loggerManager.RegisterLogToConsole(sendLog);
                     _loggerManager.RegisterLogToFile(sendLog);
+
+                    Settings.Supervisior.ForceRun(nameof(GoogleCse.GoogleCseThread), "biznes informatyka podlaskie");
                 }
                 catch (NotAllowedDomainException ex)
                 {

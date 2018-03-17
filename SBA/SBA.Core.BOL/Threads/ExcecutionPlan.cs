@@ -5,6 +5,7 @@ namespace SBA.Core.BOL.Threads
     public class ExcecutionPlan
     {
         public string ThreadName { get; set; }
+        public string[] Parameters { get; set; }
         public TimeSpan ExecuteTime { get; set; }
         public DateTime LastExecuteTime { get; set; }
 
@@ -15,7 +16,7 @@ namespace SBA.Core.BOL.Threads
         /// </summary>
         public bool WorkAsSingleton { get; set; }
         public bool RunManually { get; set; }
-        public bool ForceFirstRun { get; set; }
+        public bool ForceRun { get; set; }
 
         public static class PreThreadTime
         {

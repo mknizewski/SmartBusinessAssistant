@@ -50,6 +50,12 @@ namespace SBA.Core.BOL.ThreadsSupervisior
 
         private ThreadStatus GetThreadStatus(BaseThread thread)
         {
+            if (thread.ExcecutionPlan.ForceRun)
+                return ThreadStatus.ToRun;
+
+            if (thread.ExcecutionPlan.RunManually)
+                return ThreadStatus.ToSkip;
+
             if (thread.Job == null)
                 return ThreadStatus.ToRun;
 
@@ -61,9 +67,6 @@ namespace SBA.Core.BOL.ThreadsSupervisior
 
             if (thread.Job.Status == TaskStatus.RanToCompletion)
                 return ThreadStatus.ToRun;
-
-            if (thread.ExcecutionPlan.RunManually)
-                return ThreadStatus.ToSkip;
 
             return ThreadStatus.Working;
         }
