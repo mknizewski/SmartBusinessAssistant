@@ -15,6 +15,7 @@ namespace SBA.Core.BOL.Threads
         /// </summary>
         public bool WorkAsSingleton { get; set; }
         public bool RunManually { get; set; }
+        public bool ForceFirstRun { get; set; }
 
         public static class PreThreadTime
         {

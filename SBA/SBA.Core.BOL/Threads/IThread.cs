@@ -4,7 +4,7 @@ namespace SBA.Core.BOL.Threads
 {
     public interface IThread
     {
-        void DoJob();
+        void DoJob(params string[] jobParams);
         void RunJob();
     }
 }

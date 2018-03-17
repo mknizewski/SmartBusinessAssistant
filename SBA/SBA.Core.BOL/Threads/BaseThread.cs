@@ -8,7 +8,7 @@ namespace SBA.Core.BOL.Threads
     {
         public ExcecutionPlan ExcecutionPlan { get; set; }
         public Task Job { get; set; }
-        public abstract void DoJob();
+        public abstract void DoJob(params string[] jobParams);
 
         private void StartOutput()
         {
@@ -48,6 +48,7 @@ namespace SBA.Core.BOL.Threads
         private void UpdateExcecutationPlan()
         {
             ExcecutionPlan.LastExecuteTime = DateTime.Now;
+            ExcecutionPlan.ForceFirstRun = false;
         }
 
         public void RunJob() =>
@@ -55,7 +56,8 @@ namespace SBA.Core.BOL.Threads
             {
                 try
                 {
-                    if (ExcecutionPlan.ExecuteTime != null)
+                    if (ExcecutionPlan.ExecuteTime != null && 
+                       !ExcecutionPlan.ForceFirstRun)
                         await Task.Delay(ExcecutionPlan.ExecuteTime);
 
                     UpdateExcecutationPlan();
