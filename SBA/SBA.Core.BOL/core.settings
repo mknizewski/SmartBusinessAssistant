@@ -23,8 +23,11 @@
     <Setting Name="CseEngineApiKey" Type="System.String" Scope="Application">
       <Value Profile="(Default)">AIzaSyDMMvG30YwPxuV6x8KucspB4Ga2mGlW4wY</Value>
     </Setting>
-    <Setting Name="GoogleCseApiUrlPath" Type="System.String" Scope="Application">
+    <Setting Name="CseApiUrlPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://www.googleapis.com/customsearch/v1?q={0}&amp;cx={1}&amp;key={2}</Value>
+    </Setting>
+    <Setting Name="CseCountResult" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">100</Value>
     </Setting>
   </Settings>
 </SettingsFile>

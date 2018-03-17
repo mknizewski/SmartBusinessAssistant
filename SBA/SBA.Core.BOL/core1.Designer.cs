@@ -89,9 +89,18 @@ namespace SBA.Core.BOL {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://www.googleapis.com/customsearch/v1?q={0}&cx={1}&key={2}")]
-        public string GoogleCseApiUrlPath {
+        public string CseApiUrlPath {
             get {
-                return ((string)(this["GoogleCseApiUrlPath"]));
+                return ((string)(this["CseApiUrlPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public long CseCountResult {
+            get {
+                return ((long)(this["CseCountResult"]));
             }
         }
     }

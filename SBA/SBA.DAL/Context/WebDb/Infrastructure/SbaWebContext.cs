@@ -5,7 +5,7 @@ namespace SBA.DAL.Context.WebDb.Infrastructure
 {
     public class SbaWebContext : DbContext
     {
-        private static string ContextName => "SbaWebContext";
+        private static string ContextName => nameof(SbaWebContext);
 
         public DbSet<Configuration> Configurations { get; set; }
         public DbSet<File> Files { get; set; }
@@ -14,8 +14,7 @@ namespace SBA.DAL.Context.WebDb.Infrastructure
 
         public SbaWebContext() 
             : base(ContextName)
-        {
-        }
+        { }
 
         public static SbaWebContext Create() =>
             new SbaWebContext();
