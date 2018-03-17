@@ -8,22 +8,18 @@ namespace SBA.Core.BOL.Threads.GoogleCse
     {
         public override void DoJob(params string[] jobParams)
         {
-            string query = "programistok";
+            string query = "wydarzenia informatyczne białystok";
             var customSearchService = SimpleFactory
                 .Get<CustomsearchService>(new BaseClientService.Initializer
                 {
                     ApiKey = Settings.Core.CseEngineApiKey
                 });
 
-
             var listRequest = customSearchService.Cse.List(query);
             listRequest.Cx = Settings.Core.CseEngineId;
+            listRequest.Num = Settings.Core.CseCountResult;
 
             var response = listRequest.Execute();
-            foreach (var item in response.Items)
-            {
-                System.Console.WriteLine(item.Title);
-            }
         }
     }
 }

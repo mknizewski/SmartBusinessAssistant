@@ -12,7 +12,7 @@ namespace SBA.Core.BOL.Infrastructure.Configurator.GoogleCse
                 ThreadName = nameof(GoogleCseThread),
                 ExecuteTime = ExcecutionPlan.PreThreadTime.Hour,
                 WorkAsSingleton = true,
-                RunManually = false,
+                RunManually = true,
                 ForceFirstRun = true
             }
         };
