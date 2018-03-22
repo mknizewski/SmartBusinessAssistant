@@ -1,0 +1,35 @@
+﻿.panel-heading {
+
+    [data-toggle="collapse"]:after {
+        font-family: 'Glyphicons Halflings';
+        content: "\e072"; /* icon of arrow */
+        float: right;
+        color: #F58723;
+        font-size: 18px;
+        line-height: 22px;
+        /* arrow right to down*/
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    /* arrow right to up*/
+    [data-toggle="collapse"].collapsed:after {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #454444;
+    }
+}
+
+.spaceTop {
+    margin-top: 75px;
+}
+
+.panel-group hr {
+    padding-bottom: 10px;
+}
