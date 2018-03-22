@@ -25,6 +25,7 @@ textarea {
 
 body {
     padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    font-size: 14px;
 }
 
 /* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
@@ -141,4 +142,26 @@ hr {
 
 .maxWidthForInput {
     max-width: 100%;
+}
+
+/* NEWS */
+.containerArticleShadow {
+    -webkit-box-shadow: 5px 5px 22px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 5px 5px 22px 0px rgba(0,0,0,0.4);
+    box-shadow: 5px 5px 22px 0px rgba(0,0,0,0.4);
+
+    padding:50px;
+    border-radius: 15px;
+}
+
+.containerArticleShadow .paddingBorder {
+   
+}
+
+h2.h2article {
+    margin: 0;
+}
+
+.ul-data li {
+    padding: 0;
 }

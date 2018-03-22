@@ -14,7 +14,9 @@ namespace SBA.Web
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/TypeScript/main.js",
-                        "~/Scripts/TypeScript/helpers.js"));
+                        "~/Scripts/TypeScript/helpers.js",
+                        "~/bower_components/select2/dist/js/select2.min.js",
+                        "~/Scripts/select2main.js"));
 
             // Użyj wersji deweloperskiej biblioteki Modernizr do nauki i opracowywania rozwiązań. Następnie, kiedy wszystko będzie
             // gotowe do produkcji, użyj narzędzia do kompilowania ze strony https://modernizr.com, aby wybrać wyłącznie potrzebne testy.
@@ -25,6 +27,7 @@ namespace SBA.Web
                       "~/Content/bootstrap.css",
                       "~/bower_components/font-awesome/css/font-awesome.css",
                       "~/bower_components/bootstrap-social/bootstrap-social.css",
+                      "~/bower_components/select2/dist/css/select2.min.css",
                       "~/Content/site.css"));
 
             // Użycie Lessa, przykład
@@ -34,11 +37,23 @@ namespace SBA.Web
             lessBundle.Transforms.Add(new CssMinify());
             bundles.Add(lessBundle);
 
-            var lessHomeIndexBundle = new Bundle("~/Content/homeIndex").Include(
-                "~/Content/Less/homeIndex.less");
-            lessHomeIndexBundle.Transforms.Add(new LessTransform());
-            lessHomeIndexBundle.Transforms.Add(new CssMinify());
-            bundles.Add(lessHomeIndexBundle);
+            var lessHomeStyleBundle = new Bundle("~/Content/homeStyle").Include(
+                "~/Content/Less/homeStyle.less");
+            lessHomeStyleBundle.Transforms.Add(new LessTransform());
+            lessHomeStyleBundle.Transforms.Add(new CssMinify());
+            bundles.Add(lessHomeStyleBundle);
+
+            var lessContactStyleBundle = new Bundle("~/Content/contactStyle").Include(
+                "~/Content/Less/contactStyle.less");
+            lessContactStyleBundle.Transforms.Add(new LessTransform());
+            lessContactStyleBundle.Transforms.Add(new CssMinify());
+            bundles.Add(lessContactStyleBundle);
+
+            var lessNewsStyleBundle = new Bundle("~/Content/newsStyle").Include(
+                "~/Content/Less/newsStyle.less");
+            lessNewsStyleBundle.Transforms.Add(new LessTransform());
+            lessNewsStyleBundle.Transforms.Add(new CssMinify());
+            bundles.Add(lessNewsStyleBundle);
 
             // Minifikacja
             BundleTable.EnableOptimizations = true;
