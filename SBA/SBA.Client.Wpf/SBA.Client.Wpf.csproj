@@ -103,7 +103,9 @@
     <Compile Include="Views\MainPanelView.xaml.cs">
       <DependentUpon>MainPanelView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsView.cs" />
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
@@ -157,9 +159,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\LoginView.ico" />
+    <Resource Include="Content\Images\LogoUwB.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

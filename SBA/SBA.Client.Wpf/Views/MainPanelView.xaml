@@ -5,23 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SBA.Client.Wpf.Views"
         mc:Ignorable="d"
-        Title="MainPanelView" Height="250" Width="550" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="MainPanelView" Height="250" Width="550"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Info">
-                <MenuItem Header="O aplikacji" />
-                <MenuItem Header="Opcje" />
+                <MenuItem Header="O aplikacji" Click="AboutClick" />
+                <MenuItem Header="Opcje" Click="SettingsClick" />
                 <Separator />
-                <MenuItem Header="Wyłącz" />
+                <MenuItem Header="Wyłącz" Click="ExitClick" />
             </MenuItem>
             <MenuItem Header="Artykuły">
-                <MenuItem Header="Zasugeruj nowy artykuł" />
+                <MenuItem Header="Zasugeruj nowy artykuł" Click="ArticleClick" />
             </MenuItem>
             <MenuItem Header="FAQ">
-                <MenuItem Header="Zasugeruj nowy FAQ" />
+                <MenuItem Header="Zasugeruj nowy FAQ" Click="FaqClick" />
             </MenuItem>
             <MenuItem Header="Builder strony">
-                <MenuItem Header="Zasugeruj" />
+                <MenuItem Header="Zasugeruj" Click="BuilderClick" />
             </MenuItem>
         </Menu>
         <TextBox AcceptsReturn="True" />
@@ -30,7 +31,7 @@
                 <ColumnDefinition Width="60" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="150" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -46,11 +47,11 @@
             <Label Grid.Row="1" Grid.Column="4" HorizontalContentAlignment="Right">Aplikacja kliencka</Label>
             <TextBlock Grid.Row="2" Grid.Column="2" FontSize="20">Wybierz jedną z opcji sugerowania:</TextBlock>
             <StackPanel Grid.Row="3" Grid.Column="2">
-                <RadioButton GroupName="Option" Content="Artykuł" IsChecked="True" FontSize="16"/>
-                <RadioButton GroupName="Option" Content="FAQ" FontSize="16"/>
-                <RadioButton GroupName="Option" Content="Builder" FontSize="16"/>
+                <RadioButton Name="ArticleRadioButton" GroupName="Option" Content="Artykuł" IsChecked="True" FontSize="16" />
+                <RadioButton Name="FaqRadioButton" GroupName="Option" Content="FAQ" FontSize="16" />
+                <RadioButton Name="BuilderRadioButton" GroupName="Option" Content="Builder" FontSize="16" />
             </StackPanel>
-            <Button Content="Przejdż dalej" Grid.Row="4" Grid.Column="2" Cursor="Hand" Margin="194,10,10,0" Background="DarkGray"></Button>
+            <Button Content="Przejdż dalej" Grid.Row="4" Grid.Column="2" Cursor="Hand" Margin="194,10,10,0" Background="DarkGray" Click="OptionClick"></Button>
         </Grid>
     </DockPanel>
 </Window>

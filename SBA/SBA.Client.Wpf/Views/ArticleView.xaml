@@ -5,8 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SBA.Client.Wpf.Views"
         mc:Ignorable="d"
-        Title="ArticleView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Sugerowanie artykułu" Height="600" Width="750"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Info">
+                <MenuItem Header="Wróc do panelu głównego" Click="MainPanelClick" />
+                <MenuItem Header="O aplikacji" Click="AboutClick" />
+                <MenuItem Header="Opcje" Click="SettingsClick" />
+                <Separator />
+                <MenuItem Header="Wyłącz" Click="ExitClick" />
+            </MenuItem>
+            <MenuItem Header="Artykuły">
+                <MenuItem Header="Zasugeruj nowy artykuł" Click="ArticleClick" />
+            </MenuItem>
+            <MenuItem Header="FAQ">
+                <MenuItem Header="Zasugeruj nowy FAQ" Click="FaqClick" />
+            </MenuItem>
+            <MenuItem Header="Builder strony">
+                <MenuItem Header="Zasugeruj" Click="BuilderClick" />
+            </MenuItem>
+        </Menu>
+        <TextBox AcceptsReturn="True" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="118" />
+                <RowDefinition Height="36" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Grid.Column="7" HorizontalContentAlignment="Left">Ostatnia aktualizacja: ...</Label>
+            <RichTextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="4" BorderBrush="Black" MaxHeight="450">
+                <FlowDocument>
+                    <Paragraph FontSize="36">Dane o artykułach</Paragraph>
+                    <Paragraph FontStyle="Italic" TextAlignment="Left" FontSize="14" Foreground="Gray">Tutaj będą wyświetlane dane o artykułach</Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <Label Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" FontSize="14">Zasugeruj nowy artykuł:</Label>
+            <Label Grid.Row="9" Grid.Column="2" FontSize="12">Tytuł</Label>
+            <Label Grid.Row="9" Grid.Column="3" FontSize="12">Kategoria</Label>
+            <Label Grid.Row="10" Grid.Column="2" FontSize="12">Treść</Label>
+            <Label Grid.Row="10" Grid.Column="3" FontSize="12">Link</Label>
+            <Button Grid.Row="11" Grid.Column="4" Background="DarkGray" Grid.ColumnSpan="3" Margin="142,10,10,0" Click="SendArticleClick">Ok</Button>
+            <TextBox x:Name="ArticleTitle" HorizontalAlignment="Left" Height="69" TextWrapping="Wrap" Text="{Binding Path=ArticleTitle, Mode=OneWay}" VerticalAlignment="Top" Width="250" Grid.Column="2" Margin="0,27,0,0" Grid.Row="9" BorderBrush="Black" Background="WhiteSmoke" />
+            <TextBox x:Name="Category" HorizontalAlignment="Left" Height="69" TextWrapping="Wrap" Text="{Binding Path=Category, Mode=OneWay}" VerticalAlignment="Top" Width="237" Grid.Column="3" Grid.Row="9" BorderBrush="Black" Grid.ColumnSpan="4" Margin="10,27,0,0" Background="WhiteSmoke" />
+            <TextBox x:Name="Content" HorizontalAlignment="Left" Height="76" TextWrapping="Wrap" Text="{Binding Path=Content, Mode=OneWay}" VerticalAlignment="Top" Width="246" Grid.Column="2" Margin="0,25,0,0" Grid.Row="10" BorderBrush="Black" Background="WhiteSmoke" />
+            <TextBox x:Name="SourceOfArticle" HorizontalAlignment="Left" Height="76" TextWrapping="Wrap" Text="{Binding Path=SourceOfArticle, Mode=OneWay}" VerticalAlignment="Top" Width="237" Grid.Column="3" Margin="10,25,0,0" Grid.Row="10" BorderBrush="Black" Grid.ColumnSpan="4" Background="WhiteSmoke" />
+        </Grid>
+    </DockPanel>
 </Window>

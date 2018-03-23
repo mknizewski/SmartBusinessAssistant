@@ -5,8 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SBA.Client.Wpf.Views"
         mc:Ignorable="d"
-        Title="BuilderView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Sugerowanie przebudowy strony" Height="400" Width="750"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Info">
+                <MenuItem Header="Wróc do panelu głównego" Click="MainPanelClick" />
+                <MenuItem Header="O aplikacji" Click="AboutClick" />
+                <MenuItem Header="Opcje" Click="SettingsClick" />
+                <Separator />
+                <MenuItem Header="Wyłącz" Click="ExitClick" />
+            </MenuItem>
+            <MenuItem Header="Artykuły">
+                <MenuItem Header="Zasugeruj nowy artykuł" Click="ArticleClick" />
+            </MenuItem>
+            <MenuItem Header="FAQ">
+                <MenuItem Header="Zasugeruj nowy FAQ" Click="FaqClick" />
+            </MenuItem>
+            <MenuItem Header="Builder strony">
+                <MenuItem Header="Zasugeruj" Click="BuilderClick" />
+            </MenuItem>
+        </Menu>
+        <TextBox AcceptsReturn="True" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Grid.Column="7" HorizontalContentAlignment="Left">Ostatnia aktualizacja: ...</Label>
+            <RichTextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="4" BorderBrush="Black" MaxHeight="450">
+                <FlowDocument>
+                    <Paragraph FontSize="36">Dane o clickerach</Paragraph>
+                    <Paragraph FontStyle="Italic" TextAlignment="Left" FontSize="14" Foreground="Gray">Tutaj będą wyświetlane dane o clickerach</Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <Label Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" FontSize="14">Zasugeruj przebudowę strony, wpisując wskazówki jego właścicielowi:</Label>
+            <Button Grid.Row="9" Grid.Column="4" Background="DarkGray" Grid.ColumnSpan="3" Margin="49,59,0,10" RenderTransformOrigin="-0.506,0.734">Ok</Button>
+            <TextBox x:Name="FullSugestionBuilder" HorizontalAlignment="Left" Height="49" TextWrapping="Wrap" Text="{Binding Path=FullSugestionBuilder, Mode=OneWay}" VerticalAlignment="Top" Width="459" Grid.Column="2" Margin="5,5,0,0" Grid.Row="9" BorderBrush="Black" Background="WhiteSmoke" Grid.ColumnSpan="5" />
+        </Grid>
+    </DockPanel>
 </Window>
