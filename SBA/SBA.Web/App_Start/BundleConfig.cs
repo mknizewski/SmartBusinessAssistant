@@ -25,10 +25,8 @@ namespace SBA.Web
 
             bundles.Add(new StyleBundle("~/Content/mainCss").Include(
                       "~/Content/bootstrap.css",
-                      "~/bower_components/font-awesome/css/font-awesome.css",
                       "~/bower_components/bootstrap-social/bootstrap-social.css",
-                      "~/bower_components/select2/dist/css/select2.min.css",
-                      "~/Content/site.css"));
+                      "~/bower_components/select2/dist/css/select2.min.css"));
 
             // Użycie Lessa, przykład
             var lessBundle = new Bundle("~/Content/mainLess").Include(
@@ -54,6 +52,12 @@ namespace SBA.Web
             lessNewsStyleBundle.Transforms.Add(new LessTransform());
             lessNewsStyleBundle.Transforms.Add(new CssMinify());
             bundles.Add(lessNewsStyleBundle);
+
+            var lessAboutStyleBundle = new Bundle("~/Content/aboutStyle").Include(
+                "~/Content/Less/aboutStyle.less");
+            lessAboutStyleBundle.Transforms.Add(new LessTransform());
+            lessAboutStyleBundle.Transforms.Add(new CssMinify());
+            bundles.Add(lessAboutStyleBundle);
 
             // Minifikacja
             BundleTable.EnableOptimizations = true;

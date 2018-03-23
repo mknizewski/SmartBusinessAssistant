@@ -1,5 +1,6 @@
 ﻿@using SBA.BOL.Web.Models
 @model List<ConfigurationModel>
+@Styles.Render("~/Content/aboutStyle") 
 
 @{
     ViewBag.Title = "About";
@@ -12,6 +13,41 @@
 }
 <p>Use this area to provide additional information.</p>
 
+
+<hr style="padding-top:30px;">
+
+Może coś na ten design zrobić z tym zdjęciem poniżej
+<div class="containers">
+   <div class="background"></div>
+   <div class="foreground">sadsd fdsf sdf ds fsdf ds dsf </div>
+   <img src="http://www.placehold.it/200x200">
+</div>
+
+
+<div id="how-we-do" class="p-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-6 how-bg-img"></div>
+			<div class="col-xs-12 col-sm-12 col-md-6 how-contents">
+				<h4 class="section-title mb-2 h1">O naszej firmie</h4>
+				<p class="mb-4">Having and managing a correct marketing strategy is crucial in a fast moving market.</p>
+				<ul class="list-unstyled">
+					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<br>
 
 <div class="container">
     <div class="row">
@@ -86,39 +122,5 @@
 </div>
 
 <style>
-	.panel-pricing {
-	  -moz-transition: all .3s ease;
-	  -o-transition: all .3s ease;
-	  -webkit-transition: all .3s ease;
-	}
-	.panel-pricing:hover {
-	  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
-	}
-	.panel-pricing .panel-heading {
-	  padding: 20px 10px;
-	}
-	.panel-pricing .panel-heading .fa {
-	  margin-top: 10px;
-	  font-size: 58px;
-	}
-	.panel-pricing .list-group-item {
-	  color: #777777;
-	  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
-	}
-	.panel-pricing .list-group-item:last-child {
-	  border-bottom-right-radius: 0px;
-	  border-bottom-left-radius: 0px;
-	}
-	.panel-pricing .list-group-item:first-child {
-	  border-top-right-radius: 0px;
-	  border-top-left-radius: 0px;
-	}
-	.panel-pricing .panel-body {
-	  background-color: #f0f0f0;
-	  font-size: 40px;
-	  color: #777777;
-	  padding: 20px;
-	  margin: 0px;
-	}
-
+	
 </style>
