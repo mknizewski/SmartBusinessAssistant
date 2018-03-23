@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SBA.Client.Wpf.ViewModels
+﻿namespace SBA.Client.Wpf.ViewModels
 {
-    class BuilderViewModel
+    public class BuilderViewModel
     {
+        public string FullSugestionBuilder { get; set; }
     }
 }

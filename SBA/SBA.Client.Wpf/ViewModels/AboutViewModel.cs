@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SBA.Client.Wpf.ViewModels
+﻿namespace SBA.Client.Wpf.ViewModels
 {
-    class AboutViewModel
+    public class AboutViewModel
     {
     }
 }

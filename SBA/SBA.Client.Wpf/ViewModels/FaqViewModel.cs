@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SBA.Client.Wpf.ViewModels
+﻿namespace SBA.Client.Wpf.ViewModels
 {
-    class FaqViewModel
+    public class FaqViewModel
     {
+        public string FullQuestion { get; set; }
     }
 }

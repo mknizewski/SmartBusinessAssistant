@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SBA.Client.Wpf.Views"
         mc:Ignorable="d"
-        Title="AboutView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="O aplikacji" Height="300" Width="600"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Info">
+                <MenuItem Header="Wróc do panelu głównego" Click="MainPanelClick" />
+                <MenuItem Header="O aplikacji" Click="AboutClick" />
+                <MenuItem Header="Opcje" Click="SettingsClick" />
+                <Separator />
+                <MenuItem Header="Wyłącz" Click="ExitClick" />
+            </MenuItem>
+            <MenuItem Header="Artykuły">
+                <MenuItem Header="Zasugeruj nowy artykuł" Click="ArticleClick" />
+            </MenuItem>
+            <MenuItem Header="FAQ">
+                <MenuItem Header="Zasugeruj nowy FAQ" Click="FaqClick" />
+            </MenuItem>
+            <MenuItem Header="Builder strony">
+                <MenuItem Header="Zasugeruj" Click="BuilderClick" />
+            </MenuItem>
+        </Menu>
+        <TextBox AcceptsReturn="True" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Grid.Column="4" HorizontalContentAlignment="Right">Aplikacja kliencka</Label>
+            <TextBlock Grid.Row="2" Grid.Column="2" FontSize="20">Aplikacja kliencka, którego twórcami są:</TextBlock>
+            <ItemsControl Grid.Row="3" Grid.Column="2" Margin="0,6,0,0" FontSize="14">
+                <Label>- Mateusz Kniżewski</Label>
+                <Label>- Łukasz Wesołowski</Label>
+                <Label>- Piotr Aleksandrowicz</Label>
+            </ItemsControl>
+        </Grid>
+    </DockPanel>
 </Window>

@@ -3,9 +3,9 @@ using System.Windows;
 
 namespace SBA.Client.Wpf.Views
 {
-    public partial class AboutView : Window
+    public partial class SettingsView : Window
     {
-        public AboutView()
+        public SettingsView()
         {
             InitializeComponent();
         }
