@@ -3,12 +3,15 @@ using SBA.BOL.Inference.Models;
 using SBA.DAL.Context.InferenceDb.Entity;
 using SBA.DAL.Context.InferenceDb.Repository.CseData;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SBA.BOL.Inference.Service
 {
     public interface ICseDataService
     {
         void Add(CseDataModel cseDataModel);
+        List<CseDataModel> GetUnhandledCseDatas();
     }
 
     public class CseDataService : ICseDataService
@@ -30,5 +33,17 @@ namespace SBA.BOL.Inference.Service
             });
             _cseDataRepository.SaveChanges();
         }
+
+        public List<CseDataModel> GetUnhandledCseDatas() =>
+            _cseDataRepository
+                .GetUnhanldedCseDatas()
+                .Select(x => new CseDataModel
+                {
+                    Id = x.Id,
+                    Query = x.Query,
+                    ObjectType = x.ObjectType,
+                    RawJsonQueryResult = x.RawJsonQueryResult,
+                    InsertTime = x.InsertTime
+                }).ToList();
     }
 }

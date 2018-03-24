@@ -49,8 +49,8 @@ namespace SBA.Core.BOL.ThreadsSupervisior
             var thread = _threads
                 .FirstOrDefault(x => x.ExcecutionPlan.ThreadName == taskName);
 
-            thread.ExcecutionPlan.ForceRun = true;
             thread.ExcecutionPlan.Parameters = jobParams;
+            thread.ExcecutionPlan.ForceRun = true;
         }
 
         public void Supervise()

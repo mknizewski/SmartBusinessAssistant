@@ -14,6 +14,8 @@ namespace SBA.DAL.Context.InferenceDb.Entity
 
         public string ObjectType { get; set; }
 
+        public bool IsHandled { get; set; }
+
         public DateTime InsertTime { get; set; }
     }
 }
