@@ -27,6 +27,38 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBA.Core.BOL", "SBA.Core.BO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBA.Client.Wpf", "SBA.Client.Wpf\SBA.Client.Wpf.csproj", "{5766B283-B4FA-4F10-98A9-8EE07FD76388}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagrams", "Diagrams", "{82FB93B8-89DB-44AA-B72C-1967D2604871}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{9C34AEA2-B406-43C9-AB90-3219703F46E8}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Admin\Desktop\warstwy\Client\Client.mdj = C:\Users\Admin\Desktop\warstwy\Client\Client.mdj
+		C:\Users\Admin\Desktop\warstwy\Client\Client.png = C:\Users\Admin\Desktop\warstwy\Client\Client.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{86C865F9-9966-4DA6-ACA0-7E2BCC346C45}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Admin\Desktop\warstwy\Core\Core.mdj = C:\Users\Admin\Desktop\warstwy\Core\Core.mdj
+		C:\Users\Admin\Desktop\warstwy\Core\Core.png = C:\Users\Admin\Desktop\warstwy\Core\Core.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Komunikacja", "Komunikacja", "{A70EFD5F-B9C1-4919-B3D6-C9A9B19ED0C0}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Admin\Desktop\warstwy\Komunikacja\Komunikacja.mdj = C:\Users\Admin\Desktop\warstwy\Komunikacja\Komunikacja.mdj
+		C:\Users\Admin\Desktop\warstwy\Komunikacja\Komunikacja.png = C:\Users\Admin\Desktop\warstwy\Komunikacja\Komunikacja.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{1074C306-9DB6-4502-AFCF-C19E5AE57F29}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Admin\Desktop\warstwy\Shared\Shared.mdj = C:\Users\Admin\Desktop\warstwy\Shared\Shared.mdj
+		C:\Users\Admin\Desktop\warstwy\Shared\Shared.png = C:\Users\Admin\Desktop\warstwy\Shared\Shared.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{2950127F-C211-47B4-AEDF-611B8F8A0CCC}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Admin\Desktop\warstwy\Web\Web.mdj = C:\Users\Admin\Desktop\warstwy\Web\Web.mdj
+		C:\Users\Admin\Desktop\warstwy\Web\Web.png = C:\Users\Admin\Desktop\warstwy\Web\Web.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +105,11 @@ Global
 		{C3DD2F82-0DA5-4D8F-9E60-3BB2F80D6136} = {E38DC5C1-AFC6-4B37-AA98-A61AF73EDBC7}
 		{7F71F60B-2C89-42B2-A7EE-C9B946259491} = {E38DC5C1-AFC6-4B37-AA98-A61AF73EDBC7}
 		{5766B283-B4FA-4F10-98A9-8EE07FD76388} = {474DB9AA-49DB-47E4-A2EC-92308C74CE6E}
+		{9C34AEA2-B406-43C9-AB90-3219703F46E8} = {82FB93B8-89DB-44AA-B72C-1967D2604871}
+		{86C865F9-9966-4DA6-ACA0-7E2BCC346C45} = {82FB93B8-89DB-44AA-B72C-1967D2604871}
+		{A70EFD5F-B9C1-4919-B3D6-C9A9B19ED0C0} = {82FB93B8-89DB-44AA-B72C-1967D2604871}
+		{1074C306-9DB6-4502-AFCF-C19E5AE57F29} = {82FB93B8-89DB-44AA-B72C-1967D2604871}
+		{2950127F-C211-47B4-AEDF-611B8F8A0CCC} = {82FB93B8-89DB-44AA-B72C-1967D2604871}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66DC65A6-7495-415F-ABC5-7E804E4D8A2C}
