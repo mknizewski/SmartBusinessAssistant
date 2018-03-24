@@ -12,7 +12,7 @@ namespace SBA.Core.BOL.Managers
 
     public class LoggerManager : ILoggerManager
     {
-        private object _lockObject = new object();
+        private static readonly object _lockObject = SimpleFactory.Get<object>();
 
         public void RegisterLogToConsole(string log, bool appendNewLine = true)
         {
@@ -35,11 +35,6 @@ namespace SBA.Core.BOL.Managers
 
                 File.AppendAllText(pathToLog, log);
             }
-        }
-
-        public void RegisterLogToFile(string log, bool appendNewLine = true)
-        {
-            throw new NotImplementedException();
         }
     }
 }
