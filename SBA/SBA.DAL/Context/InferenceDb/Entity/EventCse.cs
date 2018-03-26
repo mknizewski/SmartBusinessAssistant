@@ -5,8 +5,11 @@ namespace SBA.DAL.Context.InferenceDb.Entity
 {
     public class EventCse : ThingCse
     {
+        [NotMapped]
+        public const string PageMapName = "event";
+
         public string Location { get; set; }
-        public DateTime StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
 
         [ForeignKey(nameof(OrganizerOrganization))]
         public int? OrganizerOrganizationId { get; set; }

@@ -1,7 +1,8 @@
 ﻿using SBA.BOL.Inference.Service;
-using SBA.Core.BOL.Exceptions;
 using SBA.Core.BOL.Infrastructure;
 using SBA.Core.BOL.Managers;
+using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -12,11 +13,20 @@ namespace SBA.Core.BOL.Threads.Socket
     {
         private readonly IServerSocketService _serverSocketService;
         private readonly ILoggerManager _loggerManager;
+        private readonly IDiagnosticManager _diagnosticManager;
+        private readonly IConnectionHandler _connectionHandler;
+        private static readonly string[] _acceptedAuthGuids =
+        {
+            Settings.Core.WebAuthGuid,
+            Settings.Core.DiagAuthGuid
+        };
 
         public ServerSocketThread()
         {
             _serverSocketService = SimpleFactory.Get<ServerSocketService, IServerSocketService>();
             _loggerManager = SimpleFactory.GetLogger();
+            _diagnosticManager = SimpleFactory.Get<DiagnosticManager, IDiagnosticManager>();
+            _connectionHandler = SimpleFactory.Get<ConnectionHandler, IConnectionHandler>();
         }
 
         public override void DoJob()
@@ -32,39 +42,93 @@ namespace SBA.Core.BOL.Threads.Socket
                 IPAddress.Parse(Settings.Core.SocketServerIp),
                 Settings.Core.SocketServerPort));
 
+            serverSocket.Listen(Settings.Core.MaxConnectionsAllowed);
+
             while (isListing)
             {
+                byte[] sendBytes = null;
+                var socketHandler = serverSocket.Accept();
+
                 try
                 {
-                    serverSocket.Listen(Settings.Core.MaxConnectionsAllowed);
+                    byte[] recvBytes = new byte[socketHandler.ReceiveBufferSize];
 
-                    var recvSocket = serverSocket.Accept();
-                    var buffer = new byte[recvSocket.ReceiveBufferSize];
-                    string ipAddres = (recvSocket.RemoteEndPoint as IPEndPoint).Address.ToString();
-                    if (ipAddres != Settings.Core.WebIp)
-                        throw new NotAllowedDomainException(ipAddres);
+                    _loggerManager.RegisterLogToConsole($"Incoming connection to: {nameof(ServerSocketThread)} from: {socketHandler.RemoteEndPoint.ToString()}");
+                    _loggerManager.RegisterLogToFile($"Incoming connection to: {nameof(ServerSocketThread)} from: {socketHandler.RemoteEndPoint.ToString()}");
+                    socketHandler.Receive(recvBytes);
 
-                    string recvLog = $"{nameof(ServerSocketThread)} recived data from WebLayer. [{ipAddres}]";
-                    recvSocket.Receive(buffer);
-                    
-                    _loggerManager.RegisterLogToConsole(recvLog);
-                    _loggerManager.RegisterLogToFile(recvLog);
+                    var dictionary = _serverSocketService.DeserializeDictionary(recvBytes);
+                    _serverSocketService.AuthorizeConnection(dictionary, _acceptedAuthGuids);
 
-                    string dataToDeliver = _serverSocketService.HandleRecvData(buffer);
-                    string sendLog = $"{nameof(ServerSocketThread)} sended data to WebLayer. [{ipAddres}]";
-
-                    recvSocket.Send(Encoding.ASCII.GetBytes(dataToDeliver));
-                    _loggerManager.RegisterLogToConsole(sendLog);
-                    _loggerManager.RegisterLogToFile(sendLog);
-
-                    Settings.Supervisior.ForceRun(nameof(GoogleCse.GoogleCseThread), "biznes informatyka podlaskie");
+                    sendBytes = _connectionHandler.Handle(
+                        new ConnectionHandlerData
+                        {
+                            RecvDictionary = dictionary,
+                            DiagnosticManager = _diagnosticManager,
+                            ServerSocketService = _serverSocketService
+                        });
                 }
-                catch (NotAllowedDomainException ex)
+                catch (Exception ex)
                 {
+                    sendBytes = Encoding.ASCII.GetBytes("Unexpected / Unauthorized");
                     _loggerManager.RegisterLogToConsole(ex.Message);
                     _loggerManager.RegisterLogToFile(ex.Message);
                 }
+                finally
+                {
+                    socketHandler.Send(sendBytes);
+
+                    _loggerManager.RegisterLogToConsole($"End connection from: {socketHandler.RemoteEndPoint.ToString()}");
+                    _loggerManager.RegisterLogToFile($"End connection from: {socketHandler.RemoteEndPoint.ToString()}");
+
+                    socketHandler.Shutdown(SocketShutdown.Both);
+                    socketHandler.Close();
+                }
             }
+        }
+
+        private interface IConnectionHandler
+        {
+            byte[] Handle(ConnectionHandlerData connectionHandlerData);
+        }
+
+        private struct ConnectionHandler : IConnectionHandler
+        {
+            public const string Web = nameof(ConnectionHandler.Web);
+
+            public const string Diag = nameof(ConnectionHandler.Diag);
+
+            public byte[] Handle(ConnectionHandlerData connectionHandlerData)
+            {
+                string type = connectionHandlerData.RecvDictionary["Type"];
+                switch (type)
+                {
+                    case Web:
+                        return this.WebHandler(connectionHandlerData);
+                    case Diag:
+                        return this.DiagnosticHandler(connectionHandlerData);
+                    default:
+                        return Encoding.ASCII.GetBytes("Unsupported type");
+                }
+            }
+
+            private byte[] DiagnosticHandler(ConnectionHandlerData connectionHandlerData)
+            {
+                string command = connectionHandlerData.RecvDictionary["Command"];
+                string returnData = connectionHandlerData.DiagnosticManager.RunJob(command);
+
+                return Encoding.ASCII.GetBytes(returnData);
+            }
+
+            private byte[] WebHandler(ConnectionHandlerData connectionHandlerData) =>
+                connectionHandlerData.ServerSocketService.HandleData(connectionHandlerData.RecvDictionary);
+        }
+
+        private struct ConnectionHandlerData
+        {
+            public Dictionary<string, string> RecvDictionary { get; set; }
+            public IServerSocketService ServerSocketService { get; set; }
+            public IDiagnosticManager DiagnosticManager { get; set; }
         }
     }
 }
