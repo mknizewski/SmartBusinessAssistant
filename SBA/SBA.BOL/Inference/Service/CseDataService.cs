@@ -12,6 +12,7 @@ namespace SBA.BOL.Inference.Service
     {
         void Add(CseDataModel cseDataModel);
         List<CseDataModel> GetUnhandledCseDatas();
+        void SetCseDataHandled(int cseDataId);
     }
 
     public class CseDataService : ICseDataService
@@ -45,5 +46,8 @@ namespace SBA.BOL.Inference.Service
                     RawJsonQueryResult = x.RawJsonQueryResult,
                     InsertTime = x.InsertTime
                 }).ToList();
+
+        public void SetCseDataHandled(int cseDataId) =>
+            _cseDataRepository.SetCseDataHandled(cseDataId);
     }
 }

@@ -11,7 +11,6 @@ namespace SBA.Core.BOL.Infrastructure.Configurator.Threads
             ExcecutionPlan = new ExcecutionPlan
             {
                 ThreadName = nameof(ServerSocketThread),
-                ExecuteTime = TimeSpan.FromSeconds(5.0),
                 WorkAsSingleton = true,
                 RunManually = false
             }

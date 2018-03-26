@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace SBA.DAL.Context.InferenceDb.Entity
+﻿namespace SBA.DAL.Context.InferenceDb.Entity
 {
     public abstract class ThingCse : BaseSchemaCse
     {

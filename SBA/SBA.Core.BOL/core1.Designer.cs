@@ -34,15 +34,6 @@ namespace SBA.Core.BOL {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string WebIp {
-            get {
-                return ((string)(this["WebIp"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("669")]
         public int SocketServerPort {
             get {
@@ -52,7 +43,7 @@ namespace SBA.Core.BOL {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int MaxConnectionsAllowed {
             get {
                 return ((int)(this["MaxConnectionsAllowed"]));
@@ -101,6 +92,24 @@ namespace SBA.Core.BOL {
         public long CseCountResult {
             get {
                 return ((long)(this["CseCountResult"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("bf68526a-8e37-4b2d-9780-850a854e1f26")]
+        public string WebAuthGuid {
+            get {
+                return ((string)(this["WebAuthGuid"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cfa12e66-7850-4d14-b72f-173327e4c8a7")]
+        public string DiagAuthGuid {
+            get {
+                return ((string)(this["DiagAuthGuid"]));
             }
         }
     }

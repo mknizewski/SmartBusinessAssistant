@@ -11,6 +11,7 @@ namespace SBA.DAL.Context.InferenceDb.Repository.CseStructures
         void AddVideo(VideoCse videoCse);
         void AddSoftwareApplication(SoftwareApplicationCse softwareApplicationCse);
         void AddSoftwareSourceCoce(SoftwareSourceCodeCse softwareSourceCodeCse);
+        void AddThingWithRecognizeType(ThingCse thingCse);
     }
 
     public class CseStructuresRepository : BaseRepository, ICseStructuresRepository
@@ -54,6 +55,26 @@ namespace SBA.DAL.Context.InferenceDb.Repository.CseStructures
         public void AddVideo(VideoCse videoCse)
         {
             Add(videoCse);
+            SaveChanges();
+        }
+
+        public void AddThingWithRecognizeType(ThingCse thingCse)
+        {
+            if (thingCse is ArticleCse)
+                AddArticle((ArticleCse)thingCse);
+            else if (thingCse is EventCse)
+                AddEvent((EventCse)thingCse);
+            else if (thingCse is OrganizationCse)
+                AddOrganization((OrganizationCse)thingCse);
+            else if (thingCse is PersonCse)
+                AddPerson((PersonCse)thingCse);
+            else if (thingCse is SoftwareApplicationCse)
+                AddSoftwareApplication((SoftwareApplicationCse)thingCse);
+            else if (thingCse is SoftwareSourceCodeCse)
+                AddSoftwareSourceCoce((SoftwareSourceCodeCse)thingCse);
+            else if (thingCse is VideoCse)
+                AddVideo((VideoCse)thingCse);
+
             SaveChanges();
         }
     }

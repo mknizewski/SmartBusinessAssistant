@@ -1,20 +1,44 @@
-﻿using System.Reflection;
+﻿using SBA.BOL.Common.Factory;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace SBA.BOL.Inference.Service
 {
     public interface IServerSocketService
     {
-        string HandleRecvData(byte[] recvByte);
+        Dictionary<string, string> DeserializeDictionary(byte[] recvBytes);
+        byte[] HandleData(Dictionary<string, string> recvDictionary);
+        void AuthorizeConnection(Dictionary<string, string> recvDictionary, string[] authGuids);
     }
 
     public class ServerSocketService : IServerSocketService
     {
-        // TODO: Implementacja
-        public string HandleRecvData(byte[] recvByte)
+        public void AuthorizeConnection(Dictionary<string, string> recvDictionary, string[] authGuids)
         {
-            string encodedData = Encoding.ASCII.GetString(recvByte).Replace("\0", string.Empty);
-            return encodedData + $" - handled by {Assembly.GetCallingAssembly().FullName}";
+            string recvGuid = recvDictionary["AuthGuid"];
+            if (!authGuids.Contains(recvGuid))
+                throw new UnauthorizedAccessException();
+        }
+
+        public Dictionary<string, string> DeserializeDictionary(byte[] recvBytes)
+        {
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>(recvBytes))
+                return (Dictionary<string, string>) binaryFormatter.Deserialize(memoryStream);
+        }
+
+        /// <summary>
+        /// TODO: Obsłużyć.
+        /// </summary>
+        /// <param name="recvDictionary"></param>
+        /// <returns></returns>
+        public byte[] HandleData(Dictionary<string, string> recvDictionary)
+        {
+            return Encoding.ASCII.GetBytes("test z core");
         }
     }
 }

@@ -7,6 +7,7 @@ namespace SBA.DAL.Context.InferenceDb.Repository.CseData
         IQueryable<Entity.CseData> GetCseDatas();
         IQueryable<Entity.CseData> GetUnhanldedCseDatas();
         Entity.CseData GetCseDataBy(int id);
+        void SetCseDataHandled(int cseId);
     }
 
     public class CseDataRepository : BaseRepository, ICseDataRepository
@@ -21,5 +22,14 @@ namespace SBA.DAL.Context.InferenceDb.Repository.CseData
         public IQueryable<Entity.CseData> GetUnhanldedCseDatas() =>
             Queryable<Entity.CseData>()
                 .Where(x => !x.IsHandled);
+
+        public void SetCseDataHandled(int cseId)
+        {
+            var cseData = Queryable<Entity.CseData>()
+                .FirstOrDefault(x => x.Id == cseId);
+
+            cseData.IsHandled = true;
+            SaveChanges();
+        }
     }
 }

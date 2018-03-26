@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SBA.DAL.Context.InferenceDb.Entity
 {
-    /// <summary>
-    /// TODO: Uzupełnić
-    /// </summary>
     public class VideoCse : ThingCse
     {
+        [NotMapped]
+        public const string PageMapName = "videoobject";
     }
 }

@@ -13,6 +13,7 @@ namespace SBA.Core.BOL.ThreadsSupervisior
         private List<BaseThread> _threads;
         private ThreadWorkflow _threadWorkflow;
         private bool _supervising = true;
+        private static readonly object _lockObject = SimpleFactory.Get<object>();
 
         private ThreadSupervisior()
         {
@@ -44,13 +45,25 @@ namespace SBA.Core.BOL.ThreadsSupervisior
             return this;
         }
 
-        public void ForceRun(string taskName, params string[] jobParams)
+        public bool ForceRun(string taskName, params string[] jobParams)
         {
-            var thread = _threads
-                .FirstOrDefault(x => x.ExcecutionPlan.ThreadName == taskName);
+            lock (_lockObject)
+            {
+                try
+                {
+                    var thread = _threads
+                        .FirstOrDefault(x => x.ExcecutionPlan.ThreadName == taskName);
 
-            thread.ExcecutionPlan.Parameters = jobParams;
-            thread.ExcecutionPlan.ForceRun = true;
+                    thread.ExcecutionPlan.Parameters = jobParams;
+                    thread.ExcecutionPlan.ForceRun = true;
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
 
         public void Supervise()
