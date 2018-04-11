@@ -22,3 +22,4 @@ class Example {
         alert(fullInfo);
     }
 }
+

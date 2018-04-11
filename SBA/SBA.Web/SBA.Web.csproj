@@ -211,6 +211,7 @@
     <Compile Include="Infrastructure\BundleTransform\LessTransform.cs" />
     <Compile Include="Infrastructure\ContextInitializer\ContextInitializer.cs" />
     <Compile Include="Infrastructure\Factory\SimpleFactory.cs" />
+    <Compile Include="Infrastructure\Filters\CookieFilter.cs" />
     <Compile Include="Infrastructure\IoC\Depedencies.cs" />
     <Compile Include="Infrastructure\IoC\Repository\RepositoryDepedencies.cs" />
     <Compile Include="Infrastructure\IoC\Service\ServiceDepedencies.cs" />
@@ -231,7 +232,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\Images\loading.svg" />
+    <Content Include="Content\Images\loading.svg">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -246,6 +249,7 @@
     <Content Include="Content\Less\contactStyle.less" />
     <Content Include="Content\Less\newsStyle.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\clicksData.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
