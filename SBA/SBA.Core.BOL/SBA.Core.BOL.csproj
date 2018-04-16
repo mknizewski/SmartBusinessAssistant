@@ -51,6 +51,9 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NReco.Recommender, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a9abe3bdfd6b1a7f, processorArchitecture=MSIL">
+      <HintPath>..\packages\NReco.Recommender.1.0.1\lib\net40\NReco.Recommender.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -61,6 +64,7 @@
       <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
       <Private>True</Private>
@@ -92,6 +96,7 @@
     <Compile Include="Infrastructure\Configurator\GarbageCollector\GarbageCollectorConfigurator.cs" />
     <Compile Include="Infrastructure\Configurator\GoogleCse\GoogleCseConfigurator.cs" />
     <Compile Include="Infrastructure\Configurator\IConfigurator.cs" />
+    <Compile Include="Infrastructure\Configurator\KeywordRecommender\KeywordRecommenderConfigurator.cs" />
     <Compile Include="Infrastructure\Configurator\StructureExtractor\StructureExtractorConfigurator.cs" />
     <Compile Include="Infrastructure\Configurator\Threads\ServerSocketConfigurator.cs" />
     <Compile Include="Infrastructure\InputParamsHandler.cs" />
