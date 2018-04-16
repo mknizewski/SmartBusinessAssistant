@@ -49,7 +49,7 @@
       <HintPath>..\packages\Google.Apis.1.32.2\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -108,6 +108,7 @@
     <Compile Include="Threads\GarbageCollector\GarbageCollectorThread.cs" />
     <Compile Include="Threads\GoogleCse\GoogleCseThread.cs" />
     <Compile Include="Threads\IThread.cs" />
+    <Compile Include="Threads\KeywordRecommender\KeywordRecommenderThread.cs" />
     <Compile Include="Threads\Socket\ServerSocketThread.cs" />
     <Compile Include="Threads\StructureExtractor\StructureExtractorThread.cs" />
   </ItemGroup>
@@ -125,5 +126,6 @@
       <Name>SBA.BOL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,6 @@
 ﻿using SBA.Core.BOL.Infrastructure;
 using SBA.Core.BOL.Infrastructure.Configurator;
+using SBA.Core.BOL.Managers;
 using SBA.Core.BOL.Threads;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,19 @@ namespace SBA.Core.BOL.ThreadsSupervisior
     {
         private List<BaseThread> _threads;
         private ThreadWorkflow _threadWorkflow;
+        private ILoggerManager _loggerManager;
         private bool _supervising = true;
         private static readonly object _lockObject = SimpleFactory.Get<object>();
 
-        private ThreadSupervisior()
+        public ThreadSupervisior()
         {
             _threads = SimpleFactory.Get<List<BaseThread>>();
             _threadWorkflow = SimpleFactory.Get<ThreadWorkflow>();
+            _loggerManager = SimpleFactory.GetLogger();
         }
 
-        public static void InitSupervisior() => 
-            Settings.Supervisior = new ThreadSupervisior();
+        public static void InitSupervisior() =>
+            Settings.Supervisior = SimpleFactory.Get<ThreadSupervisior>();
 
         public ThreadSupervisior RegisterThreads()
         {
@@ -59,8 +62,11 @@ namespace SBA.Core.BOL.ThreadsSupervisior
 
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    _loggerManager.RegisterLogToConsole(ex.Message);
+                    _loggerManager.RegisterLogToFile(ex.Message);
+
                     return false;
                 }
             }

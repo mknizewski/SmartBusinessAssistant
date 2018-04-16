@@ -61,6 +61,10 @@
       <Project>{7f71f60b-2c89-42b2-a7ee-c9b946259491}</Project>
       <Name>SBA.Core.BOL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SBA.DAL\SBA.DAL.csproj">
+      <Project>{ee06cb41-6fef-4ff6-860c-ed36bccfcf5e}</Project>
+      <Name>SBA.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
