@@ -1,0 +1,198 @@
+[
+    {
+        "name": "Gofry",
+        "author": "Adam Makuszewski",
+        "url": "http://pioter94.cba.pl/img/gofry.jpg",
+        "describe": "Przepis na pyszne i chrupiące gofry.",
+        "gradients": {
+            "jajka": "2",
+            "mąka": "300g",
+            "mleko": "2 szklanki",
+            "olej rzepakowy": "1/3 szklanki",
+            "cukier": "2 łyżki"
+        },
+        "recipe": "W pierwszej kolejności oddzielamy żółtka od białek. Białka ubijamy na sztywną masę a żółtka przekładamy do dość głębokiej miski. Do żółtek dodajemy kolejno: mąkę, mleko, olej oraz cukier, następnie całość dokładnie mieszamy (w tym celu używam miksera). Konsystencja gofrów powinna być jednolita i pozbawiona jakichkolwiek grudek. Do ciasta dodajemy wcześniej ubite białko i całość delikatnie łączymy. Rozgrzewamy gofrownicę. Urządzenie nie wymaga smarowania tłuszczem gdyż ciasto nie przywiera do powłoki. Ciasto nakładamy równomiernie i czekamy aż się zarumieni.",
+        "time": "40 min",
+        "level": "łatwe",
+        "portions": "10 gofrów",
+        "tips": {
+            "Podawaj z cukrem pudrem": "Najlepiej smakują posypane cukrem pudrem.",
+            "Studź na kratce": "Gofry studzone na kratce nie zrobią się gumowate."
+        }
+    },
+    {
+        "name": "Tiramisu",
+        "author": "Patrycja Milewska",
+        "url": "http://pioter94.cba.pl/img/tiramisu.jpg",
+        "describe": "Przepis na tiramisu na biszkoptach z serkiem mascarpone.",
+        "gradients": {
+            "biszkopty": "250g",
+            "serek maskarpone": "500g",
+            "cukier": "50g",
+            "jaja": "3",
+            "kawa": "250ml"
+        },
+        "recipe": "Przygotować kawę espresso, pozostawić do ostygnięcia, Oddzielić żółtka od białek. Żółtka utrzeć z cukrem na jasną, puszystą masę, wmiksować krótko serek mascarpone.Biszkopty zanurzać pojedynczo na krótko w kawie z obu stron i układać jeden obok drugiego w naczyniu lub formie prostokątnej. Na biszkopty wyłożyć połowę masy. Wyrównać. Na masie ułożyć kolejną warstwę zanurzonych biszkoptów w kawie i przykryć resztą masy.",
+        "time": "30 min",
+        "level": "łatwe",
+        "portions": "7",
+        "tips": {
+            "Dla lepszego smaku kakao": "Przed podaniem oprószyć kakao",
+            "Schłodź": "Tiramisu trzymaj w lodówce, wtedy smakuje najlepiej"
+        }
+    },
+    {
+        "name": "Babeczki czekoladowe",
+        "author": "Edyta Zaremba",
+        "url": "http://pioter94.cba.pl/img/babeczkiCzekoladowe.jpg",
+        "describe": "Babeczki czekoladowe - szybko i smacznie",
+        "gradients": {
+            "masło": "125g",
+            "mąka": "100g",
+            "czekolada": "125 g",
+            "jajka": "3",
+            "cukier": "150g"
+        },
+        "recipe": "Czekoladę połamać na kawałki i razem z masłem roztopić Oddzielić żółtka od białek. Żółtka i cukier ubić na jasną masę. Dalej miksując, dodać  przestudzoną czekoladę.W osobnej miseczce wymieszać mąkę z proszkiem do pieczenia. Białka ubić na sztywną pianę. Dodawać pianę do ciasta, stopniowo je rozrzedzając. Ciasto przełożyć do formy na muffinki, wyłożonej papilotkami. Piec w nagrzanym piekarniku ok. 25 minut w temperaturze 180°C.",
+        "time": "25 min",
+        "level": "średnie",
+        "portions": "12 sztuk",
+        "tips": {
+            "Dla lepszego smaku" : "Podawaj z dżemem wiśniowym lub malinowym",
+            "Owoce" : "Można przyozdobić świeżymi owocami"
+        }
+    },
+    {
+        "name": "Sorbet truskawkowy na patyku",
+        "author": "Tomasz Górka",
+        "url": "http://pioter94.cba.pl/img/sorbetTruskawkowy.jpg",
+        "describe": "Szybki sorbet dla ochłody.",
+        "gradients": {
+            "truskawki": "600g",
+            "cukier puder": "60g",
+            "sok z cytryny": "2 łyżki"
+        },
+        "recipe": "Truskawki umyć, osuszyć i odszypułkować. Dodać sok z cytryny i cukier puder. Zmiksować blenderem na gładką masę. Masę truskawkową przelać do pojemniczków na lody i włożyć patyczki. Wstawić do zamrażalnika na parę godzin. Wyciągnąć lody z pojemników.",
+        "time": "20 min",
+        "level": "łatwe",
+        "portions": "10 sztuk",
+        "tips": {
+            "Świeże truskawki" : "Najlepiej smakuje wykonany ze świeżo zebranych truskawek"
+        }
+    },
+    {
+        "name": "Tarta karmelowa z orzechami",
+        "author": "Beata Perkowska",
+        "url": "http://pioter94.cba.pl/img/tarta.jpg",
+        "describe": "Pyszna tarta z orzechami zatopionymi w karmelu",
+        "gradients": {
+            "jajka": "1",
+            "mąka": "200g",
+            "orzechy": "2 szklanki",
+            "śmietana słodka": "cukier 40g"
+        },
+        "recipe": "Przygotować ciasto kruche. Śmietanę wymieszać z żółtkiem. Mąkę, cukier, sól i masło zagnieść. Dodać stopniowo wymieszane żółtko ze śmietaną i zagnieść ciasto chwilkę, tylko do połączenia składników. Ciasto zawinąć w folię spożywczą i wstawić do lodówki na ok. 10- 15 minut. Ciasto wykleić w formie na . Ciasto wstawić ponownie na 30 minut do lodówki. Piec w nagrzanym piekarniku 15 minut w temperaturze 190°C. Ciasto pozostawić do ostygnięcia. Orzechy rozłożyć na blasze wyłożonej papierem do pieczenia i podpiec w piekarniku. Orzechy przełożyć do miseczki, dodać miód i wymieszać. Wodę wlać do garnka, wsypać cukier i gotując na średnim ogniu, nie mieszając, skarmelizować go, dodać śmietanę szybko mieszając. Karmel połączyć z orzechami i wypełnić nim ciasto.",
+        "time": "60 min",
+        "level": "średnie",
+        "portions": "12",
+        "tips": {
+            "Podawaj z cukrem pudrem": "Najlepiej smakuje posypana cukrem pudrem.",
+            "Jedz póki gorąca": "Kiedy jest ciepła szybciej znika z blachy."
+        }
+    },
+    {
+        "name": "Dyniowe bułeczki cynamonowe",
+        "author": "Marcin Dolecki",
+        "url": "http://pioter94.cba.pl/img/dynioweBuleczki.jpg",
+        "describe": "Cynamonowe bułeczki na cieście drożdżowym z dodatkiem dyni",
+        "gradients": {
+            "drożdże": "30g",
+            "mąka": "500g",
+            "mleko": "200 ml",
+            "jajka": "2",
+            "cukier": "50g"
+        },
+        "recipe": "Przygotować ciasto drożdżowe. Lekko ciepłe mleko wymieszać z 1 łyżeczką cukru, pokruszonymi drożdżami i ok. 4 łyżkami mąki. Przykryć ściereczką i odstawić w ciepłe miejsce do wyrośnięcia. Resztę z 500 g mąki wsypać do dużej miski. Dodać resztę cukru, sól i wymieszać. Dodać jajka, miękkie masło, puree z dyni i wyrośnięty zaczyn. Wyrobić ciasto. Przygotować nadzienie. Masło roztopić. Pozostawić do ostygnięcia. Po wyrośnięciu ciasto zagnieść i rozwałkować na blacie posypanym mąką Ciasto posmarować roztopionym masłem i posypać cynamonowym cukrem.Ciasto zwinąć ściśle jak roladę wzdłuż dłuższego boku. Roladę pokroić na 13 części Bułeczki układać na blasze wyłożonej papierem do pieczenia. Piec w nagrzanym piekarniku ok. 20- 25 minut.Przygotować lukier. Cukier puder utrzeć z wrzątkiem na gładką masę.",
+        "time": "40 min",
+        "level": "średnie",
+        "portions": "13 sztuk",
+        "tips": {
+            "Lżejsze ciasto" : "Im ciasto będzie luźniejsze, tym bułeczki delikatniejsze."
+        }
+    },
+    {
+        "name": "Arbuzowy sernik na zimno",
+        "author": "Justyna Rogowska",
+        "url": "http://pioter94.cba.pl/img/arbuzowySernik.jpg",
+        "describe": "Przepis na rozpływający się w ustach arbuzowy sernik.",
+        "gradients": {
+            "twaróg": "300g",
+            "arbuz": "400g",
+            "cukier": "75g"
+        },
+        "recipe": "Herbatniki rozkruszyć na bardzo drobno.  Zagnieść z miękkim masłem. Dno tortownicy wyłożyć ciasteczkową masę i ugnieść ją łyżką na dnie. Tortownicę włożyć do lodówki. Przygotować masę serową. Żelatynę namoczyć w 8 łyżkach zimnej wody. Pozostawić do napęcznienia. Arbuza podzielić na kawałki, oddzielić od skóry i oczyścić z pestek. 200 g zmiksować blenderem. Żelatynę podgrzać, mieszając, aż się rozpuści. Wstawić do lodówki. Gdy zacznie tężeć, dodać twaróg i energicznie wymieszać. Śmietanę ubić na sztywno i wmieszać delikatnie do masy serowo- arbuzowej. Gotową masę wyłożyć do tortownicy i wstawić do lodówki. Przygotować galaretkę. Pozostałego arbuza pokroić w niedużą kostkę i ułożyć na stężałej masie.",
+        "time": "60 min",
+        "level": "średnie",
+        "portions": "12",
+        "tips": {
+            "Herbatniki to podstawa" : "Kup dobre herbatniki, dadzą dużo do ostatecznego smaku"
+        }
+    },
+    {
+        "name": "Babka kawowa",
+        "author": "Monika Sulewska",
+        "url": "http://pioter94.cba.pl/img/babkaKawowa.jpg",
+        "describe": "Przepis na pyszne delikatną kawową babkę.",
+        "gradients": {
+            "masło": "150g",
+            "mąka": "300g",
+            "kawa": "3 łyżki",
+            "czekolada": "100g"
+        },
+	    "recipe": "Oddzielić żółtka od białek. Czekoladę gorzką  posiekać na małe kawałki. Żółtka wymieszać np. w kubku dokładnie z kawą. Miękkie masło (lub margarynę) utrzeć mikserem z połową cukru i szczyptą soli na puszystą masę. Dalej miksując dodawać stopniowo jajka z kawą. Dodać startą skórkę z pomarańczy.Mąkę wymieszać z proszkiem do pieczenia.Osobno ubić białka na sztywno. Pod koniec ubijania dodać stopniowo resztę cukru. Dodać do ciasta i delikatnie wymieszać.Na końcu wmieszać delikatnie czekoladę.Ciasto przełożyć do formy na babkę o średnicy Piec w nagrzanym piekarniku ok. 45- 50 minut w temperaturze 180°CCiasto wyciągnąć z piekarnika, pozostawić na 10 minut w formie, kolejno wyłożyć na kratkę z piekarnika i pozostawić do całkowitego ostygnięcia.",
+        "time": "60 min",
+        "level": "średnie",
+        "portions": "16",
+        "tips": {
+            "Podawać posypaną pistacjami": "Smak babki wzbogacić może dżem brzoskwiniowy ."
+        }
+    },
+    {
+        "name": "Wafle czekoladowe",
+        "author": "Krzysztof Bednarczyk",
+        "url": "http://pioter94.cba.pl/img/wafleCzekoladowe.jpg",
+        "describe": "Przepis na domowe wafle czekoladowe.",
+        "gradients": {
+            "wafle": "1 opakowanie",
+            "margaryna": "250g",
+            "cukier": "100g"
+        },
+        "recipe": "Margarynę, kakao, cukier i wodę przełożyć do garnka i mieszając od czasu do czasu zagotować.Ostudzić. Do wystudzonej masy dodać stopniowo mleko w proszku, Smarować wafle masą i układać jeden na drugim. Odstawić w chłodne miejsce na parę godzin. Kolejno pokroić na dowolnej wielkości kawałki.",
+        "time": "20 min",
+        "level": "łatwe",
+        "portions": "30",
+        "tips": {
+            "Kup dobre wafle" : "Wafle renomowanych marek są najlepsze"
+        }
+    },
+    {
+        "name": "Ptysie z wiśniami i bitą śmietaną",
+        "author": "Marta Karwowska",
+        "url": "http://pioter94.cba.pl/img/ptysie.jpg",
+        "describe": "Lekkie, puszyste i delikatne ptysie",
+        "gradients": {
+            "jajka": "4",
+            "mąka": "200g",
+            "mleko": "125 ml",
+            "śmietana": "300g",
+            "cukier": "2 łyżki"
+        },
+        "recipe": "Mleko, 125ml wody, sól i masło zagotować. Dodać na raz mąkę i szybko wymieszać, aby powstała jednolita masa. Ciasto przełożyć do miski. Od razu do ciepłego ciasta, miksując, dodawać po jednym jajku. Ciasto odstawić na 30 minut.Wiśnie odsączyć na sitku. Kompot i 1 łyżkę cukru zagotować. Do gotującego się kompotu dodać rozmieszaną mąkę ziemniaczaną z 3-4 łyżkami wody i ugotować kisiel. Dodać wiśnie. Pozostawić do ostygnięcia. Na dwóch blachach wyłożonych papierem do pieczenia formować piramidki o średnicy ok. 5- 6cm.Na dnie piekarnika postawić naczynie żaroodporne z wodą. Ptysie piec ok. 25 minut w temperaturze 220°C.Po upieczeniu przekroić ciastka na pół i pozostawić do ostygnięcia. Spody ciastek posmarować roztopioną czekoladą. Odstawić do zastygnięcia. Pozostałą czekoladę odstawić na bok .Na spody ptysi wyłożyć wiśnie, a na nie ubitą śmietanę",
+        "time": "60 min",
+        "level": "średnie",
+        "portions": "16",
+        "tips": {
+            "Pamiętaj o schłodzeniu": "Należy przechowywać w lodówce"
+        }
+    }
+]

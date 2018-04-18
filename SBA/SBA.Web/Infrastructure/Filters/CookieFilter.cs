@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SBA.Web.Infrastructure.Factory;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
 using System.Web.Mvc;
 
 
@@ -9,11 +9,10 @@ namespace SBA.Web.Infrastructure.Filters
 {
     public class CookieFilter : FilterAttribute, IActionFilter 
     {
-        private Stopwatch _timer = null;
+        //private Stopwatch _timer = null;
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            // TODO: Fill  
             string currentIPSerwer = filterContext.HttpContext.Request.ServerVariables["REMOTE_ADDR"].ToString();
             string currentIPClient = filterContext.HttpContext.Request.UserHostAddress.ToString();
             string currentURL = filterContext.HttpContext.Request.Url.ToString();
@@ -36,21 +35,18 @@ namespace SBA.Web.Infrastructure.Filters
             //    _timer.Elapsed.TotalSeconds, currentIPSerwer, currentIPClient, currentURL, lastURL, currentDate)
             //);
 
-            //save to csv
-            string fileName = "web.log";
-            string filePath = @"D:\git_folder\logs\web\" +  currentDate;
-            Directory.CreateDirectory(filePath);
+            List<string> parametresToSave = new List<string>
+            {
+                currentDate,
+                currentIPClient,
+                currentDateTime.ToString(),
+                currentURL,
+                lastURL
+            };
 
-            var file = new StringBuilder();
-            var line = string.Format("{0} {1} {2} {3}\n", 
-                currentIPClient, currentDateTime, currentURL, lastURL);
-            file.Append(line);
-            File.AppendAllText(filePath + @"\" + fileName, file.ToString());
         }
-
 
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {   }
-
     }
 }
