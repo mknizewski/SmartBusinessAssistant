@@ -1,622 +1,582 @@
-﻿@Styles.Render("~/Content/newsStyle") 
-@{ 
-	ViewBag.Title = "Aktualności"; 
-}
+﻿@Styles.Render("~/Content/newsStyle") @{ ViewBag.Title = "Aktualności"; }
 
 <div class="jumbotron jumbotron-fluid ">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 col-lg-12">
-				<h2 class="display-4">
-					<strong>Aktualności</strong>
-				</h2>
-				<p class="lead">
-					<small>Tutaj znajdziesz wszystkie aktualności zawarte na stronie</small>
-				</p>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h2 class="display-4">
+                    <strong>Aktualności</strong>
+                </h2>
+                <p class="lead">
+                    <small>Tutaj znajdziesz wszystkie aktualności zawarte na stronie</small>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="row">
-	<div class="col-md-12">
-		<select class="js-example-basic-single" name="state" style="width:25%"></select>
+    <div class="col-md-12">
+        <select class="js-example-basic-single" name="state" style="width:25%"></select>
 
-		<div class="well" style="margin-top:15px">
-			<div class="media">
-				<a class="pull-left" href="#">
-					<img class="media-object" src="http://placehold.it/150x90" alt="...">
-				</a>
-				<div class="media-body" style="text-align:justify">
-					<h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
-					<p class="by-author">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris
-						augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac
-						orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue...</p>
-				</div>
-				<ul class="list-inline list-unstyled pull-right">
-					<li>
-						<span>
-							<i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
-					</li>
-					<li>|</li>
-					<span>
-						<i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
-					<li>|</li>
-					<li>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star-empty"></span>
-					</li>
-					<li>|</li>
-					<li>
-						<a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
-							<i class="fa fa-facebook"></i>
-						</a>
-						<a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
-							<i class="fa fa-twitter"></i>
-						</a>
-						<a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
-							<i class="fa fa-google"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+        <div class="well" style="margin-top:15px">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                </a>
+                <div class="media-body" style="text-align:justify">
+                    <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
+                    <p class="by-author">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                        Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+                        dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+                        Aliquam in felis sit amet augue...</p>
+                </div>
+                <ul class="list-inline list-unstyled pull-right">
+                    <li>
+                        <span>
+                            <i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
+                    </li>
+                    <li>|</li>
+                    <span>
+                        <i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
+                    <li>|</li>
+                    <li>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-		<div class="well" style="margin-top:15px">
-			<div class="media">
-				<a class="pull-left" href="#">
-					<img class="media-object" src="http://placehold.it/150x90" alt="...">
-				</a>
-				<div class="media-body" style="text-align:justify">
-					<h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
-					<p class="by-author">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris
-						augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac
-						orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue...</p>
-				</div>
-				<ul class="list-inline list-unstyled pull-right">
-					<li>
-						<span>
-							<i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
-					</li>
-					<li>|</li>
-					<span>
-						<i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
-					<li>|</li>
-					<li>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star-empty"></span>
-					</li>
-					<li>|</li>
-					<li>
-						<a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
-							<i class="fa fa-facebook"></i>
-						</a>
-						<a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
-							<i class="fa fa-twitter"></i>
-						</a>
-						<a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
-							<i class="fa fa-google"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+        <div class="well" style="margin-top:15px">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                </a>
+                <div class="media-body" style="text-align:justify">
+                    <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
+                    <p class="by-author">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                        Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+                        dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+                        Aliquam in felis sit amet augue...</p>
+                </div>
+                <ul class="list-inline list-unstyled pull-right">
+                    <li>
+                        <span>
+                            <i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
+                    </li>
+                    <li>|</li>
+                    <span>
+                        <i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
+                    <li>|</li>
+                    <li>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-		<div class="well" style="margin-top:15px">
-			<div class="media">
-				<a class="pull-left" href="#">
-					<img class="media-object" src="http://placehold.it/150x90" alt="...">
-				</a>
-				<div class="media-body" style="text-align:justify">
-					<h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
-					<p class="by-author">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris
-						augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac
-						orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue...</p>
-				</div>
-				<ul class="list-inline list-unstyled pull-right">
-					<li>
-						<span>
-							<i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
-					</li>
-					<li>|</li>
-					<span>
-						<i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
-					<li>|</li>
-					<li>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star-empty"></span>
-					</li>
-					<li>|</li>
-					<li>
-						<a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
-							<i class="fa fa-facebook"></i>
-						</a>
-						<a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
-							<i class="fa fa-twitter"></i>
-						</a>
-						<a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
-							<i class="fa fa-google"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+        <div class="well" style="margin-top:15px">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                </a>
+                <div class="media-body" style="text-align:justify">
+                    <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
+                    <p class="by-author">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                        Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+                        dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+                        Aliquam in felis sit amet augue...</p>
+                </div>
+                <ul class="list-inline list-unstyled pull-right">
+                    <li>
+                        <span>
+                            <i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
+                    </li>
+                    <li>|</li>
+                    <span>
+                        <i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
+                    <li>|</li>
+                    <li>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-		<div class="well" style="margin-top:15px">
-			<div class="media">
-				<a class="pull-left" href="#">
-					<img class="media-object" src="http://placehold.it/150x90" alt="...">
-				</a>
-				<div class="media-body" style="text-align:justify">
-					<h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
-					<p class="by-author">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris
-						augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac
-						orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue...</p>
-				</div>
-				<ul class="list-inline list-unstyled pull-right">
-					<li>
-						<span>
-							<i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
-					</li>
-					<li>|</li>
-					<span>
-						<i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
-					<li>|</li>
-					<li>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star-empty"></span>
-					</li>
-					<li>|</li>
-					<li>
-						<a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
-							<i class="fa fa-facebook"></i>
-						</a>
-						<a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
-							<i class="fa fa-twitter"></i>
-						</a>
-						<a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
-							<i class="fa fa-google"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+        <div class="well" style="margin-top:15px">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                </a>
+                <div class="media-body" style="text-align:justify">
+                    <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
+                    <p class="by-author">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                        Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+                        dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+                        Aliquam in felis sit amet augue...</p>
+                </div>
+                <ul class="list-inline list-unstyled pull-right">
+                    <li>
+                        <span>
+                            <i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
+                    </li>
+                    <li>|</li>
+                    <span>
+                        <i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
+                    <li>|</li>
+                    <li>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
 
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-								<span class="sr-only">Previous</span>
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">1</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">2</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-								<span class="sr-only">Next</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <!-- SAMPLE ARTICLE -->
 <div class="row">
-	<div class="col-md-12 containerArticleShadow">
-		<h2 class="h2article">
-			<strong>Programistok 2018</strong>
-		</h2>
-		<ul class="list-inline list-unstyled  ul-data">
-			<li>
-				<span>
-					<i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
-			</li>
-		</ul>
-		<p id="describeNews" class="newsText"> 
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue,
-			molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis
-			tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue...
-		</p>
+    <div class="col-md-12 containerArticleShadow">
+        <h2 id="title_article" class="h2article"><!-- TITLE --></h2>
+        <div id="dateContainer_article">
+            <i class="glyphicon glyphicon-calendar"></i>
+            <span id="date_article"><!-- DATE --></span>
+        </div>
+        <p id="describe_article" class="newsText">
+            <!-- DESCRIBE -->
+        </p>
+        <div class="row">
+            <div id="recommendContainer_article" class="well">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-heading text-left">
+                            <h3>Wybrane dla Ciebie</h3>
+                            <div class="border"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-sm-6 col-md-4">
+                        <a id="recommendLink1_article" href="#">
+                            <div class="blog-box">
+                                <div class="blog-box-image">
+                                    <img id="recommendImg1_article" src="https://images.pexels.com/photos/6384/woman-hand-desk-office.jpg?w=940&h=650&auto=compress&cs=tinysrgb"
+                                        class="img-responsive" alt="Reccomend img1">
+                                </div>
+                                <div class="blog-box-content">
+                                    <h4 id="recommendTitle1_article">ARTICLE 1</h4>
+                                    <p id="recommendDescribe1_article">
+                                        Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus
+                                        dictum.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Col -->
+                    <div class="col-sm-6 col-md-4">
+                        <a id="recommendLink2_article" href="#"> 
+                            <div class="blog-box">
+                                <div class="blog-box-image">
+                                    <img id="recommendImg2_article" src="https://images.pexels.com/photos/374897/pexels-photo-374897.jpeg?w=940&h=650&auto=compress&cs=tinysrgb"
+                                        class="img-responsive" alt="Reccomend img2">
+                                </div>
+                                <div class="blog-box-content">
+                                    <h4 id="recommendTitle2_article">ARTICLE 2</h4>
+                                    <p id="recommendDescribe2_article">
+                                        Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus
+                                        dictum.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Col -->
+                    <div class="col-sm-6 col-md-4">
+                        <a id="recommendLink3_article" href="#">
+                            <div class="blog-box">
+                                <div class="blog-box-image">
+                                    <img id="recommendImg3_article" src="https://images.pexels.com/photos/541522/pexels-photo-541522.jpeg?w=940&h=650&auto=compress&cs=tinysrgb"
+                                        class="img-responsive" alt="Reccomend img3">
+                                </div>
+                                <div class="blog-box-content">
+                                    <h4 id="recommendTitle3_article">ARTICLE 3</h4>
+                                    <p id="recommendDescribe3_article">
+                                        Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus
+                                        dictum.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Col -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="articleTextContainer_article" class="col-md-12 newsText">
+                <!-- ARTICLE TEXT -->
+            </div>
+            <a id="articleTextOriginalUrl_article" href="#">Odnośnik do oryginalnego artykułu</a>
+        </div>
 
-		<div class="row ">
-			<div id="recommendContainer" class="well">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="site-heading text-left">
-							<h3>Wybrane dla Ciebie</h3>
-							<div class="border"></div>
-						</div>
-					</div>
-				</div>
-				<div class="row text-center">
-					<div class="col-sm-6 col-md-4">
-						<a href="#">
-							<div class="blog-box">
-								<div class="blog-box-image">
-									<img src="https://images.pexels.com/photos/6384/woman-hand-desk-office.jpg?w=940&h=650&auto=compress&cs=tinysrgb" class="img-responsive"
-									 alt="">
-								</div>
-								<div class="blog-box-content">
-									<h4>ARTICLE 1</h4>
-									<p>
-										Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus
-										dictum.
-									</p>
-								</div>
-							</div>
-						</a>
-					</div>
-					<!-- End Col -->
-					<div class="col-sm-6 col-md-4">
-						<a href="#">
-							<div class="blog-box">
-								<div class="blog-box-image">
-									<img src="https://images.pexels.com/photos/374897/pexels-photo-374897.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" class="img-responsive"
-										alt="">
-								</div>
-								<div class="blog-box-content">
-									<h4>ARTICLE 2</h4>
-									<p>
-										Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus
-										dictum.
-									</p>
-								</div>
-							</div>
-						</a>
-					</div>
-					<!-- End Col -->
-					<div class="col-sm-6 col-md-4">
-						<a href="#">
-							<div class="blog-box">
-								<div class="blog-box-image">
-									<img src="https://images.pexels.com/photos/541522/pexels-photo-541522.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" class="img-responsive"
-									 alt="">
-								</div>
-								<div class="blog-box-content">
-									<h4>ARTICLE 3</h4>
-									<p>
-										Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus
-										dictum.
-									</p>
-								</div>
-							</div>
-						</a>
-					</div>
-					<!-- End Col -->
-				</div>
-			</div>
-		</div>
+        <div class="row">
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-heading text-left">
+                            <h3>Ocena artykułu</h3>
+                            <div class="border"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <dl id="votesContainer_article">
+                            <dd id="vote1Container_article" class="percentage percentage-38">
+                                <span id="vote1_article" class="text vote">38%</span>
+                            </dd>
+                            <dd id="vote2Container_article" class="percentage percentage-2">
+                                <span id="vote2_article" class="text vote">2%</span>
+                            </dd>
+                            <dd id="vote3Container_article" class="percentage percentage-8">
+                                <span id="vote3_article" class="text vote">8%</span>
+                            </dd>
+                            <dd id="vote4Container_article" class="percentage percentage-2">
+                                <span id="vote4_article" class="text vote">2%</span>
+                            </dd>
+                            <dd id="vote5Container_article" class="percentage percentage-30">
+                                <span  id="vote5_article" class="text vote">30%</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<div class="row">
-			<div id="containNews" class="col-md-12 newsText" >
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra urna quis varius feugiat. Donec eget feugiat massa.
-					Sed eu ligula nec ex rhoncus porttitor non id eros. Proin pellentesque diam eget dui consequat, vitae mattis ligula
-					suscipit. Donec sodales iaculis sem. Donec non dignissim risus. Quisque turpis nibh, luctus non ligula vitae, congue
-					varius magna. Nam elit ex, pellentesque quis maximus at, gravida vitae ex. Pellentesque habitant morbi tristique senectus
-					et netus et malesuada fames ac turpis egestas. Curabitur vulputate nulla erat, nec pulvinar erat sollicitudin eu. Nunc
-					consectetur mollis nisi at rhoncus. Donec tellus orci, euismod faucibus porta eget, rutrum et purus. Suspendisse tempus
-					viverra velit, at posuere lectus finibus vitae. Quisque ut nunc lacinia, vulputate felis sit amet, convallis mauris.
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra urna quis varius feugiat. Donec eget feugiat massa.
-					Sed eu ligula nec ex rhoncus porttitor non id eros. Proin pellentesque diam eget dui consequat, vitae mattis ligula
-					suscipit. Donec sodales iaculis sem. Donec non dignissim risus. Quisque turpis nibh, luctus non ligula vitae, congue
-					varius magna. Nam elit ex, pellentesque quis maximus at, gravida vitae ex. Pellentesque habitant morbi tristique senectus
-					et netus et malesuada fames ac turpis egestas. Curabitur vulputate nulla erat, nec pulvinar erat sollicitudin eu. Nunc
-					consectetur mollis nisi at rhoncus. Donec tellus orci, euismod faucibus porta eget, rutrum et purus. Suspendisse tempus
-					viverra velit, at posuere lectus finibus vitae. Quisque ut nunc lacinia, vulputate felis sit amet, convallis mauris.
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra urna quis varius feugiat. Donec eget feugiat massa.
-					Sed eu ligula nec ex rhoncus porttitor non id eros. Proin pellentesque diam eget dui consequat, vitae mattis ligula
-					suscipit. Donec sodales iaculis sem. Donec non dignissim risus. Quisque turpis nibh, luctus non ligula vitae, congue
-					varius magna. Nam elit ex, pellentesque quis maximus at, gravida vitae ex. Pellentesque habitant morbi tristique senectus
-					et netus et malesuada fames ac turpis egestas. Curabitur vulputate nulla erat, nec pulvinar erat sollicitudin eu. Nunc
-					consectetur mollis nisi at rhoncus. Donec tellus orci, euismod faucibus porta eget, rutrum et purus. Suspendisse tempus
-					viverra velit, at posuere lectus finibus vitae. Quisque ut nunc lacinia, vulputate felis sit amet, convallis mauris.
-				</p>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="well">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="site-heading text-left">
-							<h3>Ocena artykułu</h3>
-							<div class="border"></div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<dl>
-							<dd class="percentage percentage-38">
-								<span class="text">WAŻNY: 38%</span>
-							</dd>
-							<dd class="percentage percentage-10">
-								<span class="text">CIEKAWY: 10%</span>
-							</dd>
-							<dd class="percentage percentage-2">
-								<span class="text">SMUTNY: 2%</span>
-							</dd>
-							<dd class="percentage percentage-8">
-								<span class="text">IRYTUJĄCY: 8%</span>
-							</dd>
-							<dd class="percentage percentage-2">
-								<span class="text">ŚMIESZNY: 2%</span>
-							</dd>
-							<dd class="percentage percentage-30">
-								<span class="text">WOW: 30%</span>
-							</dd>
-							<dd class="percentage percentage-10">
-								<span class="text">SUPER: 10%</span>
-							</dd>
-						</dl>
-					</div>
-				</div>
-			</div>
-		</div>
+        <div class="row">
+            <div class="col-sm-12 col-sm-offset-0">
+                <div class="comment-tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active">
+                            <a href="#comments-logout" role="tab" data-toggle="tab">
+                                <h4 class="reviews text-capitalize">Komentarze</h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#add-comment" role="tab" data-toggle="tab">
+                                <h4 class="reviews text-capitalize">Dodaj komentarz</h4>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="comments-logout">
 
+                            <ul class="media-list">
 
+                                <li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
+                                    </a>
 
-		<div class="row">
-			<div class="col-sm-12 col-sm-offset-0" id="logout">
-				<div class="comment-tabs">
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="active">
-							<a href="#comments-logout" role="tab" data-toggle="tab">
-								<h4 class="reviews text-capitalize">Komentarze</h4>
-							</a>
-						</li>
-						<li>
-							<a href="#add-comment" role="tab" data-toggle="tab">
-								<h4 class="reviews text-capitalize">Dodaj komentarz</h4>
-							</a>
-						</li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="comments-logout">
+                                    <div class="media-body">
+                                        <div class="well well-lg">
+                                            <h4 class="media-heading text-uppercase reviews">Marco </h4>
+                                            <ul class="media-date text-uppercase reviews list-inline">
+                                                <li class="dd">22</li>
+                                                <li class="mm">09</li>
+                                                <li class="aaaa">2014</li>
+                                            </ul>
+                                            <p class="media-comment">
+                                                Great snippet! Thanks for sharing.
+                                            </p>
+                                            <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
+                                                <span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
+                                            <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne">
+                                                <span class="glyphicon glyphicon-comment"></span> 2 Komentarze</a>
+                                        </div>
+                                    </div>
 
-							<ul class="media-list">
-								
-								<li class="media">
-									<a class="pull-left" href="#">
-										<img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
-									</a>
+                                    <div class="collapse" id="replyOne">
+                                        <ul class="media-list">
+                                            <li class="media media-replied">
+                                                <a class="pull-left" href="#">
+                                                    <img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
+                                                </a>
+                                                <div class="media-body">
+                                                    <div class="well well-lg">
+                                                        <h4 class="media-heading text-uppercase reviews">
+                                                            <span class="glyphicon glyphicon-share-alt"></span> The Hipster</h4>
+                                                        <ul class="media-date text-uppercase reviews list-inline">
+                                                            <li class="dd">22</li>
+                                                            <li class="mm">09</li>
+                                                            <li class="aaaa">2014</li>
+                                                        </ul>
+                                                        <p class="media-comment">
+                                                            Nice job Maria.
+                                                        </p>
+                                                        <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
+                                                            <span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="media media-replied" id="replied">
+                                                <a class="pull-left" href="#">
+                                                    <img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
+                                                </a>
+                                                <div class="media-body">
+                                                    <div class="well well-lg">
+                                                        <h4 class="media-heading text-uppercase reviews">
+                                                            <span class="glyphicon glyphicon-share-alt"></span> Mary</h4>
+                                                        </h4>
+                                                        <ul class="media-date text-uppercase reviews list-inline">
+                                                            <li class="dd">22</li>
+                                                            <li class="mm">09</li>
+                                                            <li class="aaaa">2014</li>
+                                                        </ul>
+                                                        <p class="media-comment">
+                                                            Thank you Guys!
+                                                        </p>
+                                                        <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
+                                                            <span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
 
-									<div class="media-body">
-										<div class="well well-lg">
-											<h4 class="media-heading text-uppercase reviews">Marco </h4>
-											<ul class="media-date text-uppercase reviews list-inline">
-												<li class="dd">22</li>
-												<li class="mm">09</li>
-												<li class="aaaa">2014</li>
-											</ul>
-											<p class="media-comment">
-												Great snippet! Thanks for sharing.
-											</p>
-											<a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
-												<span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
-											<a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne">
-												<span class="glyphicon glyphicon-comment"></span> 2 Komentarze</a>
-										</div>
-									</div>
+                                <li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="well well-lg">
+                                            <h4 class="media-heading text-uppercase reviews">Nico</h4>
+                                            <ul class="media-date text-uppercase reviews list-inline">
+                                                <li class="dd">22</li>
+                                                <li class="mm">09</li>
+                                                <li class="aaaa">2014</li>
+                                            </ul>
+                                            <p class="media-comment">
+                                                I'm looking for that. Thanks!
+                                            </p>
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="//www.youtube.com/embed/80lNjkcp6gI" allowfullscreen></iframe>
+                                            </div>
+                                            <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
+                                                <span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
+                                        </div>
+                                    </div>
+                                </li>
 
-									<div class="collapse" id="replyOne">
-										<ul class="media-list">
-											<li class="media media-replied">
-												<a class="pull-left" href="#">
-													<img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
-												</a>
-												<div class="media-body">
-													<div class="well well-lg">
-														<h4 class="media-heading text-uppercase reviews">
-															<span class="glyphicon glyphicon-share-alt"></span> The Hipster</h4>
-														<ul class="media-date text-uppercase reviews list-inline">
-															<li class="dd">22</li>
-															<li class="mm">09</li>
-															<li class="aaaa">2014</li>
-														</ul>
-														<p class="media-comment">
-															Nice job Maria.
-														</p>
-														<a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
-															<span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
-													</div>
-												</div>
-											</li>
-											<li class="media media-replied" id="replied">
-												<a class="pull-left" href="#">
-													<img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
-												</a>
-												<div class="media-body">
-													<div class="well well-lg">
-														<h4 class="media-heading text-uppercase reviews">
-															<span class="glyphicon glyphicon-share-alt"></span> Mary</h4>
-														</h4>
-														<ul class="media-date text-uppercase reviews list-inline">
-															<li class="dd">22</li>
-															<li class="mm">09</li>
-															<li class="aaaa">2014</li>
-														</ul>
-														<p class="media-comment">
-															Thank you Guys!
-														</p>
-														<a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
-															<span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</li>
+                                <li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="well well-lg">
+                                            <h4 class="media-heading text-uppercase reviews">Kriztine</h4>
+                                            <ul class="media-date text-uppercase reviews list-inline">
+                                                <li class="dd">22</li>
+                                                <li class="mm">09</li>
+                                                <li class="aaaa">2014</li>
+                                            </ul>
+                                            <p class="media-comment">
+                                                Yehhhh... Thanks for sharing.
+                                            </p>
+                                            <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
+                                                <span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
+                                            <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyTwo">
+                                                <span class="glyphicon glyphicon-comment"></span> 1 komentarz</a>
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="replyTwo">
+                                        <ul class="media-list">
+                                            <li class="media media-replied">
+                                                <a class="pull-left" href="#">
+                                                    <img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
+                                                </a>
+                                                <div class="media-body">
+                                                    <div class="well well-lg">
+                                                        <h4 class="media-heading text-uppercase reviews">
+                                                            <span class="glyphicon glyphicon-share-alt"></span> Lizz</h4>
+                                                        <ul class="media-date text-uppercase reviews list-inline">
+                                                            <li class="dd">22</li>
+                                                            <li class="mm">09</li>
+                                                            <li class="aaaa">2014</li>
+                                                        </ul>
+                                                        <p class="media-comment">
+                                                            Classy!
+                                                        </p>
+                                                        <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
+                                                            <span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
+                                                    </div>
+                                                </div>
+                                            </li>
 
-								<li class="media">
-									<a class="pull-left" href="#">
-										<img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
-									</a>
-									<div class="media-body">
-										<div class="well well-lg">
-											<h4 class="media-heading text-uppercase reviews">Nico</h4>
-											<ul class="media-date text-uppercase reviews list-inline">
-												<li class="dd">22</li>
-												<li class="mm">09</li>
-												<li class="aaaa">2014</li>
-											</ul>
-											<p class="media-comment">
-												I'm looking for that. Thanks!
-											</p>
-											<div class="embed-responsive embed-responsive-16by9">
-												<iframe class="embed-responsive-item" src="//www.youtube.com/embed/80lNjkcp6gI" allowfullscreen></iframe>
-											</div>
-											<a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
-												<span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
-										</div>
-									</div>
-								</li>
+                                        </ul>
 
-								<li class="media">
-									<a class="pull-left" href="#">
-										<img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
-									</a>
-									<div class="media-body">
-										<div class="well well-lg">
-											<h4 class="media-heading text-uppercase reviews">Kriztine</h4>
-											<ul class="media-date text-uppercase reviews list-inline">
-												<li class="dd">22</li>
-												<li class="mm">09</li>
-												<li class="aaaa">2014</li>
-											</ul>
-											<p class="media-comment">
-												Yehhhh... Thanks for sharing.
-											</p>
-											<a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
-												<span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
-											<a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyTwo">
-												<span class="glyphicon glyphicon-comment"></span> 1 komentarz</a>
-										</div>
-									</div>
-									<div class="collapse" id="replyTwo">
-										<ul class="media-list">
-											<li class="media media-replied">
-												<a class="pull-left" href="#">
-													<img class="media-object img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile">
-												</a>
-												<div class="media-body">
-													<div class="well well-lg">
-														<h4 class="media-heading text-uppercase reviews">
-															<span class="glyphicon glyphicon-share-alt"></span> Lizz</h4>
-														<ul class="media-date text-uppercase reviews list-inline">
-															<li class="dd">22</li>
-															<li class="mm">09</li>
-															<li class="aaaa">2014</li>
-														</ul>
-														<p class="media-comment">
-															Classy!
-														</p>
-														<a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
-															<span class="glyphicon glyphicon-share-alt"></span> Odpowiedz</a>
-													</div>
-												</div>
-											</li>
+                                    </div>
+                                </li>
+                            </ul>
 
-										</ul>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">1</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">2</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">3</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
 
-									</div>
-								</li>
-							</ul>
+                        </div>
 
-							<div class="row">
-								<div class="col-md-12 text-center">
-									<nav aria-label="Page navigation example">
-										<ul class="pagination">
-											<li class="page-item">
-												<a class="page-link" href="#" aria-label="Previous">
-													<span aria-hidden="true">&laquo;</span>
-													<span class="sr-only">Previous</span>
-												</a>
-											</li>
-											<li class="page-item">
-												<a class="page-link" href="#">1</a>
-											</li>
-											<li class="page-item">
-												<a class="page-link" href="#">2</a>
-											</li>
-											<li class="page-item">
-												<a class="page-link" href="#">3</a>
-											</li>
-											<li class="page-item">
-												<a class="page-link" href="#" aria-label="Next">
-													<span aria-hidden="true">&raquo;</span>
-													<span class="sr-only">Next</span>
-												</a>
-											</li>
-										</ul>
-									</nav>
-								</div>
-							</div>
-							
-						</div>
-						
-						<div class="tab-pane" id="add-comment">
-							<form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
-								<div class="form-group">
-									<label for="email" class="col-sm-2 control-label">Twój komentarz</label>
-									<div class="col-sm-10">
-										<textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="uploadMedia" class="col-sm-2 control-label">Załaduj link</label>
-									<div class="col-sm-10">
-										<div class="input-group">
-											<div class="input-group-addon">http://</div>
-											<input type="text" class="form-control" name="uploadMedia" id="uploadMedia">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-offset-2 col-sm-10">
-										<button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment">
-											<span class="glyphicon glyphicon-send"></span>Napisz komentarz</button>
-									</div>
-								</div>
-							</form>
-						</div>															
-					</div>
-				</div>
-			</div>
-		</div>
+                        <div class="tab-pane" id="add-comment">
+                            <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">Twój komentarz</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="uploadMedia" class="col-sm-2 control-label">Załaduj link</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">http://</div>
+                                            <input type="text" class="form-control" name="uploadMedia" id="uploadMedia">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment">
+                                            <span class="glyphicon glyphicon-send"></span>Napisz komentarz</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	</div>
+    </div>
 </div>

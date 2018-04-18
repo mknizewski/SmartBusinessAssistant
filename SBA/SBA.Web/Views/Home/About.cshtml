@@ -3,7 +3,7 @@
 @Styles.Render("~/Content/aboutStyle") 
 
 @{
-    ViewBag.Title = "About";
+    ViewBag.Title = "O nas";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
@@ -13,43 +13,78 @@
 }
 <p>Use this area to provide additional information.</p>
 
-
 <hr style="padding-top:30px;">
+<br>
 
-Może coś na ten design zrobić z tym zdjęciem poniżej
-<div class="containers">
-   <div class="background"></div>
-   <div class="foreground">sadsd fdsf sdf ds fsdf ds dsf </div>
-   <img src="http://www.placehold.it/200x200">
+<div class="jumbotron jumbotron-fluid ">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h2 class="display-4">
+                    <strong>@ViewBag.Title</strong>
+                </h2>
+                <p class="lead">
+                    <small>Informacje o naszej firmie.</small>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
-
-<div id="how-we-do" class="p-0">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-6 how-bg-img"></div>
-			<div class="col-xs-12 col-sm-12 col-md-6 how-contents">
-				<h4 class="section-title mb-2 h1">O naszej firmie</h4>
-				<p class="mb-4">Having and managing a correct marketing strategy is crucial in a fast moving market.</p>
-				<ul class="list-unstyled">
-					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-					<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+<div class="row">
+	<div class="col-sm-12 col-lg-12">
+		<div class="panel panel-default">
+		  <div class="panel-body">
+			<p>
+				Nasza firma <strong>WebCoding S.A.</strong> rozpoczeła działaność w <strong>2016 roku</strong>. Pomysł założenia firmy powstał już w toku studiów. 
+				Pewnego dnia postanowiliśmy zrealizować nasze marzenia i tak od myśli do czynów - założyliśmy <strong>WebCoding S.A.</strong>
+			</p>
+			<p>
+				Na rynku jesteśmy krótko, jednak w minionym roku udało nam się uzyskać certyfikat jakości <strong>ISO 9001</strong> w zakresie projektowania stron internetowych,
+				aplikacji mobilnych, jak i oprogramowania dedykowanego. Cały czas dbamy o wyszkolenie naszych pracowników. Od początku działania naszej firmy uzyskaliśmy następujące certyfikaty: 
+				<ul>
+					<li>
+						<strong>Kierownik projektu</strong>
+						<p>
+							Ten certyfikat uzyskało dwóch pracowników naszej firmy, dzięki czemu obecnie dysponujemy osobami, które mają w pełni świadomość na czym polega
+							praca z grupą osób, co usprawniło naszą pracę. 
+						</p>
+						<p>
+							Większa wydajność = szybciej zrelizowane projekty = zadowolenie klienta
+						</p>
+					</li>
+					<li>
+						<strong>Certyfikat ISO 9001</strong>
+						<p>
+							Szkolenie te przeszła cała kadra naszej firmy. Dzięki czemu teraz wszyscy wiedzą na czym polega norma jakości, co zwiększa efektyność pracy. Wszelkie normy i ustalenia
+							są jasne dla wszystkich osób w firmie, dzięki czemu każdy łatwiej rozumie to co zrealizowała druga osoba, dzięki czemu nie ma niejasności i nieporozumień w ekipie. 
+							ISO 9001 pozwoliło wprowadzić europejski, uniwersalny standrard, który sprecyzował wymagania dotyczące zarządzania pracą firmy.
+						<p/>
+					</li>
+					<li>
+						<strong>Design Thinking</strong>
+						<p>
+							Dwóch pracowników naszej firmy przeszło niniejsze szkolenie, dzieki któremu mogą teraz w lepszy sposób komunikować się z klientem. Są w stanie lepiej zrozumieć drugą osobę, 
+							przedstawić mu w jaśniejszy sposób to, co będzie realizowane w ramach projektu. Dzięki temu w szybszym etapie możemy dokonać poprawek, których zarzyczy sobie klient. A co za tym idzie - 
+							aplikacja zostanie wykonana w znacznie krótszym czasie.
+						<p/>
+					</li>
+					<li>
+						<strong>Microsoft</strong>
+						<p>
+							Pracownicy naszej firmy posiadają przeszkolenia z oprogramowani firmy <strong>Microsoft</strong>. Każdy z pracowników posiada wiedzę na temat, tego za co jest odpowiedzialny w firmie,
+							szkolenia są bowiem szczegółowo dobierane pod to, za co dana osoba jest odpowiedzialna. Są to renomowane certyfikaty, po których odbywają się 
+							egzaminy sprawdzające wiedzę. Świadczy to o tym, iż ekipa naszych programistów posiada niezbędny poziom do realizacji aplikacji na najwyższym poziomie.
+						<p/>
+					</li>
 				</ul>
-			</div>
+			</p>
+		  </div>
 		</div>
 	</div>
 </div>
 
-
-
-
-<br>
-
-<div class="container">
+<div class="container-fluid">
     <div class="row">
 
         <!-- item -->
@@ -57,15 +92,14 @@ Może coś na ten design zrobić z tym zdjęciem poniżej
             <div class="panel panel-danger panel-pricing">
                 <div class="panel-heading">
                     <i class="fa fa-desktop"></i>
-                    <h3>Plan 1</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p><strong>$100 / Month</strong></p>
+                    <h3>Strony internetowe</h3>
                 </div>
                 <ul class="list-group text-center">
-                    <li class="list-group-item"><i class="fa fa-check"></i> Personal use</li>
-                    <li class="list-group-item"><i class="fa fa-check"></i> Unlimited projects</li>
-                    <li class="list-group-item"><i class="fa fa-check"></i> 27/7 support</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Indywidualny szata graficzna</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Dogłębna analiza potrzeb</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Projekt graficzny</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Adres WWW gratis</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Opieka serwisowa 24/7</li>
                 </ul>
                 <div class="panel-footer">
                     <a class="btn btn-lg btn-block btn-danger" href="#">BUY NOW!</a>
@@ -79,15 +113,13 @@ Może coś na ten design zrobić z tym zdjęciem poniżej
             <div class="panel panel-warning panel-pricing">
                 <div class="panel-heading">
                     <i class="fa fa-desktop"></i>
-                    <h3>Plan 2</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p><strong>$200 / Month</strong></p>
+					<h3>Aplikacje mobilne</h3>
                 </div>
                 <ul class="list-group text-center">
-                    <li class="list-group-item"><i class="fa fa-check"></i> Personal use</li>
-                    <li class="list-group-item"><i class="fa fa-check"></i> Unlimited projects</li>
-                    <li class="list-group-item"><i class="fa fa-check"></i> 27/7 support</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Dogłębna analiza wymagań</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Autorskie interfejsy użytkownika</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Jedna aplikacja na 3 platormy: Android, iOS, Windows Phone</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Wdrożenie GooglePlay i AppStore</li>
                 </ul>
                 <div class="panel-footer">
                     <a class="btn btn-lg btn-block btn-warning" href="#">BUY NOW!</a>
@@ -101,15 +133,14 @@ Może coś na ten design zrobić z tym zdjęciem poniżej
             <div class="panel panel-success panel-pricing">
                 <div class="panel-heading">
                     <i class="fa fa-desktop"></i>
-                    <h3>Plan 3</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p><strong>$300 / Month</strong></p>
+					<h3>Oprogramowanie dedykowane</h3>
                 </div>
                 <ul class="list-group text-center">
-                    <li class="list-group-item"><i class="fa fa-check"></i> Personal use</li>
-                    <li class="list-group-item"><i class="fa fa-check"></i> Unlimited projects</li>
-                    <li class="list-group-item"><i class="fa fa-check"></i> 27/7 support</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Realizacja potrzeb klienta</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Graficzne projekty szaty aplikacji</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Bezpieczeństwo danych</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Wysoka wydajność</li>
+                    <li class="list-group-item"><i class="fa fa-check"></i> Darmowe szkolenie dla klienta</li>
                 </ul>
                 <div class="panel-footer">
                     <a class="btn btn-lg btn-block btn-success" href="#">BUY NOW!</a>

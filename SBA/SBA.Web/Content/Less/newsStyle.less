@@ -595,10 +595,35 @@ dt {
 .percentage-100:after {
     width: 100%;
 }
-/**** CHART COLUMN END ***/
 
+.vote::before {
+    padding-right: 10px;
+}
+
+#vote1_article::before {
+    content: "INTERESUJĄCY:";
+}
+
+#vote2_article::before {
+    content: "SMUTNY:";
+}
+#vote3_article::before {
+    content: "IRYTUJĄCY: ";
+}
+#vote4_article::before {
+    content: "ŚMIESZNY: ";
+}
+#vote5_article::before {
+    content: "WOW: ";
+}
+
+#articleTextContainer_article {
+    padding-bottom: 10px;
+}
+
+/**** CHART COLUMN END ***/
 /* RECOMMENDATION START*/
-#recommendContainer a{
+#recommendContainer_article a {
     text-decoration: none;
     color: #333;
 }
@@ -661,4 +686,8 @@ dt {
     color: #333;
     font-size: 120%;
     text-align: justify;
+}
+
+#dateContainer_article {
+    padding-bottom: 10px;
 }

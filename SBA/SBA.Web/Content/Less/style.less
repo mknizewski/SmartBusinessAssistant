@@ -159,8 +159,56 @@ hr {
 
 h2.h2article {
     margin: 0;
+    font-weight: bold;
 }
 
 .ul-data li {
     padding: 0;
+}
+
+//--------
+//arrow
+aside#arrowUp {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    display: none;
+
+    a, a:hover, a:visited, a:link, a:active {
+        color: white;
+        text-decoration: none;
+        border: 0;
+    }
+
+    a {
+        opacity: 0.8;
+        transition: opacity .3s ease-in;
+    }
+
+    a:hover {
+        opacity: 1;
+    }
+
+    .arrow {
+        text-align: center;
+        text-shadow: 0px 0px 5px #333;
+        animation: bounce 1.5s;
+    }
+
+    .arrow:hover {
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+
+        40% {
+            transform: translateY(-20px);
+        }
+
+        60% {
+            transform: translateY(-15px);
+        }
+    }
 }

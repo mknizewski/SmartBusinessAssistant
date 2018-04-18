@@ -18,7 +18,8 @@ namespace SBA.Web
                         "~/bower_components/select2/dist/js/select2.min.js",
                         "~/Scripts/select2main.js",
                         "~/Scripts/clicksData.js",
-                        "~/Scripts/shared.js"));
+                        "~/Scripts/shared.js",
+                        "~/Scripts/scrollAction.js"));
 
             // Użyj wersji deweloperskiej biblioteki Modernizr do nauki i opracowywania rozwiązań. Następnie, kiedy wszystko będzie
             // gotowe do produkcji, użyj narzędzia do kompilowania ze strony https://modernizr.com, aby wybrać wyłącznie potrzebne testy.
