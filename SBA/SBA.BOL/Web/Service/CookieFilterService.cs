@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SBA.DAL.Context.WebDb.Repository.CookieFilter;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -6,11 +7,15 @@ namespace SBA.BOL.Web.Service
 {
     public interface ICookieFilterService
     {
-
+        void SaveToLog(List<string> parametresToSave);
     }
 
     public class CookieFilterService : ICookieFilterService
     {
+        private readonly ICookieFilterRepository _cookieFilterRepository;
+        public CookieFilterService(ICookieFilterRepository cookieFilterRepository) =>
+            _cookieFilterRepository = cookieFilterRepository;
+
         public void SaveToLog(List<string> parametresToSave)
         {
             string fileName = "web.log";
