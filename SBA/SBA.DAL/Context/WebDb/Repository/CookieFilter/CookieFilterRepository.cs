@@ -7,7 +7,7 @@ namespace SBA.DAL.Context.WebDb.Repository.CookieFilter
         void SaveToLog(List<string> parametresToSave);
     }
 
-    class CookieFilterRepository : BaseRepository, ICookieFilterRepository
+    public class CookieFilterRepository : BaseRepository, ICookieFilterRepository
     {
         public void SaveToLog(List<string> parametresToSave)
         {
