@@ -1,60 +1,46 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.SimpleChildWindow;
+using SBA.Client.Wpf.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SBA.Client.Wpf.Views
 {
-    public partial class FaqView : Window
+    public partial class FaqView : MetroWindow
     {
         public FaqView()
         {
             InitializeComponent();
+            var viewModel = new FaqViewModel();
+            this.DataContext = viewModel;
+            this.Loaded += (sender, args) => viewModel.Start();
+            this.Closed += (sender, args) => viewModel.Stop();
         }
 
-        private void MainPanelClick(object sender, RoutedEventArgs e)
+        private void ReturnToHomePage(object sender, MouseButtonEventArgs e)
         {
-            MainPanelView mainPanelView = new MainPanelView();
-            this.Close();
-            mainPanelView.Show();
+            if (sender is TabItem)
+            {
+                MainView mainView = new MainView();
+                this.Close();
+                mainView.Show();
+            }
         }
 
-        private void AboutClick(object sender, RoutedEventArgs e)
+        private async void SettingsClick(object sender, RoutedEventArgs e)
         {
-            AboutView aboutView = new AboutView();
-            this.Close();
-            aboutView.Show();
+            await this.ShowChildWindowAsync(new SettingsChildView() { IsModal = true, AllowMove = true }, ChildWindowManager.OverlayFillBehavior.FullWindow);
         }
 
-        private void SettingsClick(object sender, RoutedEventArgs e)
+        private async void AboutProgramClick(object sender, RoutedEventArgs e)
         {
-            SettingsView settingsView = new SettingsView();
-            this.Close();
-            settingsView.Show();
+            await this.ShowChildWindowAsync(new AboutProgramChildView() { IsModal = true, AllowMove = true }, ChildWindowManager.OverlayFillBehavior.FullWindow);
         }
 
-        private void ExitClick(object sender, RoutedEventArgs e)
+        private async void AboutUsClick(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
-        }
-
-        private void ArticleClick(object sender, RoutedEventArgs e)
-        {
-            ArticleView articleView = new ArticleView();
-            this.Close();
-            articleView.Show();
-        }
-
-        private void FaqClick(object sender, RoutedEventArgs e)
-        {
-            FaqView faqView = new FaqView();
-            this.Close();
-            faqView.Show();
-        }
-
-        private void BuilderClick(object sender, RoutedEventArgs e)
-        {
-            BuilderView builderView = new BuilderView();
-            this.Close();
-            builderView.Show();
+            await this.ShowChildWindowAsync(new AboutUsChildView() { IsModal = true, AllowMove = true }, ChildWindowManager.OverlayFillBehavior.FullWindow);
         }
     }
 }

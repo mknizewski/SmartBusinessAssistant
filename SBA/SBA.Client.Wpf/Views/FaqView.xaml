@@ -1,66 +1,241 @@
-﻿<Window x:Class="SBA.Client.Wpf.Views.FaqView"
+﻿<Controls:MetroWindow x:Class="SBA.Client.Wpf.Views.FaqView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:Toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SBA.Client.Wpf.Views"
         mc:Ignorable="d"
-        Title="Sugerowanie FAQ" Height="400" Width="750"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Info">
-                <MenuItem Header="Wróc do panelu głównego" Click="MainPanelClick" />
-                <MenuItem Header="O aplikacji" Click="AboutClick" />
-                <MenuItem Header="Opcje" Click="SettingsClick" />
-                <Separator />
-                <MenuItem Header="Wyłącz" Click="ExitClick" />
-            </MenuItem>
-            <MenuItem Header="Artykuły">
-                <MenuItem Header="Zasugeruj nowy artykuł" Click="ArticleClick" />
-            </MenuItem>
-            <MenuItem Header="FAQ">
-                <MenuItem Header="Zasugeruj nowy FAQ" Click="FaqClick" />
-            </MenuItem>
-            <MenuItem Header="Builder strony">
-                <MenuItem Header="Zasugeruj" Click="BuilderClick" />
-            </MenuItem>
-        </Menu>
-        <TextBox AcceptsReturn="True" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="200" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="20" />
-            </Grid.RowDefinitions>
-            <Label Grid.Row="1" Grid.Column="7" HorizontalContentAlignment="Left">Ostatnia aktualizacja: ...</Label>
-            <RichTextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="4" BorderBrush="Black" MaxHeight="450">
-                <FlowDocument>
-                    <Paragraph FontSize="36">Dane o FAQ</Paragraph>
-                    <Paragraph FontStyle="Italic" TextAlignment="Left" FontSize="14" Foreground="Gray">Tutaj będą wyświetlane dane o FAQ</Paragraph>
-                </FlowDocument>
-            </RichTextBox>
-            <Label Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" FontSize="14">Zasugeruj FAQ wpisując pełną treść pytania:</Label>
-            <Button Grid.Row="9" Grid.Column="4" Background="DarkGray" Grid.ColumnSpan="3" Margin="126,65,10,10">Ok</Button>
-            <TextBox x:Name="FullQuestion" HorizontalAlignment="Left" Height="49" TextWrapping="Wrap" Text="{Binding Path=FullQuestion, Mode=OneWay}" VerticalAlignment="Top" Width="459" Grid.Column="2" Margin="5,5,0,0" Grid.Row="9" BorderBrush="Black" Background="WhiteSmoke" Grid.ColumnSpan="5" />
-        </Grid>
-    </DockPanel>
-</Window>
+        Title="Faq" Height="450" Width="1000"
+        BorderThickness="3"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        GlowBrush="{DynamicResource AccentColorBrush}">
+    <Controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <x:Array x:Key="DataGridSelectionUnitArray" Type="DataGridSelectionUnit">
+                <DataGridSelectionUnit>FullRow</DataGridSelectionUnit>
+                <DataGridSelectionUnit>CellOrRowHeader</DataGridSelectionUnit>
+                <DataGridSelectionUnit>Cell</DataGridSelectionUnit>
+            </x:Array>
+            <x:Array x:Key="DataGridGridLinesVisibilityArray" Type="DataGridGridLinesVisibility">
+                <DataGridGridLinesVisibility>All</DataGridGridLinesVisibility>
+                <DataGridGridLinesVisibility>Horizontal</DataGridGridLinesVisibility>
+                <DataGridGridLinesVisibility>Vertical</DataGridGridLinesVisibility>
+                <DataGridGridLinesVisibility>None</DataGridGridLinesVisibility>
+            </x:Array>
+            <x:Array x:Key="DataGridHeadersVisibilityArray" Type="DataGridHeadersVisibility">
+                <DataGridHeadersVisibility>All</DataGridHeadersVisibility>
+                <DataGridHeadersVisibility>Row</DataGridHeadersVisibility>
+                <DataGridHeadersVisibility>Column</DataGridHeadersVisibility>
+                <DataGridHeadersVisibility>None</DataGridHeadersVisibility>
+            </x:Array>
+
+            <ControlTemplate x:Key="ConfigDataTemplate">
+                <Grid Grid.IsSharedSizeScope="True" d:DataContext="{d:DesignInstance DataGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="labels" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="labels" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Margin="2"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               Text="Tryb odczytu" />
+                    <CheckBox Grid.Row="0"
+                              Grid.Column="1"
+                              Margin="2"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              IsChecked="{Binding IsEnabled}"
+                              Cursor="Hand" />
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Margin="2"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               Text="Typ wyboru" />
+                    <ComboBox Grid.Row="1"
+                              Grid.Column="1"
+                              Width="100"
+                              Margin="2"
+                              VerticalAlignment="Center"
+                              ItemsSource="{StaticResource DataGridSelectionUnitArray}"
+                              SelectedValue="{Binding SelectionUnit}"
+                              Cursor="Hand" />
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="2"
+                               Margin="2"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               Text="Linie" />
+                    <ComboBox Grid.Row="0"
+                              Grid.Column="3"
+                              Width="100"
+                              Margin="2"
+                              VerticalAlignment="Center"
+                              ItemsSource="{StaticResource DataGridGridLinesVisibilityArray}"
+                              SelectedValue="{Binding GridLinesVisibility}"
+                              Cursor="Hand" />
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="2"
+                               Margin="2"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               Text="Nagłówki" />
+                    <ComboBox Grid.Row="1"
+                              Grid.Column="3"
+                              Width="100"
+                              Margin="2"
+                              VerticalAlignment="Center"
+                              ItemsSource="{StaticResource DataGridHeadersVisibilityArray}"
+                              SelectedValue="{Binding HeadersVisibility}"
+                              Cursor="Hand" />
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Controls:MetroWindow.Resources>
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <iconPacks:PackIconMaterial Kind="CommentQuestion" />
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Command="{Binding Settings}" Cursor="Hand" Click="SettingsClick">
+                <iconPacks:PackIconModern Kind="Settings" />
+            </Button>
+            <Button Command="{Binding AboutProject}" Cursor="Hand" Click="AboutProgramClick">O programie</Button>
+            <Button Command="{Binding AboutUs}" Cursor="Hand" Click="AboutUsClick">O nas</Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout Header="Bakery" Background="#9f000000" Position="Right" IsOpen="{Binding IsSettingsFlyoutOpen}">
+                <StackPanel>
+                    <Controls:Tile Title="My _Cupcakes" Count="23">
+                    </Controls:Tile>
+                </StackPanel>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+    <Grid Background="{DynamicResource AccentColorBrush2}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TabControl>
+            <TabItem Header="Dane o FAQ" Cursor="Hand">
+                <Grid RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display" Height="300">
+
+                    <Grid.Resources>
+                        <!--  for ne metro style  -->
+                        <Style TargetType="{x:Type DataGridColumnHeadersPresenter}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeadersPresenter">
+                                        <Grid>
+                                            <Border Background="Transparent"
+                                                BorderBrush="{DynamicResource GrayBrush5}"
+                                                BorderThickness="0 0 0 3"
+                                                IsHitTestVisible="False" />
+                                            <ItemsPresenter />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0"
+                          Header="{Binding ElementName=MetroDataGrid, Path=Items.Count, Mode=OneWay}"
+                          HeaderStringFormat="{}{0} Pobrane informacje o stronie">
+                        <DataGrid x:Name="MetroDataGrid"
+                              Margin="2"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              CanUserReorderColumns="False"
+                              CanUserResizeColumns="False"
+                              CanUserResizeRows="False"
+                              EnableColumnVirtualization="True"
+                              EnableRowVirtualization="True"
+                              IsReadOnly="True"
+                              ItemsSource="{Binding FaqCollection}"
+                              RenderOptions.ClearTypeHint="Enabled"
+                              SelectionUnit="FullRow"
+                              TextOptions.TextFormattingMode="Display">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
+                                                    EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                                    ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                                    Header="" />
+                                <DataGridTextColumn Binding="{Binding Question.FullQuestionText}" Header="Pytanie" />
+                                <DataGridTextColumn Binding="{Binding SimilarQuestionQuantity.Count}" Header="Ilość" />
+                                <DataGridTextColumn Binding="{Binding Usefulness.Rank}" Header="Ranga" />
+                                <DataGridTextColumn Binding="{Binding LocalizationForFaq.LocalizationName}" Header="Lokalizacja geograficzna" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                    <ContentControl Grid.Row="1"
+                                Margin="4 2 2 2"
+                                HorizontalAlignment="Left"
+                                DataContext="{Binding ElementName=MetroDataGrid}"
+                                Template="{StaticResource ConfigDataTemplate}" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Zasugeruj pytanie" Cursor="Hand">
+                <Grid Margin="100">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="1" Grid.Column="1" FontSize="16" Grid.ColumnSpan="2">Zasugeruj pytanie wpisując jego treść w poniższym polu</TextBlock>
+                    <TextBox Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="3"></TextBox>
+                    <Button Grid.Row="1" Grid.Column="2"
+                            Cursor="Hand"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            FontSize="12"
+                            Width="195"
+                            Style="{StaticResource AccentedSquareButtonStyle}" Margin="0,0,0,-65">Zasugeruj pytanie</Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Wróć" MouseLeftButtonUp="ReturnToHomePage" Cursor="Hand">
+            </TabItem>
+        </TabControl>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>Data ostatniej aktualizacji</StatusBarItem>
+            <Separator Style="{StaticResource MetroStatusBarSeparator}"></Separator>
+            <StatusBarItem>Data....</StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <Button Style="{DynamicResource MetroWindowButtonStyle}" Cursor="Hand">
+                    <iconPacks:PackIconMaterial Kind="Refresh" />
+                </Button>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Controls:MetroWindow>

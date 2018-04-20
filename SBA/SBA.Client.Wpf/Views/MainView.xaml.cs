@@ -1,31 +1,42 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.SimpleChildWindow;
-using SBA.Client.Wpf.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace SBA.Client.Wpf.Views
 {
-    public partial class BuilderView : MetroWindow
+    public partial class MainView : MetroWindow
     {
-        public BuilderView()
+        public MainView()
         {
             InitializeComponent();
-            var viewModel = new BuilderViewModel();
-            this.DataContext = viewModel;
-            this.Loaded += (sender, args) => viewModel.Start();
-            this.Closed += (sender, args) => viewModel.Stop();
         }
 
-        private void ReturnToHomePage(object sender, MouseButtonEventArgs e)
+        private void ArticleClick(object sender, RoutedEventArgs e)
         {
-            if (sender is TabItem)
-            {
-                MainView mainView = new MainView();
-                this.Close();
-                mainView.Show();
-            }
+            ArticleView articleView = new ArticleView();
+            this.Close();
+            articleView.Show();
+        }
+
+        private void BuilderClick(object sender, RoutedEventArgs e)
+        {
+            BuilderView builderView = new BuilderView();
+            this.Close();
+            builderView.Show();
+        }
+
+        private void FaqClick(object sender, RoutedEventArgs e)
+        {
+            FaqView faqView = new FaqView();
+            this.Close();
+            faqView.Show();
+        }
+
+        private void StatsClick(object sender, RoutedEventArgs e)
+        {
+            StatsView statsView = new StatsView();
+            this.Close();
+            statsView.Show();
         }
 
         private async void SettingsClick(object sender, RoutedEventArgs e)
