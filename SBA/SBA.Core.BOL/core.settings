@@ -32,5 +32,8 @@
     <Setting Name="DiagAuthGuid" Type="System.String" Scope="Application">
       <Value Profile="(Default)">cfa12e66-7850-4d14-b72f-173327e4c8a7</Value>
     </Setting>
+    <Setting Name="ClientAuthGuid" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">cd04d90c-ba26-463a-9f2e-40d3a3859487</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

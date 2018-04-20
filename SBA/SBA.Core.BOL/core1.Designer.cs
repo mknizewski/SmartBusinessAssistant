@@ -112,5 +112,14 @@ namespace SBA.Core.BOL {
                 return ((string)(this["DiagAuthGuid"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cd04d90c-ba26-463a-9f2e-40d3a3859487")]
+        public string ClientAuthGuid {
+            get {
+                return ((string)(this["ClientAuthGuid"]));
+            }
+        }
     }
 }

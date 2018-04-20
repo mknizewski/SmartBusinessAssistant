@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SBA.Client.Wpf.BOL" GeneratedClassName="app">
+  <Profiles />
+  <Settings>
+    <Setting Name="coreHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="corePort" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">669</Value>
+    </Setting>
+    <Setting Name="authGuid" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">cd04d90c-ba26-463a-9f2e-40d3a3859487</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
