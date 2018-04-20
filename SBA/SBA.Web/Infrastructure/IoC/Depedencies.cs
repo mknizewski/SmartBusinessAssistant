@@ -12,8 +12,7 @@ namespace SBA.Web.Infrastructure.IoC
         public static void Register()
         {
             MvcApplication.Container = SimpleFactory.Get<Container>();
-            MvcApplication.Container.Options.DefaultScopedLifestyle =
-                SimpleFactory.Get<WebRequestLifestyle>();
+            MvcApplication.Container.Options.DefaultScopedLifestyle = SimpleFactory.Get<WebRequestLifestyle>();
             MvcApplication.Container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 
             RepositoryDepedencies.Register();

@@ -16,11 +16,11 @@ namespace SBA.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Depedencies.Register();
             DependencyResolver.SetResolver(SimpleFactory.Resolver);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             ContextInitializer.SbaWebInitializer.Init();
             BackgroundJobsConfigurator.Configure();
             BackgroundJobsConfigurator.RegisterBackgroundJobs();
