@@ -18,7 +18,8 @@ namespace SBA.Core.BOL.Threads.Socket
         private static readonly string[] _acceptedAuthGuids =
         {
             Settings.Core.WebAuthGuid,
-            Settings.Core.DiagAuthGuid
+            Settings.Core.DiagAuthGuid,
+            Settings.Core.ClientAuthGuid
         };
 
         public ServerSocketThread()
@@ -98,6 +99,8 @@ namespace SBA.Core.BOL.Threads.Socket
 
             public const string Diag = nameof(ConnectionHandler.Diag);
 
+            public const string App = nameof(ConnectionHandler.App);
+
             public byte[] Handle(ConnectionHandlerData connectionHandlerData)
             {
                 string type = connectionHandlerData.RecvDictionary["Type"];
@@ -107,6 +110,8 @@ namespace SBA.Core.BOL.Threads.Socket
                         return this.WebHandler(connectionHandlerData);
                     case Diag:
                         return this.DiagnosticHandler(connectionHandlerData);
+                    case App:
+                        return this.AppHandler(connectionHandlerData);
                     default:
                         return Encoding.ASCII.GetBytes("Unsupported type");
                 }
@@ -121,7 +126,10 @@ namespace SBA.Core.BOL.Threads.Socket
             }
 
             private byte[] WebHandler(ConnectionHandlerData connectionHandlerData) =>
-                connectionHandlerData.ServerSocketService.HandleData(connectionHandlerData.RecvDictionary);
+                connectionHandlerData.ServerSocketService.HandleWebData(connectionHandlerData.RecvDictionary);
+
+            private byte[] AppHandler(ConnectionHandlerData connectionHandlerData) =>
+                connectionHandlerData.ServerSocketService.HandleAppData(connectionHandlerData.RecvDictionary);
         }
 
         private struct ConnectionHandlerData

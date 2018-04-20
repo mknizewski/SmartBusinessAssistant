@@ -11,7 +11,8 @@ namespace SBA.BOL.Inference.Service
     public interface IServerSocketService
     {
         Dictionary<string, string> DeserializeDictionary(byte[] recvBytes);
-        byte[] HandleData(Dictionary<string, string> recvDictionary);
+        byte[] HandleWebData(Dictionary<string, string> recvDictionary);
+        byte[] HandleAppData(Dictionary<string, string> recvDictionary);
         void AuthorizeConnection(Dictionary<string, string> recvDictionary, string[] authGuids);
     }
 
@@ -35,8 +36,17 @@ namespace SBA.BOL.Inference.Service
         /// TODO: Obsłużyć.
         /// </summary>
         /// <param name="recvDictionary"></param>
+        public byte[] HandleAppData(Dictionary<string, string> recvDictionary)
+        {
+            return Encoding.ASCII.GetBytes("test z app");
+        }
+
+        /// <summary>
+        /// TODO: Obsłużyć.
+        /// </summary>
+        /// <param name="recvDictionary"></param>
         /// <returns></returns>
-        public byte[] HandleData(Dictionary<string, string> recvDictionary)
+        public byte[] HandleWebData(Dictionary<string, string> recvDictionary)
         {
             return Encoding.ASCII.GetBytes("test z core");
         }
