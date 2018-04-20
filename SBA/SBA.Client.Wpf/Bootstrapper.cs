@@ -8,12 +8,12 @@ namespace SBA.Client.Wpf
     {
         public Bootstrapper()
         {
-            Initialize();
+            this.Initialize();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<MainPanelViewModel>();
+            this.DisplayRootViewFor<MainViewModel>();
         }
     }
 }
