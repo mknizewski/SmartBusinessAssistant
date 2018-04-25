@@ -15,6 +15,8 @@ namespace SBA.DAL.Context.InferenceDb.Infrastructure
         public DbSet<VideoCse> VideoCses { get; set; }
         public DbSet<SoftwareApplicationCse> SoftwareApplicationCses { get; set; }
         public DbSet<SoftwareSourceCodeCse> SoftwareSourceCodeCses { get; set; }
+        public DbSet<FaqQuestions> FaqQuestions { get; set; }
+        public DbSet<FaqAnswers> FaqAnswers { get; set; }
 
         public SbaInferenceContext()
             : base(ContextName)
