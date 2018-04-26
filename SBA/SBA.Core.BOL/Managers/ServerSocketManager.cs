@@ -6,9 +6,9 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace SBA.BOL.Inference.Service
+namespace SBA.Core.BOL.Managers
 {
-    public interface IServerSocketService
+    public interface IServerSocketManager
     {
         Dictionary<string, string> DeserializeDictionary(byte[] recvBytes);
         byte[] HandleWebData(Dictionary<string, string> recvDictionary);
@@ -16,7 +16,7 @@ namespace SBA.BOL.Inference.Service
         void AuthorizeConnection(Dictionary<string, string> recvDictionary, string[] authGuids);
     }
 
-    public class ServerSocketService : IServerSocketService
+    public class ServerSocketManager : IServerSocketManager
     {
         public void AuthorizeConnection(Dictionary<string, string> recvDictionary, string[] authGuids)
         {
@@ -29,7 +29,7 @@ namespace SBA.BOL.Inference.Service
         {
             var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
             using (var memoryStream = SimpleFactory.Get<MemoryStream>(recvBytes))
-                return (Dictionary<string, string>) binaryFormatter.Deserialize(memoryStream);
+                return (Dictionary<string, string>)binaryFormatter.Deserialize(memoryStream);
         }
 
         /// <summary>
@@ -41,14 +41,34 @@ namespace SBA.BOL.Inference.Service
             return Encoding.ASCII.GetBytes("test z app");
         }
 
-        /// <summary>
-        /// TODO: Obsłużyć.
-        /// </summary>
-        /// <param name="recvDictionary"></param>
-        /// <returns></returns>
         public byte[] HandleWebData(Dictionary<string, string> recvDictionary)
         {
-            return Encoding.ASCII.GetBytes("test z core");
+            string request = recvDictionary[nameof(Request)];
+            switch (request)
+            {
+                case Request.Web.AnswerSuggestion:
+                    return Encoding.ASCII.GetBytes(AnswerSuggestion(recvDictionary["Question"]));
+            }
+
+            return null;
+        }
+
+        private string AnswerSuggestion(string userQuestion)
+        {
+            return string.Empty;
+        }
+
+        private static class Request
+        {
+            public static class Web
+            {
+                public const string AnswerSuggestion = "AnswerSuggestion";
+            }
+
+            public static class App
+            {
+
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ namespace SBA.Web.Controllers
         /// <returns></returns>
         public virtual ActionResult About()
         {
-            ViewBag.Message = _clientSocketService.ExchangeDataWithCore("test_data");
+            ViewBag.Message = _clientSocketService.SendUserQuestionToGetSuggestAnswer("Jaka praca jest dostępna u Państwa?");
             return View(_configurationService.GetConfigurations());
         }
     }
