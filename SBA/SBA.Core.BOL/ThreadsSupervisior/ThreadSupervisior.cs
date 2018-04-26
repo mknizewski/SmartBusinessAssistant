@@ -66,6 +66,18 @@ namespace SBA.Core.BOL.ThreadsSupervisior
             }
         }
 
+        public T ForceRun<T>(string taskName, params string[] jobParams) where T : class
+        {
+            lock (_lockObject)
+            {
+                var thread = _threads
+                        .FirstOrDefault(x => x.ExcecutionPlan.ThreadName == taskName);
+
+                thread.ExcecutionPlan.Parameters = jobParams;
+                return thread.DoJob<T>();
+            }
+        }
+
         public void Supervise()
         {
             while (_supervising)

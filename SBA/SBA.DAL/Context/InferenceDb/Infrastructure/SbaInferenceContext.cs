@@ -17,6 +17,7 @@ namespace SBA.DAL.Context.InferenceDb.Infrastructure
         public DbSet<SoftwareSourceCodeCse> SoftwareSourceCodeCses { get; set; }
         public DbSet<FaqQuestions> FaqQuestions { get; set; }
         public DbSet<FaqAnswers> FaqAnswers { get; set; }
+        public DbSet<FaqDecissions> FaqDecissions { get; set; }
 
         public SbaInferenceContext()
             : base(ContextName)

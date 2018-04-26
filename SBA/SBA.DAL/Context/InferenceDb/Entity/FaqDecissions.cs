@@ -8,8 +8,8 @@ namespace SBA.DAL.Context.InferenceDb.Entity
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(FaqQuestion))]
-        public int FaqQuestionId { get; set; }
+        [ForeignKey(nameof(FaqAnswer))]
+        public int FaqAnswerId { get; set; }
 
         public bool Decide { get; set; }
 
@@ -17,6 +17,6 @@ namespace SBA.DAL.Context.InferenceDb.Entity
 
         public string Classificator { get; set; }
 
-        public virtual FaqQuestions FaqQuestion { get; set; }
+        public virtual FaqAnswers FaqAnswer { get; set; }
     }
 }

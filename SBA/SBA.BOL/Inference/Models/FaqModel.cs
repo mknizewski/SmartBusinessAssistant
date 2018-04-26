@@ -7,6 +7,7 @@ namespace SBA.BOL.Inference.Models
         public class Question
         {
             public int Id { get; set; }
+            public int AnswerId { get; set; }
             public string QuestionName { get; set; }
             public DateTime InsertTime { get; set; }
         }
@@ -15,18 +16,15 @@ namespace SBA.BOL.Inference.Models
         {
             public int Id { get; set; }
             public string AnswerName { get; set; }
-            public int QuestionId { get; set; }
         }
 
         public class Decide
         {
+            public int AnswerId { get; set; }
             public bool DecideStatus { get; set; }
-
             public double Propability { get; set; }
-
             public string Classificator { get; set; }
-
-            public Question Question { get; set; }
+            public string Question { get; set; }
         }
     }
 }

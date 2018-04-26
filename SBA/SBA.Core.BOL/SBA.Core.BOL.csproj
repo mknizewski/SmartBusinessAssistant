@@ -113,6 +113,7 @@
     <Compile Include="Infrastructure\Configurator\StructureExtractor\StructureExtractorConfigurator.cs" />
     <Compile Include="Infrastructure\Configurator\Threads\ServerSocketConfigurator.cs" />
     <Compile Include="Infrastructure\InputParamsHandler.cs" />
+    <Compile Include="Infrastructure\Nothing.cs" />
     <Compile Include="Infrastructure\Settings.cs" />
     <Compile Include="Infrastructure\SimpleFactory.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
@@ -142,6 +143,10 @@
     <ProjectReference Include="..\SBA.BOL\SBA.BOL.csproj">
       <Project>{65c5e630-a37d-490c-90d7-a80f53e12115}</Project>
       <Name>SBA.BOL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SBA.DAL\SBA.DAL.csproj">
+      <Project>{EE06CB41-6FEF-4FF6-860C-ED36BCCFCF5E}</Project>
+      <Name>SBA.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
