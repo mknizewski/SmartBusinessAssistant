@@ -1,5 +1,5 @@
-﻿using SBA.BOL.Common.Factory;
-using SBA.BOL.Inference.Service;
+﻿using SBA.BOL.Inference.Service;
+using SBA.Core.BOL.Infrastructure;
 
 namespace SBA.Core.BOL.Threads.StructureExtractor
 {
@@ -10,7 +10,10 @@ namespace SBA.Core.BOL.Threads.StructureExtractor
         public StructureExtractorThread() => 
             _cseStructuresService = SimpleFactory.Get<CseStructuresService, ICseStructuresService>();
 
-        public override void DoJob() =>
+        public override T DoJob<T>()
+        {
             _cseStructuresService.StructurizeUnhandledCseData();
+            return Nothing.All as T;
+        }
     }
 }

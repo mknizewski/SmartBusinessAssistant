@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
-
-namespace SBA.Core.BOL.Threads
+﻿namespace SBA.Core.BOL.Threads
 {
     public interface IThread
     {
-        void DoJob();
+        T DoJob<T>() where T : class;
         void RunJob();
     }
 }

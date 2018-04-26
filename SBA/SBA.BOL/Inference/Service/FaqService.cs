@@ -10,8 +10,8 @@ namespace SBA.BOL.Inference.Service
     public interface IFaqService
     {
         List<FaqModel.Question> GetFaqQuestions();
-        FaqModel.Answer GetFaqAnswerByQuestionId(int questionId);
         void AddFaqDecision(FaqModel.Decide faqDecission);
+        void AddFaqDecisions(List<FaqModel.Decide> decides);
     }
 
     public class FaqService : IFaqService
@@ -26,26 +26,26 @@ namespace SBA.BOL.Inference.Service
             {
                 Propability = faqDecission.Propability,
                 Decide = faqDecission.DecideStatus,
-                FaqQuestionId = faqDecission.Question.Id,
+                FaqAnswerId = faqDecission.AnswerId,
                 Classificator = faqDecission.Classificator
             });
 
-        public FaqModel.Answer GetFaqAnswerByQuestionId(int questionId)
-        {
-            var dbModel = _faqRespository.GetFaqAnswerByQuestionId(questionId);
-            return new FaqModel.Answer
-            {
-                Id = dbModel.Id,
-                AnswerName = dbModel.Answer,
-                QuestionId = dbModel.FaqQuestionId
-            };
-        }
+        public void AddFaqDecisions(List<FaqModel.Decide> decides) =>
+            _faqRespository.AddFaqDecisions(
+                decides.Select(x => new FaqDecissions
+                {
+                    Classificator = x.Classificator,
+                    Decide = x.DecideStatus,
+                    FaqAnswerId = x.AnswerId,
+                    Propability = x.Propability
+                }).ToList());
 
         public List<FaqModel.Question> GetFaqQuestions() =>
             _faqRespository.GetFaqQuestions()
                 .Select(x => new FaqModel.Question
                 {
                     Id = x.Id,
+                    AnswerId = x.AnswerId,
                     QuestionName = x.Question,
                     InsertTime = x.InsertTime
                 }).ToList();

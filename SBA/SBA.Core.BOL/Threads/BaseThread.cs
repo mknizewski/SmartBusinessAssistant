@@ -8,7 +8,7 @@ namespace SBA.Core.BOL.Threads
     {
         public ExcecutionPlan ExcecutionPlan { get; set; }
         public Task Job { get; set; }
-        public abstract void DoJob();
+        public abstract T DoJob<T>() where T : class;
 
         private void StartOutput()
         {
@@ -62,7 +62,7 @@ namespace SBA.Core.BOL.Threads
 
                     UpdateExcecutationPlan();
                     StartOutput();
-                    DoJob();
+                    DoJob<Nothing>();
                 }
                 catch (Exception ex)
                 {

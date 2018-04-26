@@ -30,7 +30,7 @@ namespace SBA.Core.BOL.Threads.Socket
             _connectionHandler = SimpleFactory.Get<ConnectionHandler, IConnectionHandler>();
         }
 
-        public override void DoJob()
+        public override T DoJob<T>()
         {
             var isListing = true;
             var serverSocket = SimpleFactory
@@ -86,6 +86,8 @@ namespace SBA.Core.BOL.Threads.Socket
                     socketHandler.Close();
                 }
             }
+
+            return Nothing.All as T;
         }
 
         private interface IConnectionHandler

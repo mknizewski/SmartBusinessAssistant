@@ -1,4 +1,5 @@
 ﻿using SBA.DAL.Context.InferenceDb.Infrastructure;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SBA.DAL.Context.InferenceDb.Repository
@@ -7,6 +8,7 @@ namespace SBA.DAL.Context.InferenceDb.Repository
     {
         IQueryable<T> Queryable<T>() where T : class;
         void Add<T>(T entity) where T : class;
+        void AddRange<T>(List<T> entities) where T : class;
         void Delete<T>(T entity) where T : class;
         int SaveChanges();
     }
@@ -21,6 +23,10 @@ namespace SBA.DAL.Context.InferenceDb.Repository
         public void Add<T>(T entity) where T : class =>
             _inferenceContext.Set<T>()
                 .Add(entity);
+
+        public void AddRange<T>(List<T> entities) where T : class =>
+            _inferenceContext.Set<T>()
+                .AddRange(entities);
 
         public void Delete<T>(T entity) where T : class =>
             _inferenceContext.Set<T>()

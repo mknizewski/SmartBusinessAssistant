@@ -20,7 +20,7 @@ namespace SBA.Core.BOL.Threads.GoogleCse
             _cseDataService = SimpleFactory.Get<CseDataService, ICseDataService>();
         }
 
-        public override void DoJob()
+        public override T DoJob<T>()
         {
             string query = ExcecutionPlan.Parameters[0];
             var customSearchService = SimpleFactory
@@ -45,6 +45,8 @@ namespace SBA.Core.BOL.Threads.GoogleCse
                 ObjectType = typeof(Google.Apis.Customsearch.v1.Data.Result).FullName,
                 InsertTime = DateTime.Now
             });
+
+            return Nothing.All as T;
         }
     }
 }
