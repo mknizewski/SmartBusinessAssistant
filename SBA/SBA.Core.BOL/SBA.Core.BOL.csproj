@@ -119,6 +119,7 @@
     <Compile Include="Infrastructure\Startup.cs" />
     <Compile Include="Managers\DiagnosticManager.cs" />
     <Compile Include="Managers\LoggerManager.cs" />
+    <Compile Include="Managers\ServerSocketManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadsSupervisior\ThreadSupervisior.cs" />
     <Compile Include="ThreadsSupervisior\ThreadWorkflow.cs" />

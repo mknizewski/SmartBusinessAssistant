@@ -1,5 +1,4 @@
-﻿using SBA.BOL.Common.Extensions;
-using SBA.BOL.Common.Factory;
+﻿using SBA.BOL.Common.Factory;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,18 +11,27 @@ namespace SBA.BOL.Web.Service
 {
     public interface IClientSocketService
     {
-        string ExchangeDataWithCore(string data);
+        string SendUserQuestionToGetSuggestAnswer(string userQuestion);
     }
 
     public class ClientSocketService : IClientSocketService
     {
-        public string ExchangeDataWithCore(string data)
+        public string SendUserQuestionToGetSuggestAnswer(string userQuestion)
+        {
+            var requestDictionary = GetDictionary();
+            requestDictionary.Add("Request", "AnswerSuggestion");
+            requestDictionary.Add("Question", userQuestion);
+
+            byte[] coreSuggestion = ExchangeDataWithCore(requestDictionary);
+            return Encoding.ASCII.GetString(coreSuggestion);
+        }
+
+        private byte[] ExchangeDataWithCore(Dictionary<string, string> dictionary)
         {
             byte[] sendBytes = null;
             string coreHost = ConfigurationManager.AppSettings[nameof(coreHost)];
             string corePort = ConfigurationManager.AppSettings[nameof(corePort)];
             var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
-            var dictionary = GetDictionary(data);
             var clientSocket = SimpleFactory
                 .Get<Socket>(
                     AddressFamily.InterNetwork,
@@ -44,17 +52,14 @@ namespace SBA.BOL.Web.Service
             clientSocket.Shutdown(SocketShutdown.Both);
             clientSocket.Close();
 
-            return Encoding.ASCII
-                .GetString(serverData)
-                .ClearRecv();
+            return serverData;
         }
 
-        private Dictionary<string, string> GetDictionary(string data) =>
+        private Dictionary<string, string> GetDictionary() =>
             new Dictionary<string, string>
             {
                 { "AuthGuid", ConfigurationManager.AppSettings["authGuid"] },
-                { "Type", "Web" },
-                { "Data", data}
+                { "Type", "Web" }
             };
     }
 }

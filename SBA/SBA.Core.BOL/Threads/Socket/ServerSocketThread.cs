@@ -1,5 +1,4 @@
-﻿using SBA.BOL.Inference.Service;
-using SBA.Core.BOL.Infrastructure;
+﻿using SBA.Core.BOL.Infrastructure;
 using SBA.Core.BOL.Managers;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ namespace SBA.Core.BOL.Threads.Socket
 {
     public class ServerSocketThread : BaseThread, IThread
     {
-        private readonly IServerSocketService _serverSocketService;
+        private readonly IServerSocketManager _serverSocketManager;
         private readonly ILoggerManager _loggerManager;
         private readonly IDiagnosticManager _diagnosticManager;
         private readonly IConnectionHandler _connectionHandler;
@@ -24,7 +23,7 @@ namespace SBA.Core.BOL.Threads.Socket
 
         public ServerSocketThread()
         {
-            _serverSocketService = SimpleFactory.Get<ServerSocketService, IServerSocketService>();
+            _serverSocketManager = SimpleFactory.Get<ServerSocketManager, IServerSocketManager>();
             _loggerManager = SimpleFactory.GetLogger();
             _diagnosticManager = SimpleFactory.Get<DiagnosticManager, IDiagnosticManager>();
             _connectionHandler = SimpleFactory.Get<ConnectionHandler, IConnectionHandler>();
@@ -58,15 +57,15 @@ namespace SBA.Core.BOL.Threads.Socket
                     _loggerManager.RegisterLogToFile($"Incoming connection to: {nameof(ServerSocketThread)} from: {socketHandler.RemoteEndPoint.ToString()}");
                     socketHandler.Receive(recvBytes);
 
-                    var dictionary = _serverSocketService.DeserializeDictionary(recvBytes);
-                    _serverSocketService.AuthorizeConnection(dictionary, _acceptedAuthGuids);
+                    var dictionary = _serverSocketManager.DeserializeDictionary(recvBytes);
+                    _serverSocketManager.AuthorizeConnection(dictionary, _acceptedAuthGuids);
 
                     sendBytes = _connectionHandler.Handle(
                         new ConnectionHandlerData
                         {
                             RecvDictionary = dictionary,
                             DiagnosticManager = _diagnosticManager,
-                            ServerSocketService = _serverSocketService
+                            ServerSocketManager = _serverSocketManager
                         });
                 }
                 catch (Exception ex)
@@ -128,16 +127,16 @@ namespace SBA.Core.BOL.Threads.Socket
             }
 
             private byte[] WebHandler(ConnectionHandlerData connectionHandlerData) =>
-                connectionHandlerData.ServerSocketService.HandleWebData(connectionHandlerData.RecvDictionary);
+                connectionHandlerData.ServerSocketManager.HandleWebData(connectionHandlerData.RecvDictionary);
 
             private byte[] AppHandler(ConnectionHandlerData connectionHandlerData) =>
-                connectionHandlerData.ServerSocketService.HandleAppData(connectionHandlerData.RecvDictionary);
+                connectionHandlerData.ServerSocketManager.HandleAppData(connectionHandlerData.RecvDictionary);
         }
 
         private struct ConnectionHandlerData
         {
             public Dictionary<string, string> RecvDictionary { get; set; }
-            public IServerSocketService ServerSocketService { get; set; }
+            public IServerSocketManager ServerSocketManager { get; set; }
             public IDiagnosticManager DiagnosticManager { get; set; }
         }
     }
