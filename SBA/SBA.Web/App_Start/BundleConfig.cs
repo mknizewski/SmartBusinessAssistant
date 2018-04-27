@@ -5,7 +5,6 @@ namespace SBA.Web
 {
     public class BundleConfig
     {
-        // Aby uzyskać więcej informacji o grupowaniu, odwiedź stronę https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/mainJs").Include(
@@ -22,8 +21,9 @@ namespace SBA.Web
                         "~/Scripts/scrollAction.js",
                         "~/Scripts/getArticle.js"));
 
-            // Użyj wersji deweloperskiej biblioteki Modernizr do nauki i opracowywania rozwiązań. Następnie, kiedy wszystko będzie
-            // gotowe do produkcji, użyj narzędzia do kompilowania ze strony https://modernizr.com, aby wybrać wyłącznie potrzebne testy.
+            bundles.Add(new ScriptBundle("~/bundles/contactJs").Include(
+                "~/Scripts/TypeScript/contact.js"));
+            
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -32,7 +32,6 @@ namespace SBA.Web
                       "~/bower_components/bootstrap-social/bootstrap-social.css",
                       "~/bower_components/select2/dist/css/select2.min.css"));
 
-            // Użycie Lessa, przykład
             var lessBundle = new Bundle("~/Content/mainLess").Include(
                 "~/Content/Less/style.less");
             lessBundle.Transforms.Add(new LessTransform());
@@ -63,8 +62,7 @@ namespace SBA.Web
             lessAboutStyleBundle.Transforms.Add(new CssMinify());
             bundles.Add(lessAboutStyleBundle);
 
-            // Minifikacja
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

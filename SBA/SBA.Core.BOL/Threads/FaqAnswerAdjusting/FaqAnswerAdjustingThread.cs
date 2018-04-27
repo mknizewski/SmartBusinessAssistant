@@ -44,7 +44,7 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
                         Input = terms.Transform(token.QuestionName.Tokenize()),
                         Decide = true
                     });
-
+                
                 vectors.Add(new VectorMap
                 {
                     Input = new double[vectors.First().Input.Length],
@@ -69,6 +69,7 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
                 decides.Add(new FaqModel.Decide
                 {
                     AnswerId = answer.Key,
+                    Answer = _faqService.GetAnswer(answer.Key),
                     Question = userQuestion,
                     DecideStatus = decission,
                     Propability = propabality,

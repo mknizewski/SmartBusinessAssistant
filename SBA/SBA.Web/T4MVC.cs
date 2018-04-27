@@ -64,6 +64,19 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
     public string Protocol { get; set; }
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_JsonResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
 
 
 
@@ -76,6 +89,7 @@ namespace Links
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
         public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
         public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
+        public static readonly string getArticle_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/getArticle.min.js") ? Url("getArticle.min.js") : Url("getArticle.js");
         public static readonly string jquery_1_10_2_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-1.10.2.intellisense.min.js") ? Url("jquery-1.10.2.intellisense.min.js") : Url("jquery-1.10.2.intellisense.js");
         public static readonly string jquery_1_10_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-1.10.2.min.js") ? Url("jquery-1.10.2.min.js") : Url("jquery-1.10.2.js");
         public static readonly string jquery_1_10_2_min_js = Url("jquery-1.10.2.min.js");
@@ -88,11 +102,16 @@ namespace Links
         public static readonly string modernizr_2_6_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/modernizr-2.6.2.min.js") ? Url("modernizr-2.6.2.min.js") : Url("modernizr-2.6.2.js");
         public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
         public static readonly string respond_min_js = Url("respond.min.js");
+        public static readonly string scrollAction_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/scrollAction.min.js") ? Url("scrollAction.min.js") : Url("scrollAction.js");
+        public static readonly string select2main_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/select2main.min.js") ? Url("select2main.min.js") : Url("select2main.js");
+        public static readonly string shared_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/shared.min.js") ? Url("shared.min.js") : Url("shared.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class TypeScript {
             public const string UrlPath = "~/Scripts/TypeScript";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            public static readonly string contact_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/contact.min.js") ? Url("contact.min.js") : Url("contact.js");
+            public static readonly string helpers_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/helpers.min.js") ? Url("helpers.min.js") : Url("helpers.js");
             public static readonly string main_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/main.min.js") ? Url("main.min.js") : Url("main.js");
         }
     
@@ -120,14 +139,27 @@ namespace Links
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
         public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
         public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
+        public static readonly string font_awesome_min_css = Url("font-awesome.min.css");
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Images {
+            public const string UrlPath = "~/Content/Images";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            public static readonly string loading_svg = Url("loading.svg");
+        }
+    
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Less {
             public const string UrlPath = "~/Content/Less";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            public static readonly string aboutStyle_less = Url("aboutStyle.less");
+            public static readonly string contactStyle_less = Url("contactStyle.less");
+            public static readonly string homeStyle_less = Url("homeStyle.less");
+            public static readonly string newsStyle_less = Url("newsStyle.less");
+            public static readonly string style_less = Url("style.less");
         }
     
-        public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
     }
 
     
@@ -158,6 +190,7 @@ namespace Links
             {
                 public const string bootstrap_js = "~/Scripts/bootstrap.js"; 
                 public const string bootstrap_min_js = "~/Scripts/bootstrap.min.js"; 
+                public const string getArticle_js = "~/Scripts/getArticle.js"; 
                 public const string jquery_1_10_2_intellisense_js = "~/Scripts/jquery-1.10.2.intellisense.js"; 
                 public const string jquery_1_10_2_js = "~/Scripts/jquery-1.10.2.js"; 
                 public const string jquery_1_10_2_min_js = "~/Scripts/jquery-1.10.2.min.js"; 
@@ -168,10 +201,19 @@ namespace Links
                 public const string modernizr_2_6_2_js = "~/Scripts/modernizr-2.6.2.js"; 
                 public const string respond_js = "~/Scripts/respond.js"; 
                 public const string respond_min_js = "~/Scripts/respond.min.js"; 
+                public const string scrollAction_js = "~/Scripts/scrollAction.js"; 
+                public const string select2main_js = "~/Scripts/select2main.js"; 
+                public const string shared_js = "~/Scripts/shared.js"; 
             }
         }
         public static partial class Content 
         {
+            public static partial class Images 
+            {
+                public static class Assets
+                {
+                }
+            }
             public static partial class Less 
             {
                 public static class Assets
@@ -182,7 +224,7 @@ namespace Links
             {
                 public const string bootstrap_css = "~/Content/bootstrap.css";
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
-                public const string Site_css = "~/Content/Site.css";
+                public const string font_awesome_min_css = "~/Content/font-awesome.min.css";
             }
         }
     }

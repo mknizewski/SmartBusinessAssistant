@@ -23,7 +23,7 @@ namespace SBA.BOL.Web.Service
             requestDictionary.Add("Question", userQuestion);
 
             byte[] coreSuggestion = ExchangeDataWithCore(requestDictionary);
-            return Encoding.ASCII.GetString(coreSuggestion);
+            return Encoding.UTF8.GetString(coreSuggestion);
         }
 
         private byte[] ExchangeDataWithCore(Dictionary<string, string> dictionary)

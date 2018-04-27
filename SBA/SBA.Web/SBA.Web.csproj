@@ -304,6 +304,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\TypeScript\contact.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\helpers.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\main.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
