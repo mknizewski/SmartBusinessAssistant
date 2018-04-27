@@ -9,6 +9,7 @@ namespace SBA.DAL.Context.InferenceDb.Repository.Faq
         List<FaqQuestions> GetFaqQuestions();
         void AddFaqDecision(FaqDecissions faqDecission);
         void AddFaqDecisions(List<FaqDecissions> faqDecissions);
+        FaqAnswers GetAnswer(int id);
     }
 
     public class FaqRepository : BaseRepository, IFaqRepository
@@ -24,6 +25,10 @@ namespace SBA.DAL.Context.InferenceDb.Repository.Faq
             AddRange(faqDecissions);
             SaveChanges();
         }
+
+        public FaqAnswers GetAnswer(int id) =>
+            Queryable<FaqAnswers>()
+                .FirstOrDefault(x => x.Id == id);
 
         public List<FaqQuestions> GetFaqQuestions() =>
             Queryable<FaqQuestions>()

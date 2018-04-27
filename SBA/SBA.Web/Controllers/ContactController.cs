@@ -7,20 +7,26 @@ namespace SBA.Web.Controllers
     public partial class ContactController : BaseController
     {
         private readonly IContactService _contactService;
+        private readonly IClientSocketService _clientSocketService;
 
-        public ContactController(IContactService contactService) =>
+        public ContactController(
+            IContactService contactService,
+            IClientSocketService clientSocketService)
+        {
             _contactService = contactService;
+            _clientSocketService = clientSocketService;
+        }
 
         public virtual ActionResult Index() =>
             View();
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public virtual ActionResult Send(ContactModel contactModel)
+        public virtual JsonResult Send(ContactModel contactModel)
         {
+            string possibleAnswer = _clientSocketService.SendUserQuestionToGetSuggestAnswer(contactModel.Message);
+
             _contactService.AddContact(contactModel);
-            SetAlert(Infrastructure.Alert.SystemAlert.Type.Success, "Dziękujemy za zgłoszenie!");
-            return RedirectToAction(MVC.Contact.Index());
+            return Json(possibleAnswer);
         }
     }
 }

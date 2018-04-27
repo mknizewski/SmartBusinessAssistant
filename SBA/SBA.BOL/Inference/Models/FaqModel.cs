@@ -21,6 +21,7 @@ namespace SBA.BOL.Inference.Models
         public class Decide
         {
             public int AnswerId { get; set; }
+            public string Answer { get; set; }
             public bool DecideStatus { get; set; }
             public double Propability { get; set; }
             public string Classificator { get; set; }

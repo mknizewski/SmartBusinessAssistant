@@ -58,9 +58,9 @@ namespace SBA.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Send()
+        public virtual System.Web.Mvc.JsonResult Send()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Send);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Send);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -131,12 +131,12 @@ namespace SBA.Web.Controllers
         }
 
         [NonAction]
-        partial void SendOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SBA.BOL.Web.Models.ContactModel contactModel);
+        partial void SendOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SBA.BOL.Web.Models.ContactModel contactModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Send(SBA.BOL.Web.Models.ContactModel contactModel)
+        public override System.Web.Mvc.JsonResult Send(SBA.BOL.Web.Models.ContactModel contactModel)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Send);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Send);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "contactModel", contactModel);
             SendOverride(callInfo, contactModel);
             return callInfo;

@@ -10,5 +10,17 @@ class Helpers {
         else
             $("#loadingSpinner").hide();
     }
+    static ScrollTo(id) {
+        $(id).scroll(id);
+    }
+    static SetVisible(id, isVisible) {
+        if (isVisible)
+            $(id).show();
+        else
+            $(id).hide();
+    }
+    static Clear(id) {
+        $(id).empty();
+    }
 }
 //# sourceMappingURL=helpers.js.map

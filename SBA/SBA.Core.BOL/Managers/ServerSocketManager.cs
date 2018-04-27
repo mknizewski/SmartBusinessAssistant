@@ -1,4 +1,6 @@
-﻿using SBA.BOL.Common.Factory;
+﻿using SBA.BOL.Inference.Models;
+using SBA.Core.BOL.Infrastructure;
+using SBA.Core.BOL.Threads.FaqAnswerAdjusting;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,7 +49,7 @@ namespace SBA.Core.BOL.Managers
             switch (request)
             {
                 case Request.Web.AnswerSuggestion:
-                    return Encoding.ASCII.GetBytes(AnswerSuggestion(recvDictionary["Question"]));
+                    return Encoding.UTF8.GetBytes(AnswerSuggestion(recvDictionary["Question"]));
             }
 
             return null;
@@ -55,7 +57,19 @@ namespace SBA.Core.BOL.Managers
 
         private string AnswerSuggestion(string userQuestion)
         {
-            return string.Empty;
+            var decides = Settings.Supervisior.ForceRun<List<FaqModel.Decide>>(
+                nameof(FaqAnswerAdjustingThread),
+                new string[] { userQuestion });
+
+            string possibleAnswer = decides
+                .Where(x => x.DecideStatus)
+                .OrderByDescending(x => x.Propability)
+                .Select(x => x.Answer)
+                .FirstOrDefault();
+
+            return string.IsNullOrEmpty(possibleAnswer) ?
+                "Przykro nam, w danej chwili nie znaleźliśmy odpowiedzi na Twoje pytanie. Prosimy poczekać na odpowiedź poprzez e-mail." :
+                possibleAnswer;
         }
 
         private static class Request

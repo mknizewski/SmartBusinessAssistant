@@ -12,4 +12,19 @@
         else
             $("#loadingSpinner").hide();
     }
+
+    static ScrollTo(id): void {
+        $(id).scroll(id);
+    }
+
+    static SetVisible(id, isVisible): void {
+        if (isVisible)
+            $(id).show();
+        else
+            $(id).hide();
+    }
+
+    static Clear(id): void {
+        $(id).empty();
+    }
 }
