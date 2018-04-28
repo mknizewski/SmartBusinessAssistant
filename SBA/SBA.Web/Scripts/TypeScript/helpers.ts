@@ -14,7 +14,7 @@
     }
 
     static ScrollTo(id): void {
-        $(id).scroll(id);
+        $("html, body").animate({ scrollTop: $(id).offset().top - 90 }, 1000);
     }
 
     static SetVisible(id, isVisible): void {
@@ -26,5 +26,17 @@
 
     static Clear(id): void {
         $(id).empty();
+    }
+
+    static SetDisable(id, isDisabled): void {
+        $(id).prop('readonly', isDisabled);
+    }
+
+    static SetDataToSessionStorage(key, data): void {
+        sessionStorage.setItem(key, JSON.stringify(data));
+    }
+
+    static GetDataFromSessionStorage(key): object {
+        return JSON.parse(sessionStorage.getItem(key));
     }
 }

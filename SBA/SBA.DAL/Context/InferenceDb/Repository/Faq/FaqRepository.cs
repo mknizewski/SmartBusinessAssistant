@@ -10,6 +10,7 @@ namespace SBA.DAL.Context.InferenceDb.Repository.Faq
         void AddFaqDecision(FaqDecissions faqDecission);
         void AddFaqDecisions(List<FaqDecissions> faqDecissions);
         FaqAnswers GetAnswer(int id);
+        void AddFaqQuestion(FaqQuestions faqQuestion);
     }
 
     public class FaqRepository : BaseRepository, IFaqRepository
@@ -23,6 +24,12 @@ namespace SBA.DAL.Context.InferenceDb.Repository.Faq
         public void AddFaqDecisions(List<FaqDecissions> faqDecissions)
         {
             AddRange(faqDecissions);
+            SaveChanges();
+        }
+
+        public void AddFaqQuestion(FaqQuestions faqQuestion)
+        {
+            Add(faqQuestion);
             SaveChanges();
         }
 

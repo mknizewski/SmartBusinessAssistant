@@ -145,7 +145,9 @@ namespace Links
             public const string UrlPath = "~/Content/Images";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            public static readonly string headerPhoto_jpg = Url("headerPhoto.jpg");
             public static readonly string loading_svg = Url("loading.svg");
+            public static readonly string programmer_jpg = Url("programmer.jpg");
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

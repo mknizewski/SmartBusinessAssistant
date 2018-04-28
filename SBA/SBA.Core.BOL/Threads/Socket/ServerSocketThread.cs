@@ -70,7 +70,7 @@ namespace SBA.Core.BOL.Threads.Socket
                 }
                 catch (Exception ex)
                 {
-                    sendBytes = Encoding.ASCII.GetBytes("Unexpected / Unauthorized");
+                    sendBytes = Encoding.UTF8.GetBytes("Unexpected / Unauthorized");
                     _loggerManager.RegisterLogToConsole(ex.Message);
                     _loggerManager.RegisterLogToFile(ex.Message);
                 }

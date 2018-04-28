@@ -1,4 +1,5 @@
 ﻿using SBA.BOL.Inference.Models;
+using SBA.BOL.Inference.Service;
 using SBA.Core.BOL.Infrastructure;
 using SBA.Core.BOL.Threads.FaqAnswerAdjusting;
 using System;
@@ -20,6 +21,11 @@ namespace SBA.Core.BOL.Managers
 
     public class ServerSocketManager : IServerSocketManager
     {
+        private readonly IFaqService _faqService;
+
+        public ServerSocketManager() => 
+            _faqService = SimpleFactory.Get<FaqService, IFaqService>();
+
         public void AuthorizeConnection(Dictionary<string, string> recvDictionary, string[] authGuids)
         {
             string recvGuid = recvDictionary["AuthGuid"];
@@ -49,27 +55,58 @@ namespace SBA.Core.BOL.Managers
             switch (request)
             {
                 case Request.Web.AnswerSuggestion:
-                    return Encoding.UTF8.GetBytes(AnswerSuggestion(recvDictionary["Question"]));
+                    return AnswerSuggestion(recvDictionary["Question"]);
+                case Request.Web.HandUp:
+                    return HandUp(recvDictionary);
             }
 
             return null;
         }
 
-        private string AnswerSuggestion(string userQuestion)
+        private byte[] HandUp(Dictionary<string, string> answerDictionary)
+        {
+            _faqService.AddFaqQuestion(new FaqModel.Question
+            {
+                AnswerId = Convert.ToInt32(answerDictionary["AnswerId"]),
+                QuestionName = answerDictionary["Question"],
+                InsertTime = DateTime.Now
+            });
+            return Encoding.UTF8.GetBytes("Dziękujemy za opinię.");
+        }
+
+        private byte[] AnswerSuggestion(string userQuestion)
         {
             var decides = Settings.Supervisior.ForceRun<List<FaqModel.Decide>>(
                 nameof(FaqAnswerAdjustingThread),
                 new string[] { userQuestion });
 
-            string possibleAnswer = decides
+            var possibleAnswer = decides
                 .Where(x => x.DecideStatus)
                 .OrderByDescending(x => x.Propability)
-                .Select(x => x.Answer)
                 .FirstOrDefault();
 
-            return string.IsNullOrEmpty(possibleAnswer) ?
-                "Przykro nam, w danej chwili nie znaleźliśmy odpowiedzi na Twoje pytanie. Prosimy poczekać na odpowiedź poprzez e-mail." :
-                possibleAnswer;
+            var responseDictionary = possibleAnswer != null ?
+                new Dictionary<string, dynamic>
+                {
+                    { "HaveAnswer", true },
+                    { "Answer", possibleAnswer.Answer },
+                    { "AnswerId", possibleAnswer.AnswerId },
+                    { "Propability", (int) (possibleAnswer.Propability * 100) },
+                    { "Question", possibleAnswer.Question }
+                } :
+                new Dictionary<string, dynamic>
+                {
+                    { "HaveAnswer", false },
+                    { "ErrorMessage", @"Przykro nam, w danej chwili nie znaleźliśmy odpowiedzi na Twoje pytanie. 
+                                        Prosimy poczekać na odpowiedź poprzez e-mail." }
+                };
+
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, responseDictionary);
+                return memoryStream.ToArray();
+            }
         }
 
         private static class Request
@@ -77,6 +114,7 @@ namespace SBA.Core.BOL.Managers
             public static class Web
             {
                 public const string AnswerSuggestion = "AnswerSuggestion";
+                public const string HandUp = "HandUp";
             }
 
             public static class App

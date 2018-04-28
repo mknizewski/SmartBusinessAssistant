@@ -4,6 +4,8 @@ $(() => {
 class ContactForm {
     static BindEvents() {
         ContactForm.ContactUsBtnOnClick();
+        ContactForm.HandUpBtnOnClick();
+        ContactForm.HandDownBtnOnClick();
     }
     static SetAnswerLoadingScreen(isEnable) {
         if (isEnable)
@@ -22,17 +24,33 @@ class ContactForm {
             ContactUsBtn.Init().DoLogic(event);
         });
     }
+    static HandUpBtnOnClick() {
+        $('#handUpBtn').click(function (event) {
+            HandUpBtn.Init().DoLogic();
+        });
+    }
+    static HandDownBtnOnClick() {
+        $("#handDownBtn").click(function (event) {
+            HandDownBtn.Init().DoLogic();
+        });
+    }
 }
 class ContactUsBtn {
     static Init() {
         return new ContactUsBtn();
     }
-    DoLogic(event) {
+    SetLoadingSectionVisible() {
         ContactForm.SetAnswerSection(true);
         ContactForm.SetAnswerLoadingScreen(true);
         Helpers.SetVisible("#pleaseWaitInfo", true);
         Helpers.ScrollTo("#possibleAnswer");
         Helpers.Clear("#answer");
+        Helpers.SetDisable("#btnContactUs", true);
+        Helpers.SetVisible("#userFeedback", false);
+        Helpers.Clear("#serverFeedback");
+    }
+    DoLogic(event) {
+        this.SetLoadingSectionVisible();
         var name = $("#name").val();
         var email = $("#email").val();
         var mobilePhone = "";
@@ -46,13 +64,48 @@ class ContactUsBtn {
             success: function (data) {
                 ContactForm.SetAnswerLoadingScreen(false);
                 Helpers.SetVisible("#pleaseWaitInfo", false);
-                $("#answer").html(data);
+                Helpers.SetDisable("#btnContactUs", false);
+                if (data.HaveAnswer) {
+                    Helpers.SetVisible("#userFeedback", true);
+                    Helpers.SetDataToSessionStorage("answerData", data);
+                    $("#answerPropability").text("Dokładność odpowiedzi: " + data.Propability + "%");
+                    $("#answer").html(data.Answer);
+                }
+                else {
+                    $("#answer").html(data.ErrorMessage);
+                }
             },
             error: function (data) {
                 ContactForm.SetAnswerLoadingScreen(false);
                 Helpers.SetVisible("#pleaseWaitInfo", false);
+                Helpers.SetDisable("#btnContactUs", false);
             }
         });
+    }
+}
+class HandUpBtn {
+    static Init() {
+        return new HandUpBtn();
+    }
+    DoLogic() {
+        var dictionary = Helpers.GetDataFromSessionStorage("answerData");
+        var questionModel = new QuestionModel(parseInt(dictionary["AnswerId"]), dictionary["Question"]);
+        $.ajax({
+            url: "Contact/HandUp",
+            method: "POST",
+            data: questionModel,
+            success: function (data) {
+                $("#serverFeedback").text(data);
+                Helpers.SetVisible("#userFeedback", false);
+            }
+        });
+    }
+}
+class HandDownBtn {
+    static Init() {
+        return new HandDownBtn();
+    }
+    DoLogic() {
     }
 }
 class ContactModel {
@@ -62,6 +115,12 @@ class ContactModel {
         this.MobileNumber = mobileNumber;
         this.Subject = subject;
         this.Message = message;
+    }
+}
+class QuestionModel {
+    constructor(answerId, question) {
+        this.AnswerId = answerId;
+        this.Question = question;
     }
 }
 //# sourceMappingURL=contact.js.map

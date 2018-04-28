@@ -13,6 +13,7 @@ namespace SBA.BOL.Inference.Service
         void AddFaqDecision(FaqModel.Decide faqDecission);
         void AddFaqDecisions(List<FaqModel.Decide> decides);
         string GetAnswer(int answerId);
+        void AddFaqQuestion(FaqModel.Question faqQuestion);
     }
 
     public class FaqService : IFaqService
@@ -40,6 +41,14 @@ namespace SBA.BOL.Inference.Service
                     FaqAnswerId = x.AnswerId,
                     Propability = x.Propability
                 }).ToList());
+
+        public void AddFaqQuestion(FaqModel.Question faqQuestion) =>
+            _faqRespository.AddFaqQuestion(new FaqQuestions
+            {
+                AnswerId = faqQuestion.AnswerId,
+                Question = faqQuestion.QuestionName,
+                InsertTime = faqQuestion.InsertTime
+            });
 
         public string GetAnswer(int answerId)
         {

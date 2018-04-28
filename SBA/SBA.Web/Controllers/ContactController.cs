@@ -1,5 +1,7 @@
 ﻿using SBA.BOL.Web.Models;
 using SBA.BOL.Web.Service;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace SBA.Web.Controllers
@@ -23,10 +25,14 @@ namespace SBA.Web.Controllers
         [HttpPost]
         public virtual JsonResult Send(ContactModel contactModel)
         {
-            string possibleAnswer = _clientSocketService.SendUserQuestionToGetSuggestAnswer(contactModel.Message);
-
             _contactService.AddContact(contactModel);
-            return Json(possibleAnswer);
+            return Json(
+                _clientSocketService.SendUserQuestionToGetSuggestAnswer(contactModel.Message),
+                JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public virtual async Task<JsonResult> HandUp(QuestionModel questionModel) => 
+            Json(await _clientSocketService.SendHandUp(questionModel));
     }
 }

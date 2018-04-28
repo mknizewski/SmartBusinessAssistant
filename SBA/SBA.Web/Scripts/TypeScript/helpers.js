@@ -11,7 +11,7 @@ class Helpers {
             $("#loadingSpinner").hide();
     }
     static ScrollTo(id) {
-        $(id).scroll(id);
+        $("html, body").animate({ scrollTop: $(id).offset().top - 90 }, 1000);
     }
     static SetVisible(id, isVisible) {
         if (isVisible)
@@ -21,6 +21,15 @@ class Helpers {
     }
     static Clear(id) {
         $(id).empty();
+    }
+    static SetDisable(id, isDisabled) {
+        $(id).prop('readonly', isDisabled);
+    }
+    static SetDataToSessionStorage(key, data) {
+        sessionStorage.setItem(key, JSON.stringify(data));
+    }
+    static GetDataFromSessionStorage(key) {
+        return JSON.parse(sessionStorage.getItem(key));
     }
 }
 //# sourceMappingURL=helpers.js.map
