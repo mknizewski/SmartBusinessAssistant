@@ -17,7 +17,7 @@ namespace SBA.BOL.Web.Service
             _contactRepository = contactRepository;
 
         public void AddContact(ContactModel contactModel) =>
-            _contactRepository.Add(new Contact
+            _contactRepository.AddContact(new Contact
             {
                 Name = contactModel.Name,
                 Subject = contactModel.Subject,

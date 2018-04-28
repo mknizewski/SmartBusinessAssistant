@@ -62,6 +62,13 @@ namespace SBA.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Send);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> HandUp()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.HandUp);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ContactController Actions { get { return MVC.Contact; } }
@@ -80,6 +87,7 @@ namespace SBA.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Send = "Send";
+            public readonly string HandUp = "HandUp";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -87,6 +95,7 @@ namespace SBA.Web.Controllers
         {
             public const string Index = "Index";
             public const string Send = "Send";
+            public const string HandUp = "HandUp";
         }
 
 
@@ -97,6 +106,14 @@ namespace SBA.Web.Controllers
         public class ActionParamsClass_Send
         {
             public readonly string contactModel = "contactModel";
+        }
+        static readonly ActionParamsClass_HandUp s_params_HandUp = new ActionParamsClass_HandUp();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_HandUp HandUpParams { get { return s_params_HandUp; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_HandUp
+        {
+            public readonly string questionModel = "questionModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -140,6 +157,18 @@ namespace SBA.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "contactModel", contactModel);
             SendOverride(callInfo, contactModel);
             return callInfo;
+        }
+
+        [NonAction]
+        partial void HandUpOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SBA.BOL.Web.Models.QuestionModel questionModel);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> HandUp(SBA.BOL.Web.Models.QuestionModel questionModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.HandUp);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "questionModel", questionModel);
+            HandUpOverride(callInfo, questionModel);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
         }
 
     }

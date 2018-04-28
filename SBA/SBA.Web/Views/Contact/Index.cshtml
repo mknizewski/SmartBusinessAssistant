@@ -290,7 +290,7 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <h2 class="display-4"><strong>W czym możemy Ci pomóc?</strong></h2>
-                    <p class="lead"><small>Formularz kontaktowy</small></p>
+                    <p class="lead"><small>Szybki formularz kontaktowy</small></p>
                 </div>
             </div>
         </div>
@@ -333,6 +333,7 @@
                                 <div class="form-group">
                                     <label for="message">Wiadomość *</label>
                                     <textarea name="message" id="message" class="form-control maxWidthForInput" rows="6" placeholder="" required></textarea>
+                                    <small id="messageHelp" class="form-text text-muted">Preferujemy krótkie i treściwe pytania :)</small>
                                 </div>
                                 <button type="button" class="btn btn-primary btn-block pull-right" id="btnContactUs">Wyślij wiadomość</button>
                             </div>
@@ -362,17 +363,30 @@
 <div id="possibleAnswer" style="display: none;">
     <div class="container-fluid">
         <div class="well">
-            <h2 id="pleaseWaitInfo" style="vertical-align: central; color: red; text-align: center;">Proszę czekać, trwa wyszukiwanie odpowiedniej odpowiedzi.</h2>
+            <h2 id="pleaseWaitInfo" style="vertical-align: central; color: red; text-align: center;">Proszę czekać, staramy się odpowiedzieć na Twoje pytanie.</h2>
             <div id="loadingAnswerSpinner" style="display: none;">
                 <img class="loaderNotFixed" src="~/Content/Images/loading.svg" />
             </div>
             <div id="answer">
-
+            </div>
+            <div id="serverFeedback">
+            </div>
+            <div id="userFeedback">
+                <h4 id="answerPropability"></h4>
+                <h4 class="text-center">Oceń proszę, czy odpowiedź była odpowiednia:</h4>
+                <div class="text-center">
+                    <button type="button" id="handDownBtn" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </button>
+                    <button type="button" id="handUpBtn" class="btn btn-success">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-    @section scripts {
-        @Scripts.Render("~/bundles/contactJs")
-    }
+@section scripts {
+   @Scripts.Render("~/bundles/contactJs")
+}
