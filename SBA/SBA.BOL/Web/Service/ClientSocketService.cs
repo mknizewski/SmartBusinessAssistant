@@ -14,7 +14,7 @@ namespace SBA.BOL.Web.Service
 {
     public interface IClientSocketService
     {
-        Dictionary<string, dynamic> SendUserQuestionToGetSuggestAnswer(string userQuestion);
+        Task<Dictionary<string, dynamic>> SendUserQuestionToGetSuggestAnswer(string userQuestion);
         Task<string> SendHandUp(QuestionModel questionModel);
     }
 
@@ -37,17 +37,18 @@ namespace SBA.BOL.Web.Service
                     .ClearRecv();
             });
 
-        public Dictionary<string, dynamic> SendUserQuestionToGetSuggestAnswer(string userQuestion)
-        {
-            var requestDictionary = GetDictionary();
-            requestDictionary.Add("Request", "AnswerSuggestion");
-            requestDictionary.Add("Question", userQuestion); 
+        public Task<Dictionary<string, dynamic>> SendUserQuestionToGetSuggestAnswer(string userQuestion) =>
+            Task.Run(() =>
+            {
+                var requestDictionary = GetDictionary();
+                requestDictionary.Add("Request", "AnswerSuggestion");
+                requestDictionary.Add("Question", userQuestion);
 
-            byte[] coreSuggestion = ExchangeDataWithCore(requestDictionary);
-            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
-            using (var memoryStream = SimpleFactory.Get<MemoryStream>(coreSuggestion))
-                return (Dictionary<string, dynamic>) binaryFormatter.Deserialize(memoryStream);
-        }
+                byte[] coreSuggestion = ExchangeDataWithCore(requestDictionary);
+                var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+                using (var memoryStream = SimpleFactory.Get<MemoryStream>(coreSuggestion))
+                    return (Dictionary<string, dynamic>)binaryFormatter.Deserialize(memoryStream);
+            });
 
         private byte[] ExchangeDataWithCore(Dictionary<string, string> dictionary)
         {
@@ -67,11 +68,13 @@ namespace SBA.BOL.Web.Service
                 sendBytes = memoryStream.ToArray();
             }
 
+            clientSocket.ReceiveTimeout = int.MaxValue;
             clientSocket.Connect(coreHost, Convert.ToInt32(corePort));
             clientSocket.Send(sendBytes);
 
             byte[] serverData = new byte[clientSocket.ReceiveBufferSize];
             clientSocket.Receive(serverData);
+            clientSocket.ReceiveTimeout = -1;
             clientSocket.Shutdown(SocketShutdown.Both);
             clientSocket.Close();
 

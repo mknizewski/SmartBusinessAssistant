@@ -23,11 +23,11 @@ namespace SBA.Web.Controllers
             View();
 
         [HttpPost]
-        public virtual JsonResult Send(ContactModel contactModel)
+        public virtual async Task<JsonResult> Send(ContactModel contactModel)
         {
             _contactService.AddContact(contactModel);
             return Json(
-                _clientSocketService.SendUserQuestionToGetSuggestAnswer(contactModel.Message),
+                await _clientSocketService.SendUserQuestionToGetSuggestAnswer(contactModel.Message),
                 JsonRequestBehavior.AllowGet);
         }
 

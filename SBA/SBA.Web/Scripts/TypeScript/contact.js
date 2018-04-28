@@ -79,6 +79,7 @@ class ContactUsBtn {
                 ContactForm.SetAnswerLoadingScreen(false);
                 Helpers.SetVisible("#pleaseWaitInfo", false);
                 Helpers.SetDisable("#btnContactUs", false);
+                $("#answer").text("W danej chwili funkcja szybkiej odpowiedzi jest niedostępna. Przepraszamy.");
             }
         });
     }

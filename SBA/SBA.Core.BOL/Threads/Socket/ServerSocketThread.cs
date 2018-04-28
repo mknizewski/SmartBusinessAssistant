@@ -77,6 +77,7 @@ namespace SBA.Core.BOL.Threads.Socket
                 finally
                 {
                     socketHandler.Send(sendBytes);
+                    socketHandler.SendTimeout = -1;
 
                     _loggerManager.RegisterLogToConsole($"End connection from: {socketHandler.RemoteEndPoint.ToString()}");
                     _loggerManager.RegisterLogToFile($"End connection from: {socketHandler.RemoteEndPoint.ToString()}");
