@@ -1,136 +1,169 @@
-﻿@Styles.Render("~/Content/homeStyle")
-@{
-    ViewBag.Title = "Strona główna";
-}
-
-<h2>@ViewBag.Message</h2>
-
-<div class="fb-share-button" data-href="http://localhost:57934/" data-layout="button_count" data-size="small" data-mobile-iframe="true">
-<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=#" class="fb-xfbml-parse-ignore">Udostępnij</a>
-</div>
-
+﻿@Styles.Render("~/Content/homeStyle") @{ ViewBag.Title = "Strona główna"; }
 <div class="row">
-		<div class="col-md-5 col-lg-5">
-			<!-- artigo em destaque -->
-			<div class="featured-article">
-				<a class="article-link" href="#">
-					<img src="http://placehold.it/482x350" alt="" class="thumb">
-				</a>
-				<div class="block-title">
-					<h2>Lorem ipsum dolor asit amet</h2>
-					<p class="by-author">Treść artykułu...</p>
-					<ul class="list-inline list-unstyled">
-						<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-						<li>|</li>
-						<span><i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
-						<li>|</li>
-						<li>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star-empty"></span>
-						</li>
-						<li>|</li>
-						<li class="btnShared-container">
-							<a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook"><i class="fa fa-facebook"></i></a>
-							<a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter"><i class="fa fa-twitter"></i></a>
-    						<a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google"><i class="fa fa-google"></i></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!-- /.featured-article -->
-		</div>
-		<div class="col-md-7 col-lg-7">
-			<ul class="media-list main-list">
-			  <li class="media">
-			    <a class="pull-left article-link" href="http://localhost:57934/Contact">
-			      <img class="media-object" src="http://placehold.it/150x90" alt="...">
-			    </a>
-			    <div class="media-body">
-			      <h4 id="head4" class="media-heading clickable">CONTACT</h4>
-			      <p id="describe" class="by-author clickable">Treść artykułu...</p>
-			    </div>
-				<hr>
-				<ul class="list-inline list-unstyled">
-					<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-					<li>|</li>
-					<span><i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
-					<li>|</li>
-					<li>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star-empty"></span>
-					</li>
-					<li>|</li>
-					<li class="btnShared-container">
-						<a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook"><i class="fa fa-facebook"></i></a>
-						<a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter"><i class="fa fa-twitter"></i></a>
-    					<a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google"><i class="fa fa-google"></i></a>
-					</li>
-				</ul>
-			  </li>
-			  <li class="media">
-			    <a class="pull-left article-link" href="#">
-			      <img class="media-object" src="http://placehold.it/150x90" alt="...">
-			    </a>
-			    <div class="media-body">
-			      <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
-			      <p class="by-author">Treść artykułu...</p>
-			    </div>
-				<hr>
-				<ul class="list-inline list-unstyled">
-					<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-					<li>|</li>
-					<span><i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
-					<li>|</li>
-					<li>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star-empty"></span>
-					</li>
-					<li>|</li>
-					<li class="btnShared-container">
-						<a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook"><i class="fa fa-facebook"></i></a>
-						<a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter"><i class="fa fa-twitter"></i></a>
-    					<a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google"><i class="fa fa-google"></i></a>
-					</li>
-				</ul>
-			  </li>
-			  <li class="media">
-			    <a class="pull-left article-link" href="#">
-			      <img class="media-object" src="http://placehold.it/150x90" alt="...">
-			    </a>
-			    			    <div class="media-body">
-			      <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
-			      <p class="by-author">Treść artykułu...</p>
-			    </div>
-				<hr>
-				<ul class="list-inline list-unstyled">
-					<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-					<li>|</li>
-					<span><i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
-					<li>|</li>
-					<li>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star-empty"></span>
-					</li>
-					<li>|</li>
-					<li class="btnShared-container">
-						<a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook"><i class="fa fa-facebook"></i></a>
-						<a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter"><i class="fa fa-twitter"></i></a>
-    					<a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google"><i class="fa fa-google"></i></a>
-					</li>
-				</ul>
-			  </li>
-			</ul>
-		</div>		
-	</div>
+    <div class="col-md-5 col-lg-5">
+        <div class="featured-article">
+            <a class="article-link" href="#">
+                <img src="http://placehold.it/482x350" alt="" class="thumb">
+            </a>
+            <div class="block-title">
+                <h2>Lorem ipsum dolor asit amet</h2>
+                <p class="by-author">Treść artykułu...</p>
+                <ul class="list-inline list-unstyled">
+                    <li>
+                        <span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <span>
+                            <i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </li>
+                    <li>|</li>
+                    <li class="btnShared-container">
+                        <a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.featured-article -->
+    </div>
+    <div class="col-md-7 col-lg-7">
+        <ul class="media-list main-list">
+            <li class="media">
+                <a class="pull-left article-link" href="http://localhost:57934/Contact">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                </a>
+                <div class="media-body">
+                    <h4 id="head4" class="media-heading clickable">CONTACT</h4>
+                    <p id="describe" class="by-author clickable">Treść artykułu...</p>
+                </div>
+                <hr>
+                <ul class="list-inline list-unstyled">
+                    <li>
+                        <span>
+                            <i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <span><i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </li>
+                    <li>|</li>
+                    <li class="btnShared-container">
+                        <a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="media">
+                <a class="pull-left article-link" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
+                    <p class="by-author">Treść artykułu...</p>
+                </div>
+                <hr>
+                <ul class="list-inline list-unstyled">
+                    <li>
+                        <span>
+                            <i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <span><i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </li>
+                    <li>|</li>
+                    <li class="btnShared-container">
+                        <a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="media">
+                <a class="pull-left article-link" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
+                    <p class="by-author">Treść artykułu...</p>
+                </div>
+                <hr>
+                <ul class="list-inline list-unstyled">
+                    <li>
+                        <span>
+                            <i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <span><i class="glyphicon glyphicon-comment"></i> 0 komentarzy</span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </li>
+                    <li>|</li>
+                    <li class="btnShared-container">
+                        <a class="btn btn-xs btn-social-icon btn-facebook" href="#" data-toggle="tooltip" title="Share Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-twitter" href="#" data-toggle="tooltip" title="Share Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-xs btn-social-icon btn-google" href="#" data-toggle="tooltip" title="Share Google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

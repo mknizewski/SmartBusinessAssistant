@@ -1,7 +1,8 @@
 ﻿@using SBA.Web.Infrastructure.Alert
 
 <!DOCTYPE html>
-<html>
+<html lang="pl-PL">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,12 @@
 	@Styles.Render("~/Content/mainLess")
     @Scripts.Render("~/bundles/modernizr")
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 </head>
+
 <body>
-    <div class="loader" id="loadingSpinner" style="display: none;">
-    </div>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="loader" id="loadingSpinner" style="display: none;"></div>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -39,7 +39,6 @@
                         @Html.ActionLink("Kontakt", "Index", "Contact")
                     </li>
                 </ul>
-
 				<div class="col-xs-12 col-lg-4 col-sm-5 col-md-4 pull-right">
 					<form class="navbar-form" role="search">
 					<div class="input-group" id="searchInputGroup">
@@ -50,10 +49,10 @@
 					</div>
 					</form>
 				</div>
-
             </div>
         </div>
     </nav>
+
     <header class="business-header">
         <div class="container">
             <div class="row">
@@ -64,6 +63,7 @@
             </div>
         </div>
     </header>
+
     <div class="container">
         <br />
         <div id="tempMessage">
@@ -78,135 +78,83 @@
 		</div>
 	</aside>
 
-	<footer class="page-footer font-small stylish-color-dark pt-4 mt-4 bg-dark">
-
-			<!--Footer Links-->
-			<div class="container mt-5 mb-4">
-				<div class="row mt-3">
-
-					<!--First column-->
-					<div class="col-md-4 col-lg-4 col-md-offset-0 col-lg-offset-0 colFooter">
-						<h6 class="text-uppercase font-weight-bold ">
-							<strong>WebCoding S.A.</strong>
-						</h6>
-						<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto h6hr">
-						<p>  Nasza wspaniała firma zajmuje się tym i tym. Jesteśmy obecni już na rynku od 2010 roku. Nasze projekty były chwalone, a realizacja z klientem zawsze przebiegała pomyślnie. <br>Zachęcamy do skorzystania z naszych usług!</p>
-					</div>
-					<!--/.First column-->
-
-					<!--Second column-->
-					<div class="col-md-2 col-lg-2 col-md-offset-0 col-lg-offset-0 mx-auto mb-4 colFooter">
-						<h6 class="text-uppercase font-weight-bold">
-							<strong>Produkty</strong>
-						</h6>
-						<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto h6hr">
-						<p>
-							<a href="#!">MDBootstrap</a>
-						</p>
-						<p>
-							<a href="#!">MDWordPress</a>
-						</p>
-						<p>
-							<a href="#!">BrandFlow</a>
-						</p>
-						<p>
-							<a href="#!">Bootstrap Angular</a>
-						</p>
-					</div>
-					<!--/.Second column-->
-
-					<!--Third column-->
-					<div class="col-md-3 col-lg-3 col-md-offset-0 col-lg-offset-0 mx-auto mb-4 colFooter">
-						<h6 class="text-uppercase font-weight-bold">
-							<strong>Szybkie linki</strong>
-						</h6>
-						<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto h6hr" >
-						<p>
-							<a href="#!">Your Account</a>
-						</p>
-						<p>
-							<a href="#!">Become an Affiliate</a>
-						</p>
-						<p>
-							<a href="#!">Shipping Rates</a>
-						</p>
-						<p>
-							<a href="#!">Help</a>
-						</p>
-					</div>
-					<!--/.Third column-->
-
-					<!--Fourth column-->
-					<div class="col-md-3 col-lg-3 col-md-offset-0 col-lg-offset-0 colFooter">
-						<h6 class="text-uppercase font-weight-bold">
-							<strong>Kontakt</strong>
-						</h6>
-						<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto h6hr" >
-						<p>
-							<i class="glyphicon glyphicon-home" style="margin-right:20px"></i> Białystok, Polska</p>
-						<p>
-							<i class="glyphicon glyphicon-envelope" style="margin-right:20px"></i> info@example.com</p>
-						<p>
-							<i class="glyphicon glyphicon-earphone" style="margin-right:20px"></i> + 01 234 567 88</p>
-						<p>
-							<i class="glyphicon glyphicon-print" style="margin-right:20px"></i> + 01 234 567 89</p>
-					</div>
-					<!--/.Fourth column-->
-
-				</div>
-			</div>
-		 <!--/.Footer Links-->
-
-		<hr>
-
-		<!--Social buttons-->
-		<!--
-		<div class="text-center">
-			<ul class="list-unstyled list-inline">
-				<li class="list-inline-item">
-					<a class="btn-floating btn-sm btn-fb mx-1">
-						<i class="fa fa-facebook"> </i>
-					</a>
-				</li>
-				<li class="list-inline-item">
-					<a class="btn-floating btn-sm btn-tw mx-1">
-						<i class="fa fa-twitter"> </i>
-					</a>
-				</li>
-				<li class="list-inline-item">
-					<a class="btn-floating btn-sm btn-gplus mx-1">
-						<i class="fa fa-google-plus"> </i>
-					</a>
-				</li>
-				<li class="list-inline-item">
-					<a class="btn-floating btn-sm btn-li mx-1">
-						<i class="fa fa-linkedin"> </i>
-					</a>
-				</li>
-				<li class="list-inline-item">
-					<a class="btn-floating btn-sm btn-dribbble mx-1">
-						<i class="fa fa-dribbble"> </i>
-					</a>
-				</li>
-			</ul>
-		</div>
-		-->
-		<!--/.Social buttons-->
-
-		<iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d76608.78054593953!2d23.086026499746943!3d53.12770770612764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ffc048f41971d%3A0x72317dcc8bf07b2c!2s15-001+Bia%C5%82ystok!5e0!3m2!1spl!2spl!4v1520942157613"  frameborder="0" allowfullscreen></iframe>
-
-		<hr>
-
-		<!--Copyright-->
-		<div class="footer-copyright py-3 text-center bg-black font-color-gray">
-			© 2018 Copyright
-		</div>
-		<!--/.Copyright-->
-
-	</footer>                      
+    <footer class="page-footer font-small stylish-color-dark pt-4 mt-4 bg-dark">
+        <div class="container mt-5 mb-4">
+            <div class="row mt-3">
+                <div class="col-md-4 col-lg-4 col-md-offset-0 col-lg-offset-0 colFooter">
+                    <h6 class="text-uppercase font-weight-bold ">
+                        <strong>WebCoding S.A.</strong>
+                    </h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto h6hr">
+                    <p> 
+                        Nasza wspaniała firma zajmuje się tym i tym. Jesteśmy obecni już na rynku od 2010 roku. Nasze projekty były
+                        chwalone, a realizacja z klientem zawsze przebiegała pomyślnie.
+                        <br>Zachęcamy do skorzystania z naszych usług!
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-md-offset-0 col-lg-offset-0 mx-auto mb-4 colFooter">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <strong>Produkty</strong>
+                    </h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto h6hr">
+                    <p>
+                        <a href="#!">MDBootstrap</a>
+                    </p>
+                    <p>
+                        <a href="#!">MDWordPress</a>
+                    </p>
+                    <p>
+                        <a href="#!">BrandFlow</a>
+                    </p>
+                    <p>
+                        <a href="#!">Bootstrap Angular</a>
+                    </p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-md-offset-0 col-lg-offset-0 mx-auto mb-4 colFooter">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <strong>Szybkie linki</strong>
+                    </h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto h6hr">
+                    <p>
+                        <a href="#!">Your Account</a>
+                    </p>
+                    <p>
+                        <a href="#!">Become an Affiliate</a>
+                    </p>
+                    <p>
+                        <a href="#!">Shipping Rates</a>
+                    </p>
+                    <p>
+                        <a href="#!">Help</a>
+                    </p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-md-offset-0 col-lg-offset-0 colFooter">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <strong>Kontakt</strong>
+                    </h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto h6hr">
+                    <p>
+                        <i class="glyphicon glyphicon-home" style="margin-right:20px"></i> Białystok, Polska</p>
+                    <p>
+                        <i class="glyphicon glyphicon-envelope" style="margin-right:20px"></i> info@example.com</p>
+                    <p>
+                        <i class="glyphicon glyphicon-earphone" style="margin-right:20px"></i> + 01 234 567 88</p>
+                    <p>
+                        <i class="glyphicon glyphicon-print" style="margin-right:20px"></i> + 01 234 567 89</p>
+                </div>
+            </div>
+        </div>    
+        <hr>    
+        <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d76608.78054593953!2d23.086026499746943!3d53.12770770612764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ffc048f41971d%3A0x72317dcc8bf07b2c!2s15-001+Bia%C5%82ystok!5e0!3m2!1spl!2spl!4v1520942157613"
+             allowfullscreen></iframe>   
+        <hr>   
+        <div class="footer-copyright py-3 text-center bg-black font-color-gray">
+            © 2018 Copyright
+        </div>    
+    </footer>
 
     @Scripts.Render("~/bundles/mainJs")
     @RenderSection("scripts", required: false)
 </body>
-</html>
 
+</html>
