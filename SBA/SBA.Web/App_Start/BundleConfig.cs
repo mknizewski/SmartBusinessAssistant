@@ -15,11 +15,7 @@ namespace SBA.Web
                         "~/Scripts/TypeScript/main.js",
                         "~/Scripts/TypeScript/helpers.js",
                         "~/bower_components/select2/dist/js/select2.min.js",
-                        "~/Scripts/select2main.js",
-                        "~/Scripts/clicksData.js",
-                        "~/Scripts/shared.js",
-                        "~/Scripts/scrollAction.js",
-                        "~/Scripts/getArticle.js"));
+                        "~/Scripts/select2main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/contactJs").Include(
                 "~/Scripts/TypeScript/contact.js"));
