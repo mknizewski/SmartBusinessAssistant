@@ -1,127 +1,41 @@
-﻿.containers {
-    width: 200px;
-    height: 200px;
-    position: relative;
-}
-
-.background {
-    float: left;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    z-index: 3;
-    background-color: #92AD40;
-    padding: 5px;
-    opacity: 0.4;
-    -webkit-transition: opacity 1s; /* Safari */
-    transition: opacity 1s;
-}
-
-.background:hover {
-    opacity: .8;
-}
-
-.foreground {
-    color: #FFFFFF;
-    font-weight: bold;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 50%;
-    z-index: 5;
-    padding: 10px;
-    text-align: justify;
-}
-
-#how-we-do {
-    color: #ffffff;
-}
-
-#how-we-do h4 {
-    text-align: left !important;
-}
-
-#how-we-do .how-bg-img {
-    background-image: url("https://www.arketipomagazine.it/wp-content/uploads/sites/20/2017/11/Nakaaoki_03.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 300px 0;
-}
-
-
-
-#how-we-do:hover .how-bg-img {
-    -webkit-transition: .5s all ease;
-    -moz-transition: .5s all ease;
-    transition: .5s all ease;
-    filter: grayscale(1%);
-}
-
-#how-we-do .how-contents {
-    padding: 60px 30px;
-    background: rgba(51, 51, 51, .8)
-}
-
-#how-we-do .how-contents ul {
-}
-
-#how-we-do .how-contents ul li {
-    padding-left: 50px;
-    position: relative;
-    margin-bottom: 26px;
-}
-
-#how-we-do .how-contents ul li:before {
-    font-family: FontAwesome;
-    content: "\f209";
-    position: absolute;
-    font-size: 39px;
-    color: #ffffff;
-    left: 0;
-}
-
-
-/** PANEL START ***/
-.panel-pricing {
+﻿.panel-pricing {
     -moz-transition: all .3s ease;
     -o-transition: all .3s ease;
     -webkit-transition: all .3s ease;
+
+    .panel-heading {
+        padding: 20px 10px;
+    }
+
+    .panel-heading .fa {
+        margin-top: 10px;
+        font-size: 58px;
+    }
+
+    .list-group-item {
+        color: #777777;
+        border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+    }
+
+    .list-group-item:last-child {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .list-group-item:first-child {
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+    }
+
+    .panel-body {
+        background-color: #f0f0f0;
+        font-size: 40px;
+        color: #777777;
+        padding: 20px;
+        margin: 0px;
+    }
 }
 
 .panel-pricing:hover {
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
-}
-
-.panel-pricing .panel-heading {
-    padding: 20px 10px;
-}
-
-.panel-pricing .panel-heading .fa {
-    margin-top: 10px;
-    font-size: 58px;
-}
-
-.panel-pricing .list-group-item {
-    color: #777777;
-    border-bottom: 1px solid rgba(250, 250, 250, 0.5);
-}
-
-.panel-pricing .list-group-item:last-child {
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-}
-
-.panel-pricing .list-group-item:first-child {
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-}
-
-.panel-pricing .panel-body {
-    background-color: #f0f0f0;
-    font-size: 40px;
-    color: #777777;
-    padding: 20px;
-    margin: 0px;
 }

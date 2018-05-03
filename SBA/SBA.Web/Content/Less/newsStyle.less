@@ -1,5 +1,4 @@
-﻿/* COMMENT START*/
-.reviews {
+﻿.reviews {
     color: #555;
     font-weight: bold;
     margin: 10px auto 20px;
@@ -77,51 +76,8 @@
     border-bottom-left-radius: 4px;
 }
 
-.custom-input-file {
-    overflow: hidden;
-    position: relative;
-    width: 120px;
-    height: 120px;
-    background: #eee url('https://s3.amazonaws.com/uifaces/faces/twitter/walterstephanie/128.jpg');
-    background-size: 120px;
-    border-radius: 120px;
-}
+//--------
 
-input[type="file"] {
-    z-index: 999;
-    line-height: 0;
-    font-size: 0;
-    position: absolute;
-    opacity: 0;
-    filter: alpha(opacity = 0);
-    -ms-filter: "alpha(opacity=0)";
-    margin: 0;
-    padding: 0;
-    left: 0;
-}
-
-.uploadPhoto {
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    display: none;
-    width: 50%;
-    height: 50%;
-    color: #fff;
-    text-align: center;
-    line-height: 60px;
-    text-transform: uppercase;
-    background-color: rgba(0,0,0,.3);
-    border-radius: 50px;
-    cursor: pointer;
-}
-
-.custom-input-file:hover .uploadPhoto {
-    display: block;
-}
-/**** COMMENT END ****/
-
-/* CHART COLUMN START */
 dl {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -134,19 +90,6 @@ dl {
     width: 100%;
     position: relative;
     padding: 20px;
-}
-
-dt {
-    -ms-flex-item-align: start;
-    align-self: flex-start;
-    width: auto;
-    font-weight: 700;
-    display: block;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: 700;
-    margin-bottom: 20px;
-    margin-left: 130px;
 }
 
 .text {
@@ -596,6 +539,10 @@ dt {
     width: 100%;
 }
 
+.vote {
+    font-size: 110%;
+}
+
 .vote::before {
     padding-right: 10px;
 }
@@ -621,8 +568,8 @@ dt {
     padding-bottom: 10px;
 }
 
-/**** CHART COLUMN END ***/
-/* RECOMMENDATION START*/
+//--------
+
 #recommendContainer_article a {
     text-decoration: none;
     color: #333;
@@ -642,46 +589,47 @@ dt {
     width: 165px;
     margin-bottom: 25px;
 }
-/* Blog-CSS */
+
+//--------
+
 .blog-box {
     padding: 0 0px;
     transition: .5s;
     border: 1px solid #e2e2e2;
     margin-bottom: 30px;
     background-color: white;
-
     opacity: 0.7;
-    -webkit-transition: opacity .5s; /* Safari */
+    -webkit-transition: opacity .5s;
     transition: opacity .5s;
+
+    .blog-box-content h4 a {
+        font-size: 100%;
+        padding: 0px 0 0px;
+        text-transform: uppercase;
+        color: #2b2b2b;
+        text-decoration: none;
+    }
+
+    .blog-box-content h4:hover {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .blog-box-content {
+        padding: 0 20px 20px;
+    }
+
+    .blog-box-text h4 a {
+        color: #333;
+    }
 }
 
 .blog-box:hover {
     opacity: 1;
 }
 
-.blog-box-content h4 a {
-    font-size: 100%;
-    padding: 0px 0 0px;
-    text-transform: uppercase;
-    color: #2b2b2b;
-    text-decoration: none;
-}
+//--------
 
-.blog-box-content h4:hover {
-    color: #000;
-    text-decoration: none;
-}
-
-.blog-box-content {
-    padding: 0 20px 20px;
-}
-
-.blog-box-text h4 a {
-    color: #333;
-}
-/**** RECCOMENDATION END *****/
-
-/* NEWS */
 .newsText {
     color: #333;
     font-size: 120%;
