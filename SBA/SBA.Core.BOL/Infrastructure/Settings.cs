@@ -1,7 +1,9 @@
-﻿using SBA.Core.BOL.ThreadsSupervisior;
+﻿using SBA.Core.BOL.Dictionaries;
+using SBA.Core.BOL.ThreadsSupervisior;
 using SBA.DAL.Context.InferenceDb.Infrastructure;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace SBA.Core.BOL.Infrastructure
 {
@@ -18,6 +20,14 @@ namespace SBA.Core.BOL.Infrastructure
             dbSeed.InitializeDatabase(context);
         }
 
+        public static void SeedWordVariety()
+        {
+            var wordVarietyDictionary = SimpleFactory.Get<WordVarietyDictionary>();
+            var context = SimpleFactory.Get<SbaInferenceContext>();
+
+            wordVarietyDictionary.SeedData(context);
+        }
+
         public static void ClearCurrentConsoleLine()
         {
             Console.SetCursorPosition(0, Console.CursorTop - 1);
@@ -27,19 +37,52 @@ namespace SBA.Core.BOL.Infrastructure
             Console.SetCursorPosition(0, currentLineCursor);
         }
 
-        public static void ProcessingScreen()
+        public static void ProcessingScreen(string loadingMessage)
         {
-            Console.WriteLine("Processing .");
-            Thread.Sleep(200);
+            Console.WriteLine($"{loadingMessage} |");
+            Thread.Sleep(150);
             ClearCurrentConsoleLine();
 
-            Console.WriteLine("Processing ..");
-            Thread.Sleep(200);
+            Console.WriteLine($"{loadingMessage} /");
+            Thread.Sleep(150);
             ClearCurrentConsoleLine();
 
-            Console.WriteLine("Processing ...");
-            Thread.Sleep(200);
+            Console.WriteLine($"{loadingMessage} --");
+            Thread.Sleep(150);
             ClearCurrentConsoleLine();
+
+            Console.WriteLine($"{loadingMessage} \\");
+            Thread.Sleep(150);
+            ClearCurrentConsoleLine();
+
+            Console.WriteLine($"{loadingMessage} |");
+            Thread.Sleep(150);
+            ClearCurrentConsoleLine();
+
+            Console.WriteLine($"{loadingMessage} /");
+            Thread.Sleep(150);
+            ClearCurrentConsoleLine();
+
+            Console.WriteLine($"{loadingMessage} --");
+            Thread.Sleep(150);
+            ClearCurrentConsoleLine();
+
+            Console.WriteLine($"{loadingMessage} \\");
+            Thread.Sleep(150);
+            ClearCurrentConsoleLine();
+        }
+
+        public static void RunTask(Action action, string loadingMessage)
+        {
+            var task = Task.Run(() => action());
+            while (!task.IsCompleted) { ProcessingScreen(loadingMessage); }
+            Console.WriteLine($"{loadingMessage} OK");
+        }
+
+        public static void RunTaskBackground(Action action, string message)
+        {
+            Task.Run(() => action());
+            Console.WriteLine($"{message} (in background)");
         }
     }
 }

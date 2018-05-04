@@ -7,32 +7,6 @@ namespace SBA.Core.BOL.Common.Extensions
 {
     public static class StopWordExtensions
     {
-        public static string[][] ExcludeStopWords(this string[][] text, StopWordLanguage language)
-        {
-            var wordsWithoutStopWords = SimpleFactory.Get<List<List<string>>>();
-            var stopWords =
-                GetStopWordsByLanguague(language)
-                    .Split(new char[] { ',' })
-                    .Select(x => x.Replace("\r", string.Empty))
-                    .ToList();
-
-            foreach (var firstDimension in text)
-            {
-                var list = SimpleFactory.Get<List<string>>();
-                foreach (var secondDimension in firstDimension)
-                {
-                    if (!stopWords.Contains(secondDimension.ToLower()))
-                        list.Add(secondDimension);
-                }
-
-                wordsWithoutStopWords.Add(list);
-            }
-
-            return wordsWithoutStopWords
-                    .Select(x => x.ToArray())
-                    .ToArray();
-        }
-
         public static string[] ExcludeStopWords(this string[] words, StopWordLanguage language)
         {
             var wordsWithoutStopWords = SimpleFactory.Get<List<string>>();
