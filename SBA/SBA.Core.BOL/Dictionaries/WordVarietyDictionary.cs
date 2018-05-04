@@ -1,73 +1,104 @@
 ﻿using SBA.Core.BOL.Infrastructure;
+using SBA.DAL.Context.InferenceDb.Entity;
+using SBA.DAL.Context.InferenceDb.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SBA.Core.BOL.Dictionaries
 {
-    public static class WordVarietyDictionary
+    public class WordVarietyDictionary
     {
-        private static List<Words> _variety;
-
-        static WordVarietyDictionary() => 
-            _variety = SimpleFactory.Get<List<Words>>();
-
-        public static void LoadData()
+        public void SeedData(SbaInferenceContext context)
         {
-            var logManager = SimpleFactory.GetLogger();
+            if (context.WordVarieties.Any())
+                return;
+
+            var variety = SimpleFactory.Get<List<Words>>();
             string fileName = Path.Combine(Environment.CurrentDirectory, Settings.Core.VarietyFileName);
-
-            logManager.RegisterLogToConsole($"Loading words variety from {Settings.Core.VarietyFileName}");
-            logManager.RegisterLogToFile($"Loading words variety from {Settings.Core.VarietyFileName}");
-
-            var task = Task.Run(() => 
+            using (var streamReader = SimpleFactory.Get<StreamReader>(new FileStream(fileName, FileMode.Open, FileAccess.Read)))
             {
-                using (var streamReader = SimpleFactory.Get<StreamReader>(new FileStream(fileName, FileMode.Open, FileAccess.Read)))
+                while (streamReader.Peek() >= 0)
                 {
-                    while (streamReader.Peek() >= 0)
-                    {
-                        string[] splited = streamReader.ReadLine().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                        if (splited.Length == 1)
-                            _variety.Add(new Words
-                            {
-                                OrginalName = splited[0].ToLower(),
-                                Varieties = new string[0]
-                            });
-                        else
+                    string[] splited = streamReader.ReadLine().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    if (splited.Length == 1)
+                        variety.Add(new Words
                         {
-                            string[] varieties = splited
-                                .Skip(1)
-                                .Select(x => x.ToLower())
-                                .ToArray();
+                            OrginalName = splited[0].ToLower().Replace(" ", string.Empty),
+                            Varieties = new string[0]
+                        });
+                    else
+                    {
+                        string[] varieties = splited
+                            .Skip(1)
+                            .Select(x => x.ToLower())
+                            .ToArray();
 
-                            _variety.Add(new Words
-                            {
-                                OrginalName = splited[0].ToLower(),
-                                Varieties = varieties
-                            });
-                        }
+                        variety.Add(new Words
+                        {
+                            OrginalName = splited[0].ToLower().Replace(" ", string.Empty),
+                            Varieties = varieties
+                        });
                     }
                 }
-            });
-            while (!task.IsCompleted) { Settings.ProcessingScreen(); }
+            }
 
-            logManager.RegisterLogToConsole("Loading words variety completed.");
-            logManager.RegisterLogToFile("Loading words variety completed.");
-        }
+            int saveChangesIterator = 0;
+            int rebuildContextIterator = 0;
+            context.Configuration.AutoDetectChangesEnabled = false;
+            context.Configuration.ValidateOnSaveEnabled = false;
 
-        public static string GetOriginalName(string token)
-        {
-            var wordFoundInVariety = _variety
-                .AsParallel()
-                .Where(x => x.Varieties.Contains(token))
-                .FirstOrDefault();
+            foreach (var word in variety)
+            {
+                if (rebuildContextIterator == 1000)
+                {
+                    context = new SbaInferenceContext();
+                    rebuildContextIterator = 0;
+                    context.Configuration.AutoDetectChangesEnabled = false;
+                    context.Configuration.ValidateOnSaveEnabled = false;
+                }
 
-            if (wordFoundInVariety != default(Words))
-                return wordFoundInVariety.OrginalName;
+                var orginalWord = context.WordVarieties
+                    .FirstOrDefault(x => x.Word == word.OrginalName);
 
-            return token;
+                if (orginalWord == null)
+                {
+                    orginalWord = new WordVariety
+                    {
+                        Word = word.OrginalName
+                    };
+
+                    context.WordVarieties.Add(orginalWord);
+                    context.SaveChanges();
+                    rebuildContextIterator++;
+                }
+
+                foreach (var varieties in word.Varieties)
+                {
+                    if (saveChangesIterator == 100)
+                    {
+                        context.SaveChanges();
+                        saveChangesIterator = 0;
+                    }
+
+                    var dbVariety = context.WordVarieties
+                        .FirstOrDefault(x => x.Word == varieties);
+
+                    if (dbVariety != null)
+                        continue;
+
+                    context.WordVarieties.Add(new WordVariety
+                    {
+                        Word = varieties,
+                        OrginalWordId = orginalWord.Id
+                    });
+                    saveChangesIterator++;
+                    rebuildContextIterator++;
+                }
+            }
+
+            context.SaveChanges();
         }
 
         public class Words

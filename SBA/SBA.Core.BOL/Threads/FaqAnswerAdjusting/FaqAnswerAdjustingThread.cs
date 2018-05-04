@@ -22,7 +22,6 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
             string userQuestion = ExcecutionPlan.Parameters[0];
             var decides = SimpleFactory.Get<List<FaqModel.Decide>>();
             var faqQuestions = _faqService.GetFaqQuestions();
-            var questionGroupByAnswers = faqQuestions.GroupBy(x => x.AnswerId);
 
             var terms = new TFIDF()
             {
@@ -30,33 +29,33 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
                 Idf = InverseDocumentFrequency.Max
             };
 
-            string[][] tokenized = faqQuestions
-                .Select(x => x.QuestionName)
-                .ToArray()
-                .Tokenize()
-                .ExcludeStopWords(StopWordLanguage.Polish)
-                .Lemmatize();
+            var tokenized = faqQuestions
+                .Select(x => new StringMap
+                {
+                    Tokenized = x.QuestionName.Tokenize().ExcludeStopWords(StopWordLanguage.Polish).Lemmatize(),
+                    AnswerId = x.AnswerId
+                }).ToList();
 
-            terms.Learn(tokenized);
+            terms.Learn(tokenized.Select(x => x.Tokenized).ToArray());
             double[] userInput = terms.Transform(
                 userQuestion
                 .Tokenize()
                 .ExcludeStopWords(StopWordLanguage.Polish)
                 .Lemmatize());
 
-            foreach (var answer in questionGroupByAnswers)
+            foreach (var answer in faqQuestions)
             {
                 var vectors = SimpleFactory.Get<List<VectorMap>>();
-                foreach (var token in answer)
+                var tokensByAnswer = tokenized
+                    .Where(x => x.AnswerId == answer.AnswerId);
+
+                foreach (var token in tokensByAnswer)
                     vectors.Add(new VectorMap
                     {
-                        Input = terms.Transform(token.QuestionName
-                            .Tokenize()
-                            .ExcludeStopWords(StopWordLanguage.Polish)
-                            .Lemmatize()),
+                        Input = terms.Transform(token.Tokenized),
                         Decide = true
                     });
-                
+                                  
                 vectors.Add(new VectorMap
                 {
                     Input = new double[vectors.First().Input.Length],
@@ -79,8 +78,8 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
 
                 decides.Add(new FaqModel.Decide
                 {
-                    AnswerId = answer.Key,
-                    Answer = _faqService.GetAnswer(answer.Key),
+                    AnswerId = answer.AnswerId,
+                    Answer = _faqService.GetAnswer(answer.AnswerId),
                     Question = userQuestion,
                     DecideStatus = decission,
                     Propability = propabality > 0.0 ? propabality : 0.0,
@@ -96,6 +95,12 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
         {
             public double[] Input { get; set; }
             public bool Decide { get; set; }
+        }
+
+        private struct StringMap
+        {
+            public string[] Tokenized { get; set; }
+            public int AnswerId { get; set; }
         }
     }
 }
