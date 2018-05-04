@@ -7,15 +7,20 @@ using SBA.Core.BOL.Common.Extensions;
 using SBA.Core.BOL.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
 {
     public class FaqAnswerAdjustingThread : BaseThread, IThread
     {
         private readonly IFaqService _faqService;
+        private readonly IWordVarietyService _wordVarietyService;
 
-        public FaqAnswerAdjustingThread() => 
+        public FaqAnswerAdjustingThread()
+        {
             _faqService = SimpleFactory.Get<FaqService, IFaqService>();
+            _wordVarietyService = SimpleFactory.Get<WordVarietyService, IWordVarietyService>();
+        }
 
         public override T DoJob<T>()
         {
@@ -32,18 +37,18 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
             var tokenized = faqQuestions
                 .Select(x => new StringMap
                 {
-                    Tokenized = x.QuestionName.Tokenize().ExcludeStopWords(StopWordLanguage.Polish).Lemmatize(),
+                    Tokenized = _wordVarietyService.Lemmatize(x.QuestionName.Tokenize().ExcludeStopWords(StopWordLanguage.Polish)),
                     AnswerId = x.AnswerId
                 }).ToList();
 
             terms.Learn(tokenized.Select(x => x.Tokenized).ToArray());
             double[] userInput = terms.Transform(
-                userQuestion
-                .Tokenize()
-                .ExcludeStopWords(StopWordLanguage.Polish)
-                .Lemmatize());
+                _wordVarietyService.Lemmatize(
+                    userQuestion
+                        .Tokenize()
+                        .ExcludeStopWords(StopWordLanguage.Polish)));
 
-            foreach (var answer in faqQuestions)
+            Parallel.ForEach(faqQuestions, answer =>
             {
                 var vectors = SimpleFactory.Get<List<VectorMap>>();
                 var tokensByAnswer = tokenized
@@ -55,7 +60,7 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
                         Input = terms.Transform(token.Tokenized),
                         Decide = true
                     });
-                                  
+
                 vectors.Add(new VectorMap
                 {
                     Input = new double[vectors.First().Input.Length],
@@ -79,15 +84,14 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
                 decides.Add(new FaqModel.Decide
                 {
                     AnswerId = answer.AnswerId,
-                    Answer = _faqService.GetAnswer(answer.AnswerId),
                     Question = userQuestion,
                     DecideStatus = decission,
                     Propability = propabality > 0.0 ? propabality : 0.0,
                     Classificator = nameof(LogisticRegression)
                 });
-            }
+            });
 
-            _faqService.AddFaqDecisions(decides);
+            Task.Run(() => _faqService.AddFaqDecisions(decides));
             return decides as T;
         }
 

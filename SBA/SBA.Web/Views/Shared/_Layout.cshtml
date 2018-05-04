@@ -10,8 +10,6 @@
 	@Styles.Render("~/Content/mainLess")
     @Scripts.Render("~/bundles/modernizr")
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 </head>
 <body>
     <div class="loader" id="loadingSpinner" style="display: none;">
@@ -25,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("WebCoding S.A.", "Index", "Home", new { @class = "navbar-brand" })
+                @Html.ActionLink("WebCoding S.A.", "Index", "Home", null, new { @class = "navbar-brand"})
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -71,7 +69,14 @@
         </div>
         @RenderBody()
     </div>
-
+    <div id="containerLinks" class="fixedLinksContainer">
+        <h3 class="text-center">Szybkie linki</h3>
+        <div class="text-center">
+            <img src="~/Content/Images/loading.svg" />        
+        </div>
+        <div class="text-center"></div>
+        <button id="fixedCloseBtn" type="button" class="btn btn-primary">Zamknij</button>
+    </div>
 	<aside id="arrowUp">
 		<div class="arrow bounce">
 		  <a class="fa fa-arrow-up fa-3x" href="#top"></a>

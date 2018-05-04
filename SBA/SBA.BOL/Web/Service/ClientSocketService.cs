@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using static SBA.BOL.Web.Service.CookieService;
 
 namespace SBA.BOL.Web.Service
 {
@@ -16,6 +17,7 @@ namespace SBA.BOL.Web.Service
     {
         Task<Dictionary<string, dynamic>> SendUserQuestionToGetSuggestAnswer(string userQuestion);
         Task<string> SendHandUp(QuestionModel questionModel);
+        void SendLogsToCore(List<string> cookieDatas);
     }
 
     public class ClientSocketService : IClientSocketService
@@ -36,6 +38,27 @@ namespace SBA.BOL.Web.Service
                     .GetString(ExchangeDataWithCore(dictionary))
                     .ClearRecv();
             });
+
+        public void SendLogsToCore(List<string> cookieDatas)
+        {
+            string cookieData = string.Empty;
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, cookieDatas);
+                cookieData = Convert.ToBase64String(memoryStream.ToArray());
+            }
+
+            var dictionary = new Dictionary<string, string>
+            {
+                 { "AuthGuid", ConfigurationManager.AppSettings["authGuid"] },
+                 { "Type", "Web" },
+                 { "Request", "Logs" },
+                 { "CookieData", cookieData }
+            };
+
+            byte[] recvByte = ExchangeDataWithCore(dictionary);
+        }
 
         public Task<Dictionary<string, dynamic>> SendUserQuestionToGetSuggestAnswer(string userQuestion) =>
             Task.Run(() =>

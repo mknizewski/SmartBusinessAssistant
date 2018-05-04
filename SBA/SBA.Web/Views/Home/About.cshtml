@@ -1,20 +1,4 @@
-﻿@using SBA.BOL.Web.Models
-@model List<ConfigurationModel>
-@Styles.Render("~/Content/aboutStyle") 
-
-@{
-    ViewBag.Title = "O nas";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-@foreach (var item in Model)
-{
-    <p>@item.Key - @item.Value - @item.InsertDate</p>
-}
-<p>Use this area to provide additional information.</p>
-
-<hr style="padding-top:30px;">
-<br>
+﻿@Styles.Render("~/Content/aboutStyle") 
 
 <div class="jumbotron jumbotron-fluid ">
     <div class="container">

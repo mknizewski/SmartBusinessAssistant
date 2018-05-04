@@ -1,5 +1,7 @@
 ﻿using SBA.BOL.Inference.Models;
 using SBA.BOL.Inference.Service;
+using SBA.BOL.Web.Models;
+using SBA.BOL.Web.Service;
 using SBA.Core.BOL.Infrastructure;
 using SBA.Core.BOL.Threads.FaqAnswerAdjusting;
 using System;
@@ -22,9 +24,13 @@ namespace SBA.Core.BOL.Managers
     public class ServerSocketManager : IServerSocketManager
     {
         private readonly IFaqService _faqService;
+        private readonly IWebLogService _webLogService;
 
-        public ServerSocketManager() => 
+        public ServerSocketManager()
+        {
             _faqService = SimpleFactory.Get<FaqService, IFaqService>();
+            _webLogService = SimpleFactory.Get<WebLogService, IWebLogService>();
+        }
 
         public void AuthorizeConnection(Dictionary<string, string> recvDictionary, string[] authGuids)
         {
@@ -58,6 +64,8 @@ namespace SBA.Core.BOL.Managers
                     return AnswerSuggestion(recvDictionary["Question"]);
                 case Request.Web.HandUp:
                     return HandUp(recvDictionary);
+                case Request.Web.Logs:
+                    return Logs(recvDictionary);
             }
 
             return null;
@@ -89,7 +97,7 @@ namespace SBA.Core.BOL.Managers
                 new Dictionary<string, dynamic>
                 {
                     { "HaveAnswer", true },
-                    { "Answer", possibleAnswer.Answer },
+                    { "Answer", _faqService.GetAnswer(possibleAnswer.AnswerId) },
                     { "AnswerId", possibleAnswer.AnswerId },
                     { "Propability", (int) (possibleAnswer.Propability * 100) },
                     { "Question", possibleAnswer.Question }
@@ -109,12 +117,36 @@ namespace SBA.Core.BOL.Managers
             }
         }
 
+        private byte[] Logs(Dictionary<string, string> answerDictionary)
+        {
+            string cookieData = answerDictionary["CookieData"];
+            byte[] cookieDataByte = Convert.FromBase64String(cookieData);
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            var cookieDataList = SimpleFactory.Get<List<string>>();
+
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>(cookieDataByte))
+                cookieDataList = (List<string>)binaryFormatter.Deserialize(memoryStream);
+
+            foreach (var splited in cookieDataList.Select(x => x.Split(new char[] { ';'})))
+                _webLogService.AddWebLog(new WebLogModel
+                {
+                    SessionId = splited[0],
+                    CurrentTime = splited[1],
+                    ClientIp = splited[2],
+                    CurrentUrl = splited[3],
+                    PreviousUrl = splited[4]
+                });
+
+            return Encoding.UTF8.GetBytes("OK");
+        }
+
         private static class Request
         {
             public static class Web
             {
                 public const string AnswerSuggestion = "AnswerSuggestion";
                 public const string HandUp = "HandUp";
+                public const string Logs = "Logs";
             }
 
             public static class App

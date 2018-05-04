@@ -11,9 +11,9 @@ namespace SBA.DAL.Context.InferenceDb.Repository.WordVariety
     {
         public string Lemmatize(string word)
         {
-            var dbVariety = Queryable<Entity.WordVariety>()
+            var dbVariety = Set<Entity.WordVariety>()
                 .FirstOrDefault(x => x.Word == word);
-
+            
             if (dbVariety == null)
                 return word;
 
