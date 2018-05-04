@@ -1,6 +1,5 @@
 ﻿using Hangfire;
 using System;
-using System.Diagnostics;
 
 namespace SBA.Web.Infrastructure.BackgroundJobs
 {

@@ -7,7 +7,7 @@ namespace SBA.Web.Controllers
         public virtual ActionResult Index() =>
             View();
 
-        public virtual ActionResult Read(int id) => 
+        public virtual ActionResult Read(int id) =>
             View();
     }
 }

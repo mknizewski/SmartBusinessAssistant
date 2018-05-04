@@ -1,6 +1,5 @@
 ﻿using SBA.BOL.Web.Models;
 using SBA.BOL.Web.Service;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -32,7 +31,7 @@ namespace SBA.Web.Controllers
         }
 
         [HttpPost]
-        public virtual async Task<JsonResult> HandUp(QuestionModel questionModel) => 
+        public virtual async Task<JsonResult> HandUp(QuestionModel questionModel) =>
             Json(await _clientSocketService.SendHandUp(questionModel));
     }
 }

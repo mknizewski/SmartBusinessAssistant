@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace SBA.Web.Infrastructure.Filters
 {
-    public class CookieFilter : FilterAttribute, IActionFilter 
+    public class CookieFilter : FilterAttribute, IActionFilter
     {
         private readonly ICookieService _cookieService;
         private static string _statGuid => nameof(_statGuid);
@@ -12,7 +12,7 @@ namespace SBA.Web.Infrastructure.Filters
         public CookieFilter() =>
             _cookieService = MvcApplication.Container.GetInstance<ICookieService>();
 
-        public void OnActionExecuted(ActionExecutedContext filterContext) => 
+        public void OnActionExecuted(ActionExecutedContext filterContext) =>
             _cookieService.SaveToLog(new CookieService.CookieData
             {
                 SessionId = filterContext.HttpContext.Session[_statGuid]?.ToString(),

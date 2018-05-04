@@ -17,7 +17,6 @@ namespace SBA.Web.Controllers
             _clientSocketService = clientSocketService;
         }
 
-      
         public virtual ActionResult Index()
         {
             SetAlert(SystemAlert.Type.Success, "Testowy alert");

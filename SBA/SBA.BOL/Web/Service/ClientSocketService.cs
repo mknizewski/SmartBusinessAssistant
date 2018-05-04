@@ -52,7 +52,6 @@ namespace SBA.BOL.Web.Service
 
         private byte[] ExchangeDataWithCore(Dictionary<string, string> dictionary)
         {
-<<<<<<< HEAD
             byte[] sendBytes = null;
             string coreHost = ConfigurationManager.AppSettings[nameof(coreHost)];
             string corePort = ConfigurationManager.AppSettings[nameof(corePort)];
@@ -62,26 +61,13 @@ namespace SBA.BOL.Web.Service
                     AddressFamily.InterNetwork,
                     SocketType.Stream,
                     ProtocolType.IP);
-=======
-            //byte[] sendBytes = null;
-            //string coreHost = ConfigurationManager.AppSettings[nameof(coreHost)];
-            //string corePort = ConfigurationManager.AppSettings[nameof(corePort)];
-            //var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
-            //var dictionary = GetDictionary(data);
-            //var clientSocket = SimpleFactory
-            //    .Get<Socket>(
-            //        AddressFamily.InterNetwork,
-            //        SocketType.Stream,
-            //        ProtocolType.IP);
->>>>>>> blad #50 - walidacja html
 
-            //using (var memoryStream = SimpleFactory.Get<MemoryStream>())
-            //{
-            //    binaryFormatter.Serialize(memoryStream, dictionary);
-            //    sendBytes = memoryStream.ToArray();
-            //}
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, dictionary);
+                sendBytes = memoryStream.ToArray();
+            }
 
-<<<<<<< HEAD
             clientSocket.ReceiveTimeout = int.MaxValue;
             clientSocket.Connect(coreHost, Convert.ToInt32(corePort));
             clientSocket.Send(sendBytes);
@@ -93,20 +79,6 @@ namespace SBA.BOL.Web.Service
             clientSocket.Close();
 
             return serverData;
-=======
-            //clientSocket.Connect(coreHost, Convert.ToInt32(corePort));
-            //clientSocket.Send(sendBytes);
-
-            //byte[] serverData = new byte[clientSocket.ReceiveBufferSize];
-            //clientSocket.Receive(serverData);
-            //clientSocket.Shutdown(SocketShutdown.Both);
-            //clientSocket.Close();
-
-            //return Encoding.ASCII
-            //    .GetString(serverData)
-            //    .ClearRecv();
-            return "";
->>>>>>> blad #50 - walidacja html
         }
 
         private Dictionary<string, string> GetDictionary() =>

@@ -19,7 +19,7 @@ namespace SBA.Web
 
             bundles.Add(new ScriptBundle("~/bundles/contactJs").Include(
                 "~/Scripts/TypeScript/contact.js"));
-            
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 

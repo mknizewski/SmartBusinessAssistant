@@ -1,7 +1,7 @@
 ﻿class Helpers {
     static SetAlert(alertClass, alertMessage): void {
         let alertDiv = "<div class='" + alertClass + "'>" +
-                        alertMessage + "</div>";
+            alertMessage + "</div>";
 
         $("#tempMessage").append(alertDiv);
     }

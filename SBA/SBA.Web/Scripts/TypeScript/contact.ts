@@ -135,7 +135,6 @@ class HandDownBtn {
     }
 
     public DoLogic(): void {
-
     }
 }
 
