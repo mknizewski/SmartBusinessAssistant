@@ -13,7 +13,7 @@ namespace SBA.Core.BOL {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
-    internal sealed partial class core : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class core : global::System.Configuration.ApplicationSettingsBase {
         
         private static core defaultInstance = ((core)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new core())));
         
@@ -119,6 +119,15 @@ namespace SBA.Core.BOL {
         public string ClientAuthGuid {
             get {
                 return ((string)(this["ClientAuthGuid"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dictionaries\\baza_odmian_jezyka_polskiego.txt")]
+        public string VarietyFileName {
+            get {
+                return ((string)(this["VarietyFileName"]));
             }
         }
     }

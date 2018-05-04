@@ -35,5 +35,8 @@
     <Setting Name="ClientAuthGuid" Type="System.String" Scope="Application">
       <Value Profile="(Default)">cd04d90c-ba26-463a-9f2e-40d3a3859487</Value>
     </Setting>
+    <Setting Name="VarietyFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Dictionaries\baza_odmian_jezyka_polskiego.txt</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
