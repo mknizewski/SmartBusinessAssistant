@@ -1,37 +1,24 @@
-﻿using SBA.BOL.Web.Service;
-using SBA.Web.Infrastructure.Alert;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace SBA.Web.Controllers
 {
     public partial class HomeController : BaseController
     {
-        private readonly IConfigurationService _configurationService;
-        private readonly IClientSocketService _clientSocketService;
+        public HomeController()
+        { }
 
-        public HomeController(
-            IConfigurationService configurationService,
-            IClientSocketService clientSocketService)
-        {
-            _configurationService = configurationService;
-            _clientSocketService = clientSocketService;
-        }
+        public virtual ActionResult Index() => 
+            View();
 
-      
-        public virtual ActionResult Index()
-        {
-            SetAlert(SystemAlert.Type.Success, "Testowy alert");
-            return View();
-        }
+        public virtual ActionResult About() =>
+            View();
 
-        /// <summary>
-        /// TODO: Do ogarniecia w późniejszym etapie.
-        /// </summary>
-        /// <returns></returns>
-        public virtual ActionResult About()
+        [HttpGet]
+        public virtual Task<string> GetFastLinks()
         {
-            ViewBag.Message = _clientSocketService.SendUserQuestionToGetSuggestAnswer("Jak się cenimy?");
-            return View(_configurationService.GetConfigurations());
+            
+            return null;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using SBA.Web.Infrastructure.Filters;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SBA.Web

@@ -101,7 +101,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Extensions\LemmatizerExtensions.cs" />
     <Compile Include="Common\Extensions\StopWordExtensions.cs" />
     <Compile Include="core1.Designer.cs">
       <AutoGen>True</AutoGen>

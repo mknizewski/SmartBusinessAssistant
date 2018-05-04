@@ -1,21 +1,25 @@
 ﻿using Hangfire;
-using System;
-using System.Diagnostics;
+using SBA.BOL.Web.Service;
+using SBA.Web.Infrastructure.Factory;
 
 namespace SBA.Web.Infrastructure.BackgroundJobs
 {
     public static class BackgroundJobsConfigurator
     {
+        private static BackgroundJobServer _backgroundJobServer;
+
         public static void Configure()
         {
             GlobalConfiguration
                 .Configuration
                 .UseSqlServerStorage("SbaWebContext");
+
+            _backgroundJobServer = SimpleFactory.Get<BackgroundJobServer>();
         }
 
         public static void RegisterBackgroundJobs()
         {
-            BackgroundJob.Schedule(() => Console.Write("BackgroundJobsTest"), TimeSpan.FromSeconds(5.0));
+            RecurringJob.AddOrUpdate(() => SimpleFactory.Get<CookieService, ICookieService>().SendLogsToCore(), Cron.Minutely);
         }
     }
 }

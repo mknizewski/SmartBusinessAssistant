@@ -19,6 +19,7 @@ namespace SBA.DAL.Context.InferenceDb.Infrastructure
         public DbSet<FaqAnswers> FaqAnswers { get; set; }
         public DbSet<FaqDecissions> FaqDecissions { get; set; }
         public DbSet<WordVariety> WordVarieties { get; set; }
+        public DbSet<WebLog> WebLogs { get; set; }
 
         public SbaInferenceContext()
             : base(ContextName)

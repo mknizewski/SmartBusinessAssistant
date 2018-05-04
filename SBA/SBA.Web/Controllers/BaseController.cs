@@ -9,5 +9,8 @@ namespace SBA.Web.Controllers
             SystemAlert.Type type,
             string message) =>
             TempData["alert"] = SystemAlert.SetAlert(type, message);
+
+        public string GetStatGuid() =>
+            HttpContext.Session["_statGuid"]?.ToString();
     }
 }
