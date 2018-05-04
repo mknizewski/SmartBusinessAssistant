@@ -1,4 +1,5 @@
-﻿using SBA.Core.BOL.ThreadsSupervisior;
+﻿using SBA.Core.BOL.Dictionaries;
+using SBA.Core.BOL.ThreadsSupervisior;
 
 namespace SBA.Core.BOL.Infrastructure
 {
@@ -9,6 +10,7 @@ namespace SBA.Core.BOL.Infrastructure
             InputParamsHandler.HandleParams(args);
             ThreadSupervisior.InitSupervisior();
             Settings.InitDatabase();
+            WordVarietyDictionary.LoadData();
             Settings.Supervisior
                 .RegisterThreads()
                 .Supervise();

@@ -23,26 +23,37 @@ namespace SBA.Core.BOL.Threads.FaqAnswerAdjusting
             var decides = SimpleFactory.Get<List<FaqModel.Decide>>();
             var faqQuestions = _faqService.GetFaqQuestions();
             var questionGroupByAnswers = faqQuestions.GroupBy(x => x.AnswerId);
+
             var terms = new TFIDF()
             {
                 Tf = TermFrequency.Log,
                 Idf = InverseDocumentFrequency.Max
             };
+
             string[][] tokenized = faqQuestions
                 .Select(x => x.QuestionName)
                 .ToArray()
                 .Tokenize()
-                .ExcludeStopWords(StopWordLanguage.Polish);
+                .ExcludeStopWords(StopWordLanguage.Polish)
+                .Lemmatize();
 
             terms.Learn(tokenized);
-            double[] userInput = terms.Transform(userQuestion.Tokenize().ExcludeStopWords(StopWordLanguage.Polish));
+            double[] userInput = terms.Transform(
+                userQuestion
+                .Tokenize()
+                .ExcludeStopWords(StopWordLanguage.Polish)
+                .Lemmatize());
+
             foreach (var answer in questionGroupByAnswers)
             {
                 var vectors = SimpleFactory.Get<List<VectorMap>>();
                 foreach (var token in answer)
                     vectors.Add(new VectorMap
                     {
-                        Input = terms.Transform(token.QuestionName.Tokenize().ExcludeStopWords(StopWordLanguage.Polish)),
+                        Input = terms.Transform(token.QuestionName
+                            .Tokenize()
+                            .ExcludeStopWords(StopWordLanguage.Polish)
+                            .Lemmatize()),
                         Decide = true
                     });
                 
