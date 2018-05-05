@@ -74,6 +74,7 @@ namespace SBA.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string About = "About";
+            public readonly string GetFastLinks = "GetFastLinks";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,6 +82,7 @@ namespace SBA.Web.Controllers
         {
             public const string Index = "Index";
             public const string About = "About";
+            public const string GetFastLinks = "GetFastLinks";
         }
 
 
@@ -129,6 +131,17 @@ namespace SBA.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.About);
             AboutOverride(callInfo);
             return callInfo;
+        }
+
+        [NonAction]
+        partial void GetFastLinksOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> GetFastLinks()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetFastLinks);
+            GetFastLinksOverride(callInfo);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
         }
 
     }

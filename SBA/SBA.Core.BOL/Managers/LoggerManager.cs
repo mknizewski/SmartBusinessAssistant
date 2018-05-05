@@ -27,7 +27,7 @@ namespace SBA.Core.BOL.Managers
             lock (_lockObject)
             {
                 var todayDate = DateTime.Now.ToString("yyy.MM.dd");
-                string pathToLog = string.Format(Settings.Core.LogPathPattern, todayDate);
+                string pathToLog = $"{Directory.GetCurrentDirectory()}\\{string.Format(Settings.Core.LogPathPattern, todayDate)}";
                 string dateDirectory = Path.GetDirectoryName(pathToLog);
 
                 if (!Directory.Exists(dateDirectory))

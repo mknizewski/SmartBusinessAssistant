@@ -1,12 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using SBA.BOL.Web.Service;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace SBA.Web.Controllers
 {
     public partial class HomeController : BaseController
     {
-        public HomeController()
-        { }
+        private readonly IClientSocketService _clientSocketService;
+
+        public HomeController(IClientSocketService clientSocketService) =>
+            _clientSocketService = clientSocketService;
 
         public virtual ActionResult Index() => 
             View();
@@ -15,10 +18,9 @@ namespace SBA.Web.Controllers
             View();
 
         [HttpGet]
-        public virtual Task<string> GetFastLinks()
-        {
-            
-            return null;
-        }
+        public virtual async Task<JsonResult> GetFastLinks() => 
+            Json(
+                await _clientSocketService.SendStatTraceToGetHotLinks(GetStatTrace(), GetStatGuid()),
+                JsonRequestBehavior.AllowGet);
     }
 }

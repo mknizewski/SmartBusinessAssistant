@@ -4,6 +4,7 @@ using SBA.BOL.Web.Models;
 using SBA.BOL.Web.Service;
 using SBA.Core.BOL.Infrastructure;
 using SBA.Core.BOL.Threads.FaqAnswerAdjusting;
+using SBA.Core.BOL.Threads.HotLinksRecommender;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,11 +26,13 @@ namespace SBA.Core.BOL.Managers
     {
         private readonly IFaqService _faqService;
         private readonly IWebLogService _webLogService;
+        private readonly IWebSessionService _webSessionService;
 
         public ServerSocketManager()
         {
             _faqService = SimpleFactory.Get<FaqService, IFaqService>();
             _webLogService = SimpleFactory.Get<WebLogService, IWebLogService>();
+            _webSessionService = SimpleFactory.Get<WebSessionService, IWebSessionService>();
         }
 
         public void AuthorizeConnection(Dictionary<string, string> recvDictionary, string[] authGuids)
@@ -66,6 +69,8 @@ namespace SBA.Core.BOL.Managers
                     return HandUp(recvDictionary);
                 case Request.Web.Logs:
                     return Logs(recvDictionary);
+                case Request.Web.HotLinks:
+                    return HotLinks(recvDictionary);
             }
 
             return null;
@@ -130,14 +135,26 @@ namespace SBA.Core.BOL.Managers
             foreach (var splited in cookieDataList.Select(x => x.Split(new char[] { ';'})))
                 _webLogService.AddWebLog(new WebLogModel
                 {
-                    SessionId = splited[0],
+                    SessionId = _webSessionService.AddOrGetWebSessionId(splited[0]),
                     CurrentTime = splited[1],
                     ClientIp = splited[2],
                     CurrentUrl = splited[3],
                     PreviousUrl = splited[4]
                 });
 
+            _webLogService.ProccessWebLogsToCsv($"{Directory.GetCurrentDirectory()}\\{Settings.Core.DataLogCsvPath}");
             return Encoding.UTF8.GetBytes("OK");
+        }
+
+        private byte[] HotLinks(Dictionary<string ,string> answerDictionary)
+        {
+            string userGuid = answerDictionary["UserGuid"];
+            string statTrace = answerDictionary["StatTrace"];
+            string hotLinks = Settings.Supervisior.ForceRun<string>(
+                nameof(HotLinksRecommenderThread),
+                new string[] { userGuid, statTrace });
+
+            return Encoding.UTF8.GetBytes(hotLinks);
         }
 
         private static class Request
@@ -147,6 +164,7 @@ namespace SBA.Core.BOL.Managers
                 public const string AnswerSuggestion = "AnswerSuggestion";
                 public const string HandUp = "HandUp";
                 public const string Logs = "Logs";
+                public const string HotLinks = "HotLinks";
             }
 
             public static class App

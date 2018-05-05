@@ -43,7 +43,7 @@ namespace SBA.Core.BOL {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2147483647")]
         public int MaxConnectionsAllowed {
             get {
                 return ((int)(this["MaxConnectionsAllowed"]));
@@ -52,7 +52,7 @@ namespace SBA.Core.BOL {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Projekty\\SmartBusinessAssistant\\Logs\\Core\\{0}\\core.log")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Logs\\Core\\{0}\\core.log")]
         public string LogPathPattern {
             get {
                 return ((string)(this["LogPathPattern"]));
@@ -128,6 +128,15 @@ namespace SBA.Core.BOL {
         public string VarietyFileName {
             get {
                 return ((string)(this["VarietyFileName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Logs\\datalog.csv")]
+        public string DataLogCsvPath {
+            get {
+                return ((string)(this["DataLogCsvPath"]));
             }
         }
     }

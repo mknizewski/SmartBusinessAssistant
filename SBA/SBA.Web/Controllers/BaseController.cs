@@ -1,4 +1,5 @@
 ﻿using SBA.Web.Infrastructure.Alert;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace SBA.Web.Controllers
@@ -12,5 +13,8 @@ namespace SBA.Web.Controllers
 
         public string GetStatGuid() =>
             HttpContext.Session["_statGuid"]?.ToString();
+
+        public List<string> GetStatTrace() =>
+            (List<string>)HttpContext.Session["_statTrace"];
     }
 }

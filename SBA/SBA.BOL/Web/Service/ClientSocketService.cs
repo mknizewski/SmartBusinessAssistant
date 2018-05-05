@@ -9,7 +9,6 @@ using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using static SBA.BOL.Web.Service.CookieService;
 
 namespace SBA.BOL.Web.Service
 {
@@ -17,6 +16,7 @@ namespace SBA.BOL.Web.Service
     {
         Task<Dictionary<string, dynamic>> SendUserQuestionToGetSuggestAnswer(string userQuestion);
         Task<string> SendHandUp(QuestionModel questionModel);
+        Task<string> SendStatTraceToGetHotLinks(List<string> statTraceList, string userGuid);
         void SendLogsToCore(List<string> cookieDatas);
     }
 
@@ -59,6 +59,31 @@ namespace SBA.BOL.Web.Service
 
             byte[] recvByte = ExchangeDataWithCore(dictionary);
         }
+
+        public Task<string> SendStatTraceToGetHotLinks(List<string> statTraceList, string userGuid) => 
+            Task.Run(() => 
+            {
+                string statTrace = string.Empty;
+                var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+                using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+                {
+                    binaryFormatter.Serialize(memoryStream, statTraceList);
+                    statTrace = Convert.ToBase64String(memoryStream.ToArray());
+                }
+
+                var dictionary = new Dictionary<string, string>
+                {
+                    { "AuthGuid", ConfigurationManager.AppSettings["authGuid"] },
+                    { "Type", "Web" },
+                    { "Request", "HotLinks" },
+                    { "UserGuid", userGuid },
+                    { "StatTrace", statTrace }
+                };
+
+                return Encoding.UTF8
+                    .GetString(ExchangeDataWithCore(dictionary))
+                    .ClearRecv();
+            });
 
         public Task<Dictionary<string, dynamic>> SendUserQuestionToGetSuggestAnswer(string userQuestion) =>
             Task.Run(() =>
