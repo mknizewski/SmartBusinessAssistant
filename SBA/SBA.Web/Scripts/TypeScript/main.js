@@ -28,6 +28,18 @@ class AdjustLinkOnReady {
         return new AdjustLinkOnReady();
     }
     DoLogic() {
+        $.ajax({
+            url: "/Home/GetFastLinks",
+            method: "GET",
+            success: function (data) {
+                Helpers.SetVisible("#linksSpinner", false);
+                $("#links").html(data);
+            },
+            error: function (data) {
+                Helpers.SetVisible("#linksSpinner", false);
+                $("#links").text("W danej chwili funkcja szybkich linków jest niedostępna. Przepraszamy.");
+            }
+        });
     }
 }
 //# sourceMappingURL=main.js.map

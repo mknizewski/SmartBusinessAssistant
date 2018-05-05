@@ -12,6 +12,11 @@ namespace SBA.Core.BOL.Infrastructure
         internal static core Core => core.Default;
         internal static ThreadSupervisior Supervisior;
 
+        private static string[] _spinner = new string[]
+        {
+            "|", "/", "--", "\\", "|", "/", "--", "\\"
+        };
+
         public static void InitDatabase()
         {
             var context = SimpleFactory.Get<SbaInferenceContext>();
@@ -37,45 +42,22 @@ namespace SBA.Core.BOL.Infrastructure
             Console.SetCursorPosition(0, currentLineCursor);
         }
 
-        public static void ProcessingScreen(string loadingMessage)
+        public static void ProcessingScreen(string loadingMessage, ref int iterator)
         {
-            Console.WriteLine($"{loadingMessage} |");
-            Thread.Sleep(150);
-            ClearCurrentConsoleLine();
+            if (iterator == _spinner.Length)
+                iterator = 0;
 
-            Console.WriteLine($"{loadingMessage} /");
+            Console.WriteLine($"{loadingMessage} {_spinner[iterator]}");
             Thread.Sleep(150);
             ClearCurrentConsoleLine();
-
-            Console.WriteLine($"{loadingMessage} --");
-            Thread.Sleep(150);
-            ClearCurrentConsoleLine();
-
-            Console.WriteLine($"{loadingMessage} \\");
-            Thread.Sleep(150);
-            ClearCurrentConsoleLine();
-
-            Console.WriteLine($"{loadingMessage} |");
-            Thread.Sleep(150);
-            ClearCurrentConsoleLine();
-
-            Console.WriteLine($"{loadingMessage} /");
-            Thread.Sleep(150);
-            ClearCurrentConsoleLine();
-
-            Console.WriteLine($"{loadingMessage} --");
-            Thread.Sleep(150);
-            ClearCurrentConsoleLine();
-
-            Console.WriteLine($"{loadingMessage} \\");
-            Thread.Sleep(150);
-            ClearCurrentConsoleLine();
+            iterator++;
         }
 
         public static void RunTask(Action action, string loadingMessage)
         {
+            int iterator = 0;
             var task = Task.Run(() => action());
-            while (!task.IsCompleted) { ProcessingScreen(loadingMessage); }
+            while (!task.IsCompleted) { ProcessingScreen(loadingMessage, ref iterator); }
             Console.WriteLine($"{loadingMessage} OK");
         }
 

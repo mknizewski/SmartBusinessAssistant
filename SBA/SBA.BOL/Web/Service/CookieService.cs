@@ -25,7 +25,7 @@ namespace SBA.BOL.Web.Service
         {
             lock (_lockObject)
             {
-                string webLogPath = string.Format(ConfigurationManager.AppSettings[nameof(webLogPath)], DateTime.Now.ToString("yyyy.MM.dd"));
+                string webLogPath = $"{AppDomain.CurrentDomain.BaseDirectory}{string.Format(ConfigurationManager.AppSettings[nameof(webLogPath)], DateTime.Now.ToString("yyyy.MM.dd"))}";
                 string webLogDirectory = Path.GetDirectoryName(webLogPath);
 
                 if (!Directory.Exists(webLogDirectory))
@@ -38,7 +38,7 @@ namespace SBA.BOL.Web.Service
 
         public void SendLogsToCore()
         {
-            string webLogPath = string.Format(ConfigurationManager.AppSettings[nameof(webLogPath)], DateTime.Now.ToString("yyyy.MM.dd"));
+            string webLogPath = $"{AppDomain.CurrentDomain.BaseDirectory}{string.Format(ConfigurationManager.AppSettings[nameof(webLogPath)], DateTime.Now.ToString("yyyy.MM.dd"))}";
             string webCurrentLogDirectory = Path.GetDirectoryName(webLogPath);
             string webLogDirectory = Path.GetDirectoryName(webCurrentLogDirectory);
             var cookieData = SimpleFactory.Get<List<string>>();
@@ -51,7 +51,7 @@ namespace SBA.BOL.Web.Service
                     directoryName == DateTime.Now.ToString("yyyy.MM.dd"))
                     continue;
 
-                string logPath = string.Format(ConfigurationManager.AppSettings[nameof(webLogPath)], directoryName);
+                string logPath = $"{AppDomain.CurrentDomain.BaseDirectory}{string.Format(ConfigurationManager.AppSettings[nameof(webLogPath)], directoryName)}";
                 using (var streamReader = SimpleFactory.Get<StreamReader>(SimpleFactory.Get<FileStream>(logPath, FileMode.Open, FileAccess.Read)))
                 {
                     while (streamReader.Peek() >= 0)
