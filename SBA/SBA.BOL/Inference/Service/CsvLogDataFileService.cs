@@ -9,11 +9,19 @@ namespace SBA.BOL.Inference.Service
     {
         CsvDataFile GetCsv(string csvPath);
         void SaveCsv(CsvDataFile csvDataFile, string csvPath);
+        string GetTempCsvWithUserLogs(List<CsvDataFile.CsvDataFileRow> csvDataFileRows, string csvPath);
+        void DeleteTempCsv(string tempCsvFile);
     }
 
     public class CsvLogDataFileService : ICsvLogDataFileService
     {
         private static readonly object _lockObject = new object();
+
+        public void DeleteTempCsv(string tempCsvFile)
+        {
+            if (File.Exists(tempCsvFile))
+                File.Delete(tempCsvFile);
+        }
 
         public CsvDataFile GetCsv(string csvPath)
         {
@@ -32,7 +40,7 @@ namespace SBA.BOL.Inference.Service
                         {
                             SessionId = Convert.ToInt32(splited[0]),
                             UrlId = Convert.ToInt32(splited[1]),
-                            IsVisited = Convert.ToBoolean(Convert.ToInt32(splited[2]))
+                            VisitCount = Convert.ToDouble(splited[2])
                         });
                     }
                 }
@@ -41,12 +49,23 @@ namespace SBA.BOL.Inference.Service
             return new CsvDataFile { Rows = csvRows };
         }
 
+        public string GetTempCsvWithUserLogs(List<CsvDataFile.CsvDataFileRow> csvDataFileRows, string csvPath)
+        {
+            string tempCsvFile = Path.GetTempPath() + Guid.NewGuid().ToString() + ".csv";
+            var csvFile = GetCsv(csvPath);
+
+            csvFile.Rows.AddRange(csvDataFileRows);
+            SaveCsv(csvFile, tempCsvFile);
+
+            return tempCsvFile;
+        }
+
         public void SaveCsv(CsvDataFile csvDataFile, string csvPath)
         {
             lock (_lockObject)
             {
                 using (var streamWriter = SimpleFactory.Get<StreamWriter>(SimpleFactory.Get<FileStream>(csvPath, FileMode.Create, FileAccess.Write)))
-                    csvDataFile.Rows.ForEach(row => streamWriter.WriteLine($"{row.SessionId},{row.UrlId},{Convert.ToInt32(row.IsVisited)}"));
+                    csvDataFile.Rows.ForEach(row => streamWriter.WriteLine($"{row.SessionId},{row.UrlId},{row.VisitCount}"));
             }
         }
     }
@@ -60,7 +79,7 @@ namespace SBA.BOL.Inference.Service
         {
             public int SessionId { get; set; }
             public int UrlId { get; set; }
-            public bool IsVisited { get; set; }
+            public double VisitCount { get; set; }
         }
     }
 }

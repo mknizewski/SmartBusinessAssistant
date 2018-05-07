@@ -1,6 +1,6 @@
 ﻿using SBA.BOL.Web.Models;
 using SBA.BOL.Web.Service;
-using System.Collections.Generic;
+using SBA.Web.Infrastructure.Filters;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -19,6 +19,7 @@ namespace SBA.Web.Controllers
             _clientSocketService = clientSocketService;
         }
 
+        [CookieFilter]
         public virtual ActionResult Index() =>
             View();
 
