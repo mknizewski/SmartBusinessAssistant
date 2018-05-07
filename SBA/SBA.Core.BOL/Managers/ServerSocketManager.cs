@@ -142,7 +142,7 @@ namespace SBA.Core.BOL.Managers
                     PreviousUrl = splited[4]
                 });
 
-            _webLogService.ProccessWebLogsToCsv($"{Directory.GetCurrentDirectory()}\\{Settings.Core.DataLogCsvPath}");
+            _webLogService.ProccessWebLogsToCsv(Settings.CsvPath);
             return Encoding.UTF8.GetBytes("OK");
         }
 

@@ -2,6 +2,7 @@
 using SBA.Core.BOL.ThreadsSupervisior;
 using SBA.DAL.Context.InferenceDb.Infrastructure;
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace SBA.Core.BOL.Infrastructure
     {
         internal static core Core => core.Default;
         internal static ThreadSupervisior Supervisior;
+        internal static string CsvPath => $"{Directory.GetCurrentDirectory()}\\{Core.DataLogCsvPath}";
 
         private static string[] _spinner = new string[]
         {

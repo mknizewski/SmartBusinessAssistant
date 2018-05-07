@@ -9,6 +9,7 @@ namespace SBA.DAL.Context.InferenceDb.Repository.WebLog
         List<string> GetAllLinksDistinct();
         List<Entity.WebLog> GetWebLogs();
         void SetEntityProcessed(int id);
+        int GetLastInsertedId();
     }
 
     public class WebLogRepository : BaseRepository, IWebLogRepository
@@ -18,6 +19,10 @@ namespace SBA.DAL.Context.InferenceDb.Repository.WebLog
                 .Select(x => x.CurrentUrl)
                 .Distinct()
                 .ToList();
+
+        public int GetLastInsertedId() =>
+            Queryable<Entity.WebLog>()
+                .Count();
 
         public List<Entity.WebLog> GetWebLogs() =>
             Queryable<Entity.WebLog>()

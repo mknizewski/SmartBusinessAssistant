@@ -12,6 +12,7 @@ namespace SBA.BOL.Web.Service
     {
         void AddWebLog(WebLogModel webLog);
         void ProccessWebLogsToCsv(string csvPath);
+        int GetLastInsertedId();
     }
 
     public class WebLogService : IWebLogService
@@ -69,13 +70,8 @@ namespace SBA.BOL.Web.Service
             _csvLogDataFileService.SaveCsv(csvFile, csvPath);
         }
 
-        private void ProcessLogWhenCsvRowIsExists(CsvDataFile.CsvDataFileRow csvDataFileRow)
-        {
-            if (csvDataFileRow.IsVisited)
-                return;
-
-            csvDataFileRow.IsVisited = true;
-        }
+        private void ProcessLogWhenCsvRowIsExists(CsvDataFile.CsvDataFileRow csvDataFileRow) =>
+            csvDataFileRow.VisitCount += 1.0;
 
         private void ProcessLogWhenCsvRowIsNotExists(
             CsvDataFile csvDataFile,
@@ -85,7 +81,7 @@ namespace SBA.BOL.Web.Service
             {
                 SessionId = sessionId,
                 UrlId = linkId,
-                IsVisited = true
+                VisitCount = 0.0
             });
 
         private void AddNotVisitedRowsToExistedLogs(CsvDataFile csvDataFile)
@@ -108,10 +104,13 @@ namespace SBA.BOL.Web.Service
                         {
                             SessionId = row.Key,
                             UrlId = linkId,
-                            IsVisited = false
+                            VisitCount = 0.0
                         });
                 }
             }
         }
+
+        public int GetLastInsertedId() =>
+            _webLogRepository.GetLastInsertedId();
     }
 }

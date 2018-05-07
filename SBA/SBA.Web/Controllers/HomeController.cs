@@ -1,4 +1,5 @@
 ﻿using SBA.BOL.Web.Service;
+using SBA.Web.Infrastructure.Filters;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -11,9 +12,11 @@ namespace SBA.Web.Controllers
         public HomeController(IClientSocketService clientSocketService) =>
             _clientSocketService = clientSocketService;
 
+        [CookieFilter]
         public virtual ActionResult Index() => 
             View();
 
+        [CookieFilter]
         public virtual ActionResult About() =>
             View();
 
