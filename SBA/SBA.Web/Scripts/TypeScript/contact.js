@@ -50,6 +50,9 @@ class ContactUsBtn {
         Helpers.Clear("#serverFeedback");
     }
     DoLogic(event) {
+        event.preventDefault();
+        if (!$('#contactForm').valid())
+            return;
         this.SetLoadingSectionVisible();
         var name = $("#name").val();
         var email = $("#email").val();

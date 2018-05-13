@@ -10,6 +10,7 @@ namespace SBA.Web
             bundles.Add(new ScriptBundle("~/bundles/mainJs").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.validate*",
+                        "~/bower_components/jquery-validation/src/localization/messages_pl.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/TypeScript/main.js",
