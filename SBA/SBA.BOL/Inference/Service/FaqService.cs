@@ -42,13 +42,22 @@ namespace SBA.BOL.Inference.Service
                     Propability = x.Propability
                 }).ToList());
 
-        public void AddFaqQuestion(FaqModel.Question faqQuestion) =>
+        public void AddFaqQuestion(FaqModel.Question faqQuestion)
+        {
+            var entity = _faqRespository
+                .Queryable<FaqQuestions>()
+                .FirstOrDefault(x => x.Question.ToLower() == faqQuestion.QuestionName.ToLower());
+
+            if (entity != null)
+                return;
+
             _faqRespository.AddFaqQuestion(new FaqQuestions
             {
                 AnswerId = faqQuestion.AnswerId,
                 Question = faqQuestion.QuestionName,
                 InsertTime = faqQuestion.InsertTime
             });
+        }
 
         public string GetAnswer(int answerId)
         {

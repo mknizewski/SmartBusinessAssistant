@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SBA.Core.BOL.Managers
 {
@@ -78,12 +79,13 @@ namespace SBA.Core.BOL.Managers
 
         private byte[] HandUp(Dictionary<string, string> answerDictionary)
         {
-            _faqService.AddFaqQuestion(new FaqModel.Question
+            Task.Run(() => _faqService.AddFaqQuestion(new FaqModel.Question
             {
                 AnswerId = Convert.ToInt32(answerDictionary["AnswerId"]),
                 QuestionName = answerDictionary["Question"],
                 InsertTime = DateTime.Now
-            });
+            }));
+
             return Encoding.UTF8.GetBytes("Dziękujemy za opinię.");
         }
 

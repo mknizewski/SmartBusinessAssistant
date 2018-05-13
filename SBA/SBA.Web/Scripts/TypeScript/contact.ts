@@ -59,6 +59,11 @@ class ContactUsBtn {
     }
 
     public DoLogic(event): void {
+        event.preventDefault();
+
+        if (!$('#contactForm').valid())
+            return;
+
         this.SetLoadingSectionVisible();
 
         var name = $("#name").val() as string;
