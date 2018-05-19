@@ -50,13 +50,109 @@ namespace SBA.Core.BOL.Managers
                 return (Dictionary<string, string>)binaryFormatter.Deserialize(memoryStream);
         }
 
-        /// <summary>
-        /// TODO: Obsłużyć.
-        /// </summary>
-        /// <param name="recvDictionary"></param>
         public byte[] HandleAppData(Dictionary<string, string> recvDictionary)
         {
-            return Encoding.ASCII.GetBytes("test z app");
+            string request = recvDictionary[nameof(Request)];
+            switch (request)
+            {
+                case Request.App.FaqDataAnswers:
+                    return FaqDataAnswers(recvDictionary);
+                case Request.App.FaqDataQuestions:
+                    return FaqDataQuestions(recvDictionary);
+                case Request.App.FaqDeleteAnswer:
+                    return FaqDeleteAnswer(recvDictionary);
+                case Request.App.FaqDeleteQuestion:
+                    return FaqDeleteQuestion(recvDictionary);
+                case Request.App.FaqEditAnswer:
+                    return FaqEditAnswer(recvDictionary);
+                case Request.App.FaqEditQuestion:
+                    return FaqEditQuestion(recvDictionary);
+                case Request.App.FaqAddQuestion:
+                    return FaqAddQuestion(recvDictionary);
+            }
+
+            return null;
+        }
+
+        private byte[] FaqAddQuestion(Dictionary<string, string> recvDictionary)
+        {
+            _faqService.AddFaqQuestion(new FaqModel.Question
+            {
+                AnswerId = Convert.ToInt32(recvDictionary["AnswerId"]),
+                QuestionName = recvDictionary["Question"],
+                InsertTime = DateTime.Now
+            });
+
+            return Encoding.UTF8.GetBytes("OK");
+        }
+
+        private byte[] FaqEditQuestion(Dictionary<string, string> recvDictionary)
+        {
+            _faqService.EditFaqQuestion(
+                Convert.ToInt32(recvDictionary["Id"]),
+                Convert.ToInt32(recvDictionary["AnswerId"]),
+                recvDictionary["Question"]);
+
+            return Encoding.UTF8.GetBytes("OK");
+        }
+
+        private byte[] FaqEditAnswer(Dictionary<string, string> recvDictionary)
+        {
+            _faqService.EditFaqAnswer(
+                Convert.ToInt32(recvDictionary["Id"]),
+                recvDictionary["Answer"]);
+
+            return Encoding.UTF8.GetBytes("OK");
+        }
+
+        private byte[] FaqDeleteQuestion(Dictionary<string, string> recvDictionary)
+        {
+            _faqService.DeleteFaqQuestion(Convert.ToInt32(recvDictionary["Id"]));
+            return Encoding.UTF8.GetBytes("OK");
+        }
+
+        private byte[] FaqDeleteAnswer(Dictionary<string, string> recvDictionary)
+        {
+            _faqService.DeleteFaqAnswer(Convert.ToInt32(recvDictionary["Id"]));
+            return Encoding.UTF8.GetBytes("OK");
+        }
+
+        private byte[] FaqDataAnswers(Dictionary<string, string> recvDictionary)
+        {
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            var faqAnswers = _faqService
+                .GetFaqAnswers()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "AnswerName", x.AnswerName }
+                }).ToList();
+
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, faqAnswers);
+                return memoryStream.ToArray();
+            }
+        }
+
+        public byte[] FaqDataQuestions(Dictionary<string, string> dictionary)
+        {
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            var faqQuestions = _faqService
+                .GetFaqQuestions()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "AnswerId", x.AnswerId.ToString() },
+                    { "QuestionName", x.QuestionName },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, faqQuestions);
+                return memoryStream.ToArray();
+            }
         }
 
         public byte[] HandleWebData(Dictionary<string, string> recvDictionary)
@@ -171,7 +267,13 @@ namespace SBA.Core.BOL.Managers
 
             public static class App
             {
-
+                public const string FaqDataAnswers = "FaqDataAnswers";
+                public const string FaqDataQuestions = "FaqDataQuestions";
+                public const string FaqDeleteAnswer = "FaqDeleteAnswer";
+                public const string FaqDeleteQuestion = "FaqDeleteQuestion";
+                public const string FaqEditAnswer = "FaqEditAnswer";
+                public const string FaqEditQuestion = "FaqEditQuestion";
+                public const string FaqAddQuestion = "FaqAddQuestion";
             }
         }
     }

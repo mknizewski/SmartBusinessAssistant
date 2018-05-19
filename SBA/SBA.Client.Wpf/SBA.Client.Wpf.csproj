@@ -87,9 +87,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="StatsView.xaml.cs">
-      <DependentUpon>StatsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\BuilderViewModel.cs" />
     <Compile Include="ViewModels\FaqViewModel.cs" />
@@ -161,10 +158,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="StatsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

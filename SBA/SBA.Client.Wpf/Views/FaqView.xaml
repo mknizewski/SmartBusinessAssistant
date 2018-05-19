@@ -3,15 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:Toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SBA.Client.Wpf.Views"
         mc:Ignorable="d"
         Title="Faq" Height="450" Width="1000"
         BorderThickness="3"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize"
+        ResizeMode="CanResize"
         GlowBrush="{DynamicResource AccentColorBrush}">
     <Controls:MetroWindow.Resources>
         <ResourceDictionary>
@@ -140,11 +138,70 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <TabControl>
-            <TabItem Header="Dane o FAQ" Cursor="Hand">
+            <TabItem Header="Pytania FAQ" Cursor="Hand">
                 <Grid RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display" Height="300">
-
                     <Grid.Resources>
-                        <!--  for ne metro style  -->
+                        <Style TargetType="{x:Type DataGridColumnHeadersPresenter}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeadersPresenter">
+                                        <Grid>
+                                            <Border Background="Transparent"
+                                                BorderBrush="{DynamicResource GrayBrush5}"
+                                                BorderThickness="0 0 0 3"
+                                                IsHitTestVisible="False" />
+                                            <ItemsPresenter />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0"
+                          Header="{Binding ElementName=MetroDataGrid, Path=Items.Count, Mode=OneWay}"
+                          HeaderStringFormat="{}Pobrane informacje: {0}">
+                        <DataGrid x:Name="MetroDataGrid"
+                              Margin="1"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              CanUserReorderColumns="False"
+                              CanUserResizeColumns="False"
+                              CanUserResizeRows="False"
+                              EnableColumnVirtualization="True"
+                              EnableRowVirtualization="True"
+                              IsReadOnly="False"
+                              ItemsSource="{Binding FaqCollectionQuestions}"
+                              RenderOptions.ClearTypeHint="Enabled"
+                              SelectionUnit="FullRow"
+                              TextOptions.TextFormattingMode="Display"
+                              RowEditEnding="QuestionEditRow">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
+                                                    EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                                    ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                                    Header="" />
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" />
+                                <DataGridTextColumn Binding="{Binding QuestionName, UpdateSourceTrigger=PropertyChanged}" Header="Pytanie" />
+                                <DataGridTextColumn Binding="{Binding AnswerId, UpdateSourceTrigger=PropertyChanged}" Header="Id odpowiedzi" />
+                                <DataGridTextColumn Binding="{Binding InsertTime}" IsReadOnly="True" Header="Data utworzenia" />
+                                <DataGridTemplateColumn Header="Operacje">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Tag="{Binding Id}" Style="{StaticResource AccentedSquareButtonStyle}" Click="DeleteQuestionClick">Usuń</Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Odpowiedzi FAQ" Cursor="Hand">
+                <Grid RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display" Height="300">
+                    <Grid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeadersPresenter}">
                             <Setter Property="Template">
                                 <Setter.Value>
@@ -166,9 +223,9 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0"
-                          Header="{Binding ElementName=MetroDataGrid, Path=Items.Count, Mode=OneWay}"
-                          HeaderStringFormat="{}{0} Pobrane informacje o stronie">
-                        <DataGrid x:Name="MetroDataGrid"
+                          Header="{Binding ElementName=MetroDataGridAnswers, Path=Items.Count, Mode=OneWay}"
+                          HeaderStringFormat="{}Pobrane informacje: {0}">
+                        <DataGrid x:Name="MetroDataGridAnswers"
                               Margin="2"
                               AutoGenerateColumns="False"
                               CanUserAddRows="False"
@@ -177,31 +234,32 @@
                               CanUserResizeRows="False"
                               EnableColumnVirtualization="True"
                               EnableRowVirtualization="True"
-                              IsReadOnly="True"
-                              ItemsSource="{Binding FaqCollection}"
+                              IsReadOnly="False"
+                              ItemsSource="{Binding FaqCollectionAnswers}"
                               RenderOptions.ClearTypeHint="Enabled"
                               SelectionUnit="FullRow"
-                              TextOptions.TextFormattingMode="Display">
+                              TextOptions.TextFormattingMode="Display"
+                              RowEditEnding="AnswerEditRow">
                             <DataGrid.Columns>
                                 <DataGridCheckBoxColumn Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
                                                     EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                                     ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                                     Header="" />
-                                <DataGridTextColumn Binding="{Binding Question.FullQuestionText}" Header="Pytanie" />
-                                <DataGridTextColumn Binding="{Binding SimilarQuestionQuantity.Count}" Header="Ilość" />
-                                <DataGridTextColumn Binding="{Binding Usefulness.Rank}" Header="Ranga" />
-                                <DataGridTextColumn Binding="{Binding LocalizationForFaq.LocalizationName}" Header="Lokalizacja geograficzna" />
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True" />
+                                <DataGridTextColumn Binding="{Binding AnswerName, UpdateSourceTrigger=PropertyChanged}" Header="Odpowiedź" />
+                                <DataGridTemplateColumn Header="Operacje">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Tag="{Binding Id}" Style="{StaticResource AccentedSquareButtonStyle}" Click="DeleteAnswerClick">Usuń</Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
-                    <ContentControl Grid.Row="1"
-                                Margin="4 2 2 2"
-                                HorizontalAlignment="Left"
-                                DataContext="{Binding ElementName=MetroDataGrid}"
-                                Template="{StaticResource ConfigDataTemplate}" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Zasugeruj pytanie" Cursor="Hand">
+            <TabItem Header="Nowy" Cursor="Hand">
                 <Grid Margin="100">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -212,27 +270,39 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="1" Grid.Column="1" FontSize="16" Grid.ColumnSpan="2">Zasugeruj pytanie wpisując jego treść w poniższym polu</TextBlock>
-                    <TextBox Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="3"></TextBox>
-                    <Button Grid.Row="1" Grid.Column="2"
+                    <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Grid.ColumnSpan="2">Wpisz nowe pytanie:</TextBlock>
+                    <TextBox Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3" Text="{Binding New.Question}"></TextBox>
+                    <TextBlock Grid.Row="3" Grid.Column="0" FontSize="16" Grid.ColumnSpan="2">Wybierz odpowiedź:</TextBlock>
+                    <ComboBox
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        VerticalContentAlignment="Center"
+                        Width="120"
+                        ItemsSource="{Binding AnswersIds}"
+                        SelectedValue="{Binding New.AnswerId}">
+                    </ComboBox>
+                    <Button Grid.Row="3" Grid.Column="2"
                             Cursor="Hand"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"
                             FontSize="12"
                             Width="195"
-                            Style="{StaticResource AccentedSquareButtonStyle}" Margin="0,0,0,-65">Zasugeruj pytanie</Button>
+                            Click="NewFaqSubmitClick"
+                            Style="{StaticResource AccentedSquareButtonStyle}" Margin="0,0,0,-65">Zatwierdź</Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Wróć" MouseLeftButtonUp="ReturnToHomePage" Cursor="Hand">
             </TabItem>
         </TabControl>
+        <Controls:ProgressRing Grid.Column="0" Grid.RowSpan="3" Foreground="Black" IsActive="{Binding ElementName=MetroDataGrid, Path=DataContext.IsLoading, Mode=OneWay}" Panel.ZIndex="99999" VerticalAlignment="Center" HorizontalAlignment="Center" />
         <StatusBar Grid.Row="2">
-            <StatusBarItem>Data ostatniej aktualizacji</StatusBarItem>
-            <Separator Style="{StaticResource MetroStatusBarSeparator}"></Separator>
-            <StatusBarItem>Data....</StatusBarItem>
+            <StatusBarItem Content="{Binding ElementName=MetroDataGrid, Path=DataContext.RefreshTime, Mode=OneWay}"  ContentStringFormat="{}Data ostatniej aktualizacji: {0}"></StatusBarItem>
+            <StatusBarItem Content="{Binding ElementName=MetroDataGrid, Path=DataContext.LoadStatus, Mode=OneWay}" ContentStringFormat="{}Status: {0}"></StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
-                <Button Style="{DynamicResource MetroWindowButtonStyle}" Cursor="Hand">
+                <Button Style="{DynamicResource MetroWindowButtonStyle}" Cursor="Hand" Click="Refresh">
                     <iconPacks:PackIconMaterial Kind="Refresh" />
                 </Button>
             </StatusBarItem>

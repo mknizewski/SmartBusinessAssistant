@@ -10,10 +10,15 @@ namespace SBA.BOL.Inference.Service
     public interface IFaqService
     {
         List<FaqModel.Question> GetFaqQuestions();
+        List<FaqModel.Answer> GetFaqAnswers();
         void AddFaqDecision(FaqModel.Decide faqDecission);
         void AddFaqDecisions(List<FaqModel.Decide> decides);
         string GetAnswer(int answerId);
         void AddFaqQuestion(FaqModel.Question faqQuestion);
+        void DeleteFaqAnswer(int id);
+        void DeleteFaqQuestion(int id);
+        void EditFaqAnswer(int id, string answer);
+        void EditFaqQuestion(int id, int answerId, string question);
     }
 
     public class FaqService : IFaqService
@@ -59,11 +64,31 @@ namespace SBA.BOL.Inference.Service
             });
         }
 
+        public void DeleteFaqAnswer(int id) =>
+            _faqRespository.DeleteFaqAnswer(id);
+
+        public void DeleteFaqQuestion(int id) =>
+            _faqRespository.DeleteFaqQuestion(id);
+
+        public void EditFaqAnswer(int id, string answer) =>
+            _faqRespository.EditFaqAnswer(id, answer);
+
+        public void EditFaqQuestion(int id, int answerId, string question) =>
+            _faqRespository.EditFaqQuestion(id, answerId, question);
+
         public string GetAnswer(int answerId)
         {
             var answer = _faqRespository.GetAnswer(answerId);
             return answer.Answer;
         }
+
+        public List<FaqModel.Answer> GetFaqAnswers() =>
+            _faqRespository.GetFaqAnswers()
+                .Select(x => new FaqModel.Answer
+                {
+                    Id = x.Id,
+                    AnswerName = x.Answer
+                }).ToList();
 
         public List<FaqModel.Question> GetFaqQuestions() =>
             _faqRespository.GetFaqQuestions()
