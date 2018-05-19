@@ -34,9 +34,7 @@ namespace SBA.Client.Wpf.Views
 
         private void StatsClick(object sender, RoutedEventArgs e)
         {
-            StatsView statsView = new StatsView();
-            this.Close();
-            statsView.Show();
+            
         }
 
         private async void SettingsClick(object sender, RoutedEventArgs e)
