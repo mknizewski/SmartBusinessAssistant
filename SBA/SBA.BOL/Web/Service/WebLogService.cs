@@ -4,6 +4,7 @@ using SBA.BOL.Inference.Service;
 using SBA.BOL.Web.Models;
 using SBA.DAL.Context.InferenceDb.Entity;
 using SBA.DAL.Context.InferenceDb.Repository.WebLog;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SBA.BOL.Web.Service
@@ -13,6 +14,7 @@ namespace SBA.BOL.Web.Service
         void AddWebLog(WebLogModel webLog);
         void ProccessWebLogsToCsv(string csvPath);
         int GetLastInsertedId();
+        List<WebLogModel> GetWebLogs();
     }
 
     public class WebLogService : IWebLogService
@@ -42,7 +44,7 @@ namespace SBA.BOL.Web.Service
         {
             var csvFile = _csvLogDataFileService.GetCsv(csvPath);
             var webLogs = _webLogRepository
-                .GetWebLogs()
+                .GetNotProcessedWebLogs()
                 .GroupBy(x => x.SessionId);
 
             foreach (var sessonId in webLogs)
@@ -112,5 +114,18 @@ namespace SBA.BOL.Web.Service
 
         public int GetLastInsertedId() =>
             _webLogRepository.GetLastInsertedId();
+
+        public List<WebLogModel> GetWebLogs() =>
+            _webLogRepository
+                .GetWebLogs()
+                .Select(x => new WebLogModel
+                {
+                    Id = x.Id,
+                    SessionId = x.SessionId,
+                    CurrentTime = x.CurrentTime,
+                    ClientIp = x.ClientIp,
+                    CurrentUrl = x.CurrentUrl,
+                    PreviousUrl = x.PreviousUrl
+                }).ToList();
     }
 }

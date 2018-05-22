@@ -69,9 +69,33 @@ namespace SBA.Core.BOL.Managers
                     return FaqEditQuestion(recvDictionary);
                 case Request.App.FaqAddQuestion:
                     return FaqAddQuestion(recvDictionary);
+                case Request.App.Logs:
+                    return SendLogsToApp(recvDictionary);
             }
 
             return null;
+        }
+
+        private byte[] SendLogsToApp(Dictionary<string, string> recvDictionary)
+        {
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            var logs = _webLogService
+                .GetWebLogs()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "SessionId", x.SessionId.ToString() },
+                    { "CurrentTime", x.CurrentTime },
+                    { "ClientIp", x.ClientIp },
+                    { "CurrentUrl", x.CurrentUrl },
+                    { "PreviousUrl", x.PreviousUrl }
+                }).ToList();
+
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, logs);
+                return memoryStream.ToArray();
+            }
         }
 
         private byte[] FaqAddQuestion(Dictionary<string, string> recvDictionary)
@@ -274,6 +298,7 @@ namespace SBA.Core.BOL.Managers
                 public const string FaqEditAnswer = "FaqEditAnswer";
                 public const string FaqEditQuestion = "FaqEditQuestion";
                 public const string FaqAddQuestion = "FaqAddQuestion";
+                public const string Logs = "Logs";
             }
         }
     }

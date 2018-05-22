@@ -42,31 +42,41 @@
             <ColumnDefinition Width="430*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="83*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="20*" />
             <RowDefinition Height="259*" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Column="1"
-                       VerticalAlignment="Center"
+                       VerticalAlignment="Bottom"
                        FontFamily="Segoe UI"
                        FontSize="30"
                        FontWeight="Light"
                        Foreground="{DynamicResource BlackBrush}"
-                       Text="Witaj w panelu klienckim" />
+                       Text="Witaj właścicielu" />
 
-        <WrapPanel Grid.Row="1"
+        <TextBlock Grid.Column="2"
+                   Grid.Row="1"
+                       VerticalAlignment="Center"
+                       FontFamily="Segoe UI"
+                       FontSize="22"
+                       FontWeight="Light"
+                       Foreground="{DynamicResource BlackBrush}"
+                       Text="Co dziś chesz zrobić?" />
+        
+        <WrapPanel Grid.Row="2"
                        Grid.Column="1"
                        Width="940"
                        Height="382"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top">
-            <Controls:Tile Title="Artykuły"
+            <Controls:Tile Title="Rekomendacja treści"
                                Cursor="Hand"
                                Click="ArticleClick"
                                Margin="3"
                                Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}"
                                Background="Teal"
-                               HorizontalTitleAlignment="Right"
+                               HorizontalTitleAlignment="Left"
                                Style="{StaticResource LargeTileStyle}">
                 <iconPacks:PackIconOcticons Width="40"
                                               Height="40"
@@ -82,38 +92,36 @@
                                                    Height="40"
                                                    Kind="CommentQuestion" />
             </Controls:Tile>
+            <Controls:Tile Title="Wiadomości"
+                               Cursor="Hand"
+                               Click="AboutProgramClick"
+                               Background="DarkSlateGray"
+                               Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}"
+                               Style="{StaticResource SmallTileStyle}">
+                <iconPacks:PackIconFontAwesome Width="40"
+                                              Height="40"
+                                              Kind="BoxSolid" />
+            </Controls:Tile>
             <Controls:Tile Title="O programie"
                                Cursor="Hand"
                                Click="AboutProgramClick"
                                Background="BlueViolet"
                                Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}"
-                               Style="{StaticResource LargeTileStyle}">
+                               Style="{StaticResource SmallTileStyle}">
                 <iconPacks:PackIconFontAwesome Width="40"
                                               Height="40"
                                               Kind="InfoCircleSolid" />
             </Controls:Tile>
-            <Controls:Tile Title="Buildery i clikery"
+            <Controls:Tile Title="Logi"
                                Cursor="Hand"
                                Click="BuilderClick"
                                Background="DarkOrange"
-                               HorizontalTitleAlignment="Right"
+                               HorizontalTitleAlignment="Left"
                                Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}"
                                Style="{StaticResource LargeTileStyle}">
                 <iconPacks:PackIconFontAwesome Width="40"
                                               Height="40"
                                               Kind="GavelSolid" />
-            </Controls:Tile>
-            <Controls:Tile Title="Statystyki"
-                               Cursor="Hand"
-                               IsEnabled="False"
-                               Click="StatsClick"
-                               Background="SaddleBrown"
-                               HorizontalTitleAlignment="Center"
-                               Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}"
-                               Style="{StaticResource SmallTileStyle}"
-                               TitleFontSize="16"
-                               VerticalTitleAlignment="Top">
-                <iconPacks:PackIconMaterial Width="40" Height="40" Kind="ChartBar" />
             </Controls:Tile>
             <Controls:Tile Title="Ustawienia"
                                Cursor="Hand"
@@ -125,15 +133,25 @@
                                                 Height="40"
                                                 Kind="Settings" />
             </Controls:Tile>
-            <Controls:Tile Title="O nas"
+            <Controls:Tile Title="Twórcy"
                                Cursor="Hand"
                                Click="AboutUsClick"
                                Background="DarkOliveGreen"
                                Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}"
-                               Style="{StaticResource LargeTileStyle}">
+                               Style="{StaticResource SmallTileStyle}">
                 <iconPacks:PackIconModern Width="40"
                                               Height="40"
                                               Kind="PeopleMultiple" />
+            </Controls:Tile>
+            <Controls:Tile Title="Wyjście"
+                               Cursor="Hand"
+                               Background="IndianRed"
+                               Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}"
+                               Style="{StaticResource LargeTileStyle}"
+                               Click="ExitClick">
+                <iconPacks:PackIconModern Width="40"
+                                              Height="40"
+                                              Kind="Close" />
             </Controls:Tile>
         </WrapPanel>
     </Grid>

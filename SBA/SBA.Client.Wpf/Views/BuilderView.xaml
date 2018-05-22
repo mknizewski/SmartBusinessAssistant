@@ -3,12 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:Toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SBA.Client.Wpf.Views"
         mc:Ignorable="d"
-        Title="Buildery i Clickery" Height="450" Width="1000"
+        Title="Logi" Height="450" Width="1000"
         BorderThickness="3"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
@@ -136,7 +134,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <TabControl>
-            <TabItem Header="Dane buildera" Cursor="Hand">
+            <TabItem Header="Logi" Cursor="Hand">
                 <Grid RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display" Height="300">
 
                     <Grid.Resources>
@@ -157,13 +155,17 @@
                             </Setter>
                         </Style>
                     </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="73*"/>
+                        <ColumnDefinition Width="911*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0"
                           Header="{Binding ElementName=MetroDataGrid, Path=Items.Count, Mode=OneWay}"
-                          HeaderStringFormat="{}{0} Pobrane informacje o stronie">
+                          HeaderStringFormat="{}Pobrane informacje: {0}" Grid.ColumnSpan="2">
                         <DataGrid x:Name="MetroDataGrid"
                               Margin="2"
                               AutoGenerateColumns="False"
@@ -174,7 +176,7 @@
                               EnableColumnVirtualization="True"
                               EnableRowVirtualization="True"
                               IsReadOnly="True"
-                              ItemsSource="{Binding BuilderCollection}"
+                              ItemsSource="{Binding LogsCollection}"
                               RenderOptions.ClearTypeHint="Enabled"
                               SelectionUnit="FullRow"
                               TextOptions.TextFormattingMode="Display">
@@ -183,51 +185,25 @@
                                                     EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                                     ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                                     Header="" />
-                                <DataGridTextColumn Binding="{Binding FullPath.FullPathText}" Header="Ścieżka" />
-                                <DataGridTextColumn Binding="{Binding PathQuantity.Count}" Header="Ilość" />
-                                <DataGridTextColumn Binding="{Binding LocalizationForBuilder.LocalizationName}" Header="Lokalizacja geograficzna" />
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
+                                <DataGridTextColumn Binding="{Binding SessionId}" Header="Id Sesji" />
+                                <DataGridTextColumn Binding="{Binding CurrentTime}" Header="Data utworzenia" />
+                                <DataGridTextColumn Binding="{Binding ClientIp}" Header="Ip Klienta" />
+                                <DataGridTextColumn Binding="{Binding CurrentUrl}" Header="URL" />
+                                <DataGridTextColumn Binding="{Binding PreviousUrl}" Header="Poprzedni URL" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
-                    <ContentControl Grid.Row="1"
-                                Margin="4 2 2 2"
-                                HorizontalAlignment="Left"
-                                DataContext="{Binding ElementName=MetroDataGrid}"
-                                Template="{StaticResource ConfigDataTemplate}" />
-                </Grid>
-            </TabItem>
-            <TabItem Header="Zasugeruj zmiany" Cursor="Hand">
-                <Grid Margin="100">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="1" Grid.Column="1" FontSize="16" Grid.ColumnSpan="2">Zasugeruj przebudowę strony, wpisując wskazówki jego właścicielowi</TextBlock>
-                    <TextBox Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="3"></TextBox>
-                    <Button Grid.Row="2" Grid.Column="2"
-                            Cursor="Hand"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Bottom"
-                            FontSize="12"
-                            Width="195"
-                            Style="{StaticResource AccentedSquareButtonStyle}" Margin="0,0,0,-33">Zasugeruj przebudowę</Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Wróć" MouseLeftButtonUp="ReturnToHomePage" Cursor="Hand">
             </TabItem>
         </TabControl>
         <StatusBar Grid.Row="2">
-            <StatusBarItem>Data ostatniej aktualizacji</StatusBarItem>
-            <Separator Style="{StaticResource MetroStatusBarSeparator}"></Separator>
-            <StatusBarItem>Data....</StatusBarItem>
+            <StatusBarItem Content="{Binding ElementName=MetroDataGrid, Path=DataContext.LoadDate, Mode=OneWay}"  ContentStringFormat="{}Data ostatniej aktualizacji: {0}"></StatusBarItem>
+            <StatusBarItem Content="{Binding ElementName=MetroDataGrid, Path=DataContext.LoadStatus, Mode=OneWay}" ContentStringFormat="{}Status: {0}"></StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
-                <Button Style="{DynamicResource MetroWindowButtonStyle}" Cursor="Hand">
+                <Button Style="{DynamicResource MetroWindowButtonStyle}" Cursor="Hand" Click="RefreshClick">
                     <iconPacks:PackIconMaterial Kind="Refresh" />
                 </Button>
             </StatusBarItem>

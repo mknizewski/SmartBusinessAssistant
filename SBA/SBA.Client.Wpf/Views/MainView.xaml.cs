@@ -6,10 +6,8 @@ namespace SBA.Client.Wpf.Views
 {
     public partial class MainView : MetroWindow
     {
-        public MainView()
-        {
+        public MainView() => 
             InitializeComponent();
-        }
 
         private void ArticleClick(object sender, RoutedEventArgs e)
         {
@@ -32,24 +30,16 @@ namespace SBA.Client.Wpf.Views
             faqView.Show();
         }
 
-        private void StatsClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private async void SettingsClick(object sender, RoutedEventArgs e)
-        {
+        private async void SettingsClick(object sender, RoutedEventArgs e) => 
             await this.ShowChildWindowAsync(new SettingsChildView() { IsModal = true, AllowMove = true }, ChildWindowManager.OverlayFillBehavior.FullWindow);
-        }
 
-        private async void AboutProgramClick(object sender, RoutedEventArgs e)
-        {
+        private async void AboutProgramClick(object sender, RoutedEventArgs e) => 
             await this.ShowChildWindowAsync(new AboutProgramChildView() { IsModal = true, AllowMove = true }, ChildWindowManager.OverlayFillBehavior.FullWindow);
-        }
 
-        private async void AboutUsClick(object sender, RoutedEventArgs e)
-        {
+        private async void AboutUsClick(object sender, RoutedEventArgs e) => 
             await this.ShowChildWindowAsync(new AboutUsChildView() { IsModal = true, AllowMove = true }, ChildWindowManager.OverlayFillBehavior.FullWindow);
-        }
+
+        private void ExitClick(object sender, RoutedEventArgs e) => 
+            Close();
     }
 }
