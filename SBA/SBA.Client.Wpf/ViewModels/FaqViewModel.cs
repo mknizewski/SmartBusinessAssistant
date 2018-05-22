@@ -177,7 +177,7 @@ namespace SBA.Client.Wpf.ViewModels
                     throw new Exception("Proszę wybrać odpowiedź.");
 
                 _clientSocketManager.AddQuestion(_new.Question, _new.AnswerId);
-                New = new FaqModel.New();
+                New = SimpleFactory.Get<FaqModel.New>();
 
                 MessageBox.Show("Poprawnie dodano nowe pytanie");
             }

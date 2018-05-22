@@ -11,6 +11,7 @@ namespace SBA.Client.Wpf.BOL.Managers
     {
         List<Dictionary<string, string>> GetFaqsAnswers();
         List<Dictionary<string, string>> GetFaqsQuestions();
+        List<Dictionary<string, string>> GetLogs();
         void DeleteQuestion(string id);
         void DeleteAnswer(string id);
         void EditAnswer(string id, string answer);
@@ -70,6 +71,7 @@ namespace SBA.Client.Wpf.BOL.Managers
 
             clientSocket.Connect(coreHost, Convert.ToInt32(corePort));
             clientSocket.Send(sendBytes);
+            clientSocket.ReceiveBufferSize *= 12; // Tymczasowe, ponieważ nie ma czasu jak zawsze
 
             byte[] serverData = new byte[clientSocket.ReceiveBufferSize];
             clientSocket.Receive(serverData);
@@ -146,6 +148,21 @@ namespace SBA.Client.Wpf.BOL.Managers
             };
 
             var dataFromCore = ExchangeDataWithCore(sendDictionary);
+        }
+
+        public List<Dictionary<string, string>> GetLogs()
+        {
+            var sendDictionary = new Dictionary<string, string>
+            {
+                { "AuthGuid", app.Default.authGuid },
+                { "Type", "App" },
+                { "Request", "Logs" }
+            };
+
+            var dataFromCore = ExchangeDataWithCore(sendDictionary);
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>(dataFromCore))
+                return (List<Dictionary<string, string>>)binaryFormatter.Deserialize(memoryStream);
         }
     }
 }

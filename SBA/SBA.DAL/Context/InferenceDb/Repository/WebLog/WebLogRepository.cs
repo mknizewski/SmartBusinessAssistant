@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SBA.DAL.Context.InferenceDb.Entity;
 
 namespace SBA.DAL.Context.InferenceDb.Repository.WebLog
 {
@@ -7,6 +8,7 @@ namespace SBA.DAL.Context.InferenceDb.Repository.WebLog
     {
         void SaveWebLog(Entity.WebLog webLog);
         List<string> GetAllLinksDistinct();
+        List<Entity.WebLog> GetNotProcessedWebLogs();
         List<Entity.WebLog> GetWebLogs();
         void SetEntityProcessed(int id);
         int GetLastInsertedId();
@@ -24,9 +26,13 @@ namespace SBA.DAL.Context.InferenceDb.Repository.WebLog
             Queryable<Entity.WebLog>()
                 .Count();
 
-        public List<Entity.WebLog> GetWebLogs() =>
+        public List<Entity.WebLog> GetNotProcessedWebLogs() =>
             Queryable<Entity.WebLog>()
                 .Where(x => !x.IsProcessed)
+                .ToList();
+
+        public List<Entity.WebLog> GetWebLogs() =>
+            Queryable<Entity.WebLog>()
                 .ToList();
 
         public void SaveWebLog(Entity.WebLog webLog)

@@ -76,6 +76,7 @@ namespace SBA.Core.BOL.Threads.Socket
                 }
                 finally
                 {
+                    socketHandler.SendBufferSize = sendBytes.Length;
                     socketHandler.Send(sendBytes);
                     socketHandler.SendTimeout = -1;
 
