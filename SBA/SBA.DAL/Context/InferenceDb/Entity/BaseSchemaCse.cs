@@ -22,6 +22,10 @@ namespace SBA.DAL.Context.InferenceDb.Entity
 
         public DateTime InsertTime { get; set; }
 
+        public bool IsShowed { get; set; }
+
+        public bool IsFavorite { get; set; }
+
         public virtual CseData CseData { get; set; }
     }
 }

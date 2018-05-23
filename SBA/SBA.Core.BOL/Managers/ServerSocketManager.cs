@@ -5,6 +5,7 @@ using SBA.BOL.Web.Service;
 using SBA.Core.BOL.Infrastructure;
 using SBA.Core.BOL.Threads.FaqAnswerAdjusting;
 using SBA.Core.BOL.Threads.HotLinksRecommender;
+using SBA.DAL.Context.InferenceDb.Entity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,12 +29,14 @@ namespace SBA.Core.BOL.Managers
         private readonly IFaqService _faqService;
         private readonly IWebLogService _webLogService;
         private readonly IWebSessionService _webSessionService;
+        private readonly ICseStructuresService _cseStructuresService;
 
         public ServerSocketManager()
         {
             _faqService = SimpleFactory.Get<FaqService, IFaqService>();
             _webLogService = SimpleFactory.Get<WebLogService, IWebLogService>();
             _webSessionService = SimpleFactory.Get<WebSessionService, IWebSessionService>();
+            _cseStructuresService = SimpleFactory.Get<CseStructuresService, ICseStructuresService>();
         }
 
         public void AuthorizeConnection(Dictionary<string, string> recvDictionary, string[] authGuids)
@@ -71,9 +74,78 @@ namespace SBA.Core.BOL.Managers
                     return FaqAddQuestion(recvDictionary);
                 case Request.App.Logs:
                     return SendLogsToApp(recvDictionary);
+                case Request.App.RecommendData:
+                    return RecommendData(recvDictionary);
             }
 
             return null;
+        }
+
+        private byte[] RecommendData(Dictionary<string, string> recvDictionary)
+        {
+            var notShowedDataDictionary = SimpleFactory.Get<List<Dictionary<string, string>>>();
+            var notShowedArticles = _cseStructuresService
+                .GetNotShowedData<ArticleCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(ArticleCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            var notShowedEvents = _cseStructuresService
+                .GetNotShowedData<EventCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(EventCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            var notShowedOrganizations = _cseStructuresService
+                .GetNotShowedData<OrganizationCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(OrganizationCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            var notShowedPersons = _cseStructuresService
+                .GetNotShowedData<PersonCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(PersonCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            var notShowedVideos = _cseStructuresService
+                .GetNotShowedData<VideoCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(VideoCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            notShowedDataDictionary.AddRange(notShowedArticles);
+            notShowedDataDictionary.AddRange(notShowedEvents);
+            notShowedDataDictionary.AddRange(notShowedOrganizations);
+            notShowedDataDictionary.AddRange(notShowedPersons);
+            notShowedDataDictionary.AddRange(notShowedVideos);
+
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, notShowedDataDictionary);
+                return memoryStream.ToArray();
+            }
         }
 
         private byte[] SendLogsToApp(Dictionary<string, string> recvDictionary)
@@ -299,6 +371,7 @@ namespace SBA.Core.BOL.Managers
                 public const string FaqEditQuestion = "FaqEditQuestion";
                 public const string FaqAddQuestion = "FaqAddQuestion";
                 public const string Logs = "Logs";
+                public const string RecommendData = "RecommendData";
             }
         }
     }

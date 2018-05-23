@@ -87,7 +87,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\DataDetailViewModel.cs" />
+    <Compile Include="ViewModels\RecommendationViewModel.cs" />
     <Compile Include="ViewModels\BuilderViewModel.cs" />
     <Compile Include="ViewModels\FaqViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -99,8 +100,11 @@
     <Compile Include="Views\AboutUsChildView.xaml.cs">
       <DependentUpon>AboutUsChildView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ArticleView.xaml.cs">
-      <DependentUpon>ArticleView.xaml</DependentUpon>
+    <Compile Include="Views\DataDetailView.xaml.cs">
+      <DependentUpon>DataDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecommendationView.xaml.cs">
+      <DependentUpon>RecommendationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BuilderView.xaml.cs">
       <DependentUpon>BuilderView.xaml</DependentUpon>
@@ -121,7 +125,7 @@
     <Compile Include="Controls\PortablePopup.cs" />
     <Compile Include="Controls\StringToBrushConverter.cs" />
     <Compile Include="Controls\StringToDataTemplateConverter.cs" />
-    <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\RecommendationModel.cs" />
     <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\FaqModel.cs" />
     <Compile Include="Models\TestClass.cs" />
@@ -170,7 +174,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ArticleView.xaml">
+    <Page Include="Views\DataDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecommendationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

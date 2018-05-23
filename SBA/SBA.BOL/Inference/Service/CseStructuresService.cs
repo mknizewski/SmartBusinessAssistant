@@ -13,6 +13,7 @@ namespace SBA.BOL.Inference.Service
     public interface ICseStructuresService
     {
         void StructurizeUnhandledCseData();
+        List<T> GetNotShowedData<T>() where T : class;
     }
 
     public class CseStructuresService : ICseStructuresService
@@ -107,6 +108,22 @@ namespace SBA.BOL.Inference.Service
             }
 
             return structuresList;
+        }
+
+        public List<T> GetNotShowedData<T>() where T : class
+        {
+            if (typeof(T) == typeof(ArticleCse))
+                return _cseStructuresRepository.GetNotShowedArticles() as List<T>;
+            else if (typeof(T) == typeof(EventCse))
+                return _cseStructuresRepository.GetNotShowedEvents() as List<T>;
+            else if (typeof(T) == typeof(OrganizationCse))
+                return _cseStructuresRepository.GetNotShowedOrganizations() as List<T>;
+            else if (typeof(T) == typeof(PersonCse))
+                return _cseStructuresRepository.GetNotShowedPersons() as List<T>;
+            else if (typeof(T) == typeof(VideoCse))
+                return _cseStructuresRepository.GetNotShowedVideos() as List<T>;
+
+            return null;
         }
     }
 }

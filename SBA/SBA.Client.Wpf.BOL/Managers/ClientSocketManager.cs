@@ -12,6 +12,7 @@ namespace SBA.Client.Wpf.BOL.Managers
         List<Dictionary<string, string>> GetFaqsAnswers();
         List<Dictionary<string, string>> GetFaqsQuestions();
         List<Dictionary<string, string>> GetLogs();
+        List<Dictionary<string, string>> GetRecommendData();
         void DeleteQuestion(string id);
         void DeleteAnswer(string id);
         void EditAnswer(string id, string answer);
@@ -157,6 +158,21 @@ namespace SBA.Client.Wpf.BOL.Managers
                 { "AuthGuid", app.Default.authGuid },
                 { "Type", "App" },
                 { "Request", "Logs" }
+            };
+
+            var dataFromCore = ExchangeDataWithCore(sendDictionary);
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>(dataFromCore))
+                return (List<Dictionary<string, string>>)binaryFormatter.Deserialize(memoryStream);
+        }
+
+        public List<Dictionary<string, string>> GetRecommendData()
+        {
+            var sendDictionary = new Dictionary<string, string>
+            {
+                { "AuthGuid", app.Default.authGuid },
+                { "Type", "App" },
+                { "Request", "RecommendData" }
             };
 
             var dataFromCore = ExchangeDataWithCore(sendDictionary);
