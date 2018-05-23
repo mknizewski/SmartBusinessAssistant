@@ -11,7 +11,7 @@ namespace SBA.Client.Wpf.Views
 
         private void ArticleClick(object sender, RoutedEventArgs e)
         {
-            ArticleView articleView = new ArticleView();
+            RecommendationView articleView = new RecommendationView();
             this.Close();
             articleView.Show();
         }

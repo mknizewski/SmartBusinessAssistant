@@ -1,17 +1,30 @@
 ﻿using SBA.DAL.Context.InferenceDb.Entity;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SBA.DAL.Context.InferenceDb.Repository.CseStructures
 {
     public interface ICseStructuresRepository : IBaseRepository
     {
         void AddArticle(ArticleCse articleCse);
+        List<ArticleCse> GetNotShowedArticles();
+
         void AddEvent(EventCse eventCse);
+        List<EventCse> GetNotShowedEvents();
+
         void AddOrganization(OrganizationCse organizationCse);
+        List<OrganizationCse> GetNotShowedOrganizations();
+
         void AddPerson(PersonCse personCse);
+        List<PersonCse> GetNotShowedPersons();
+
         void AddVideo(VideoCse videoCse);
+        List<VideoCse> GetNotShowedVideos();
+
         void AddSoftwareApplication(SoftwareApplicationCse softwareApplicationCse);
         void AddSoftwareSourceCoce(SoftwareSourceCodeCse softwareSourceCodeCse);
         void AddThingWithRecognizeType(ThingCse thingCse);
+
     }
 
     public class CseStructuresRepository : BaseRepository, ICseStructuresRepository
@@ -77,5 +90,30 @@ namespace SBA.DAL.Context.InferenceDb.Repository.CseStructures
 
             SaveChanges();
         }
+
+        public List<ArticleCse> GetNotShowedArticles() =>
+            Queryable<ArticleCse>()
+                .Where(x => !x.IsShowed)
+                .ToList();
+
+        public List<EventCse> GetNotShowedEvents() =>
+            Queryable<EventCse>()
+                .Where(x => !x.IsShowed)
+                .ToList();
+
+        public List<OrganizationCse> GetNotShowedOrganizations() =>
+            Queryable<OrganizationCse>()
+                .Where(x => !x.IsShowed)
+                .ToList();
+
+        public List<PersonCse> GetNotShowedPersons() =>
+            Queryable<PersonCse>()
+                .Where(x => !x.IsShowed)
+                .ToList();
+
+        public List<VideoCse> GetNotShowedVideos() =>
+            Queryable<VideoCse>()
+                .Where(x => !x.IsShowed)
+                .ToList();
     }
 }
