@@ -20,7 +20,9 @@ namespace SBA.Client.Wpf.Views
         private void Init()
         {
             DataContext = _dataContext = SimpleFactory.Get<RecommendationViewModel>();
+
             _dataContext.LoadRecommendations();
+            _dataContext.LoadFavorites();
         }
 
         private async void SettingsClick(object sender, RoutedEventArgs e) => 
@@ -50,7 +52,13 @@ namespace SBA.Client.Wpf.Views
             detailView.Show();
         }
 
-        private void RefreshClick(object sender, RoutedEventArgs e) => 
+        private void RefreshClick(object sender, RoutedEventArgs e)
+        {
             _dataContext.LoadRecommendations();
+            _dataContext.LoadFavorites();
+        }
+
+        private void RecommendClick(object sender, RoutedEventArgs e) => 
+            _dataContext.RecommendOnDemand();
     }
 }

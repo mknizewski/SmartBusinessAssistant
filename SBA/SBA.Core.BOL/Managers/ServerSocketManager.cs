@@ -4,7 +4,9 @@ using SBA.BOL.Web.Models;
 using SBA.BOL.Web.Service;
 using SBA.Core.BOL.Infrastructure;
 using SBA.Core.BOL.Threads.FaqAnswerAdjusting;
+using SBA.Core.BOL.Threads.GoogleCse;
 using SBA.Core.BOL.Threads.HotLinksRecommender;
+using SBA.Core.BOL.Threads.StructureExtractor;
 using SBA.DAL.Context.InferenceDb.Entity;
 using System;
 using System.Collections.Generic;
@@ -76,9 +78,179 @@ namespace SBA.Core.BOL.Managers
                     return SendLogsToApp(recvDictionary);
                 case Request.App.RecommendData:
                     return RecommendData(recvDictionary);
+                case Request.App.DataDetails:
+                    return DataDetails(recvDictionary);
+                case Request.App.ToFavorites:
+                    return ToFavorites(recvDictionary);
+                case Request.App.GetFavorites:
+                    return GetFavorites(recvDictionary);
+                case Request.App.RecommendOnDemand:
+                    return RecommendOnDemand(recvDictionary);
             }
 
             return null;
+        }
+
+        private byte[] RecommendOnDemand(Dictionary<string, string> recvDictionary)
+        {
+            string keywords = recvDictionary["Keywords"];
+            Settings.Supervisior.ForceRun<Nothing>(nameof(GoogleCseThread), keywords);
+            Settings.Supervisior.ForceRun<Nothing>(nameof(StructureExtractorThread));
+
+            return Encoding.UTF8.GetBytes("OK");
+        }
+
+        private byte[] GetFavorites(Dictionary<string, string> recvDictionary)
+        {
+            var favoritesDataDictionary = SimpleFactory.Get<List<Dictionary<string, string>>>();
+            var favoritesArticles = _cseStructuresService
+                .GetFavoritesData<ArticleCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(ArticleCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            var favoritesEvents = _cseStructuresService
+                .GetFavoritesData<EventCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(EventCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            var favoritesOrganizations = _cseStructuresService
+                .GetFavoritesData<OrganizationCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(OrganizationCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            var favoritesPersons = _cseStructuresService
+                .GetFavoritesData<PersonCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(PersonCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            var favoritesVideos = _cseStructuresService
+                .GetFavoritesData<VideoCse>()
+                .Select(x => new Dictionary<string, string>
+                {
+                    { "Id", x.Id.ToString() },
+                    { "Type", nameof(VideoCse) },
+                    { "Title", x.Title },
+                    { "InsertTime", x.InsertTime.ToString("yyyy-MM-dd HH:mm") }
+                }).ToList();
+
+            favoritesDataDictionary.AddRange(favoritesArticles);
+            favoritesDataDictionary.AddRange(favoritesEvents);
+            favoritesDataDictionary.AddRange(favoritesOrganizations);
+            favoritesDataDictionary.AddRange(favoritesPersons);
+            favoritesDataDictionary.AddRange(favoritesVideos);
+
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, favoritesDataDictionary);
+                return memoryStream.ToArray();
+            }
+        }
+
+        private byte[] ToFavorites(Dictionary<string, string> recvDictionary)
+        {
+            int id = Convert.ToInt32(recvDictionary["Id"]);
+            string type = recvDictionary["DataType"];
+            bool returnType;
+
+            if (type == "Article")
+                returnType = _cseStructuresService.SetToFavorites<ArticleCse>(id);
+            else if (type == "Event")
+                returnType = _cseStructuresService.SetToFavorites<EventCse>(id);
+            else if (type == "Organization")
+                returnType = _cseStructuresService.SetToFavorites<OrganizationCse>(id);
+            else if (type == "Person")
+                returnType = _cseStructuresService.SetToFavorites<PersonCse>(id);
+            else
+                returnType = _cseStructuresService.SetToFavorites<VideoCse>(id);
+
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, returnType);
+                return memoryStream.ToArray();
+            }
+        }
+
+        private byte[] DataDetails(Dictionary<string, string> recvDictionary)
+        {
+            int id = Convert.ToInt32(recvDictionary["Id"]);
+            string type = recvDictionary["DataType"];
+            var returnData = SimpleFactory.Get<Dictionary<string, string>>();
+
+            if (type == "Article")
+            {
+                var articleData = _cseStructuresService.GetData<ArticleCse>(id);
+                articleData
+                    .GetType()
+                    .GetProperties()
+                    .ToList()
+                    .ForEach(x => returnData.Add(x.Name, x.GetValue(articleData, null)?.ToString()));
+                
+            }
+            else if (type == "Event")
+            {
+                var eventData = _cseStructuresService.GetData<EventCse>(id);
+                eventData
+                    .GetType()
+                    .GetProperties()
+                    .ToList()
+                    .ForEach(x => returnData.Add(x.Name, x.GetValue(eventData, null)?.ToString()));
+            }
+            else if (type == "Organization")
+            {
+                var organizationData = _cseStructuresService.GetData<OrganizationCse>(id);
+                organizationData
+                    .GetType()
+                    .GetProperties()
+                    .ToList()
+                    .ForEach(x => returnData.Add(x.Name, x.GetValue(organizationData, null)?.ToString()));
+            }
+            else if (type == "Person")
+            {
+                var personData = _cseStructuresService.GetData<PersonCse>(id);
+                personData
+                    .GetType()
+                    .GetProperties()
+                    .ToList()
+                    .ForEach(x => returnData.Add(x.Name, x.GetValue(personData, null)?.ToString()));
+            }
+            else
+            {
+                var videoData = _cseStructuresService.GetData<VideoCse>(id);
+                videoData
+                    .GetType()
+                    .GetProperties()
+                    .ToList()
+                    .ForEach(x => returnData.Add(x.Name, x.GetValue(videoData, null)?.ToString()));
+            }
+
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>())
+            {
+                binaryFormatter.Serialize(memoryStream, returnData);
+                return memoryStream.ToArray();
+            }
         }
 
         private byte[] RecommendData(Dictionary<string, string> recvDictionary)
@@ -372,6 +544,10 @@ namespace SBA.Core.BOL.Managers
                 public const string FaqAddQuestion = "FaqAddQuestion";
                 public const string Logs = "Logs";
                 public const string RecommendData = "RecommendData";
+                public const string DataDetails = "DataDetails";
+                public const string ToFavorites = "ToFavorites";
+                public const string GetFavorites = "GetFavorites";
+                public const string RecommendOnDemand = "RecommendOnDemand";
             }
         }
     }

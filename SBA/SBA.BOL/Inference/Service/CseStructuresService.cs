@@ -14,6 +14,9 @@ namespace SBA.BOL.Inference.Service
     {
         void StructurizeUnhandledCseData();
         List<T> GetNotShowedData<T>() where T : class;
+        List<T> GetFavoritesData<T>() where T : ThingCse;
+        T GetData<T>(int id) where T : ThingCse;
+        bool SetToFavorites<T>(int id) where T : ThingCse;
     }
 
     public class CseStructuresService : ICseStructuresService
@@ -125,5 +128,14 @@ namespace SBA.BOL.Inference.Service
 
             return null;
         }
+
+        public T GetData<T>(int id) where T : ThingCse => 
+            _cseStructuresRepository.GetData<T>(id);
+
+        public bool SetToFavorites<T>(int id) where T : ThingCse =>
+            _cseStructuresRepository.SetToFavorites<T>(id);
+
+        public List<T> GetFavoritesData<T>() where T : ThingCse =>
+            _cseStructuresRepository.GetFavoritesData<T>();
     }
 }

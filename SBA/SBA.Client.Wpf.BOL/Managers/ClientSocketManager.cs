@@ -13,11 +13,15 @@ namespace SBA.Client.Wpf.BOL.Managers
         List<Dictionary<string, string>> GetFaqsQuestions();
         List<Dictionary<string, string>> GetLogs();
         List<Dictionary<string, string>> GetRecommendData();
+        List<Dictionary<string, string>> GetFavorites();
+        Dictionary<string, string> GetDataDetails(string dataTag);
         void DeleteQuestion(string id);
         void DeleteAnswer(string id);
         void EditAnswer(string id, string answer);
         void EditQuestion(string id, string answerId, string question);
         void AddQuestion(string question, string answerId);
+        void RecommendOnDemand(string keywords);
+        bool SetToFavorites(string tagId);
     }
 
     public class ClientSocketManager : IClientSocketManager
@@ -179,6 +183,70 @@ namespace SBA.Client.Wpf.BOL.Managers
             var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
             using (var memoryStream = SimpleFactory.Get<MemoryStream>(dataFromCore))
                 return (List<Dictionary<string, string>>)binaryFormatter.Deserialize(memoryStream);
+        }
+
+        public Dictionary<string, string> GetDataDetails(string dataTag)
+        {
+            string[] tagSplited = dataTag.Split(',');
+            var sendDictionary = new Dictionary<string, string>
+            {
+                { "AuthGuid", app.Default.authGuid },
+                { "Type", "App" },
+                { "Request", "DataDetails" },
+                { "Id", tagSplited[0] },
+                { "DataType", tagSplited[1] }
+            };
+
+            var dataFromCore = ExchangeDataWithCore(sendDictionary);
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>(dataFromCore))
+                return (Dictionary<string, string>)binaryFormatter.Deserialize(memoryStream);
+        }
+
+        public bool SetToFavorites(string tagId)
+        {
+            string[] tagSplited = tagId.Split(',');
+            var sendDictionary = new Dictionary<string, string>
+            {
+                { "AuthGuid", app.Default.authGuid },
+                { "Type", "App" },
+                { "Request", "ToFavorites" },
+                { "Id", tagSplited[0] },
+                { "DataType", tagSplited[1] }
+            };
+
+            var dataFromCore = ExchangeDataWithCore(sendDictionary);
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>(dataFromCore))
+                return (bool)binaryFormatter.Deserialize(memoryStream);
+        }
+
+        public List<Dictionary<string, string>> GetFavorites()
+        {
+            var sendDictionary = new Dictionary<string, string>
+            {
+                { "AuthGuid", app.Default.authGuid },
+                { "Type", "App" },
+                { "Request", "GetFavorites" }
+            };
+
+            var dataFromCore = ExchangeDataWithCore(sendDictionary);
+            var binaryFormatter = SimpleFactory.Get<BinaryFormatter>();
+            using (var memoryStream = SimpleFactory.Get<MemoryStream>(dataFromCore))
+                return (List<Dictionary<string, string>>)binaryFormatter.Deserialize(memoryStream);
+        }
+
+        public void RecommendOnDemand(string keywords)
+        {
+            var sendDictionary = new Dictionary<string, string>
+            {
+                { "AuthGuid", app.Default.authGuid },
+                { "Type", "App" },
+                { "Request", "RecommendOnDemand" },
+                { "Keywords", keywords }
+            };
+
+            var dataFromCore = ExchangeDataWithCore(sendDictionary);
         }
     }
 }
