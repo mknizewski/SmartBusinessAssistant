@@ -24,7 +24,9 @@ namespace SBA.DAL.Context.InferenceDb.Repository.CseStructures
         void AddSoftwareApplication(SoftwareApplicationCse softwareApplicationCse);
         void AddSoftwareSourceCoce(SoftwareSourceCodeCse softwareSourceCodeCse);
         void AddThingWithRecognizeType(ThingCse thingCse);
-
+        T GetData<T>(int id) where T : ThingCse;
+        List<T> GetFavoritesData<T>() where T : ThingCse;
+        bool SetToFavorites<T>(int id) where T : ThingCse;
     }
 
     public class CseStructuresRepository : BaseRepository, ICseStructuresRepository
@@ -114,6 +116,29 @@ namespace SBA.DAL.Context.InferenceDb.Repository.CseStructures
         public List<VideoCse> GetNotShowedVideos() =>
             Queryable<VideoCse>()
                 .Where(x => !x.IsShowed)
+                .ToList();
+
+        public T GetData<T>(int id) where T : ThingCse => 
+            Queryable<T>()
+                .FirstOrDefault(x => x.Id == id);
+
+        public bool SetToFavorites<T>(int id) where T : ThingCse
+        {
+            var entity = Queryable<T>()
+                .FirstOrDefault(x => x.Id == id);
+
+            if (entity.IsFavorite)
+                return false;
+
+            entity.IsFavorite = true;
+            SaveChanges();
+
+            return true;
+        }
+
+        public List<T> GetFavoritesData<T>() where T : ThingCse =>
+            Queryable<T>()
+                .Where(x => x.IsFavorite)
                 .ToList();
     }
 }

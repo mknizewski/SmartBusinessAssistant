@@ -7,16 +7,33 @@ namespace SBA.Client.Wpf.Views
     public partial class DataDetailView : MetroWindow
     {
         private DataDetailViewModel _dataContext;
+        private string _tag;
 
-        public DataDetailView(string dataId)
+        public DataDetailView(string tagId)
         {
             InitializeComponent();
-            Init();
+            Init(tagId);
         }
 
-        private void Init()
+        private void Init(string tagId)
         {
             DataContext = _dataContext = SimpleFactory.Get<DataDetailViewModel>();
+
+            _tag = tagId;
+            _dataContext.GetData(tagId);
         }
+
+        private void LikeBtn(object sender, System.Windows.RoutedEventArgs e)
+        {
+            
+        }
+
+        private void DislikeBtn(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetFavoritesBtn(object sender, System.Windows.RoutedEventArgs e) => 
+            _dataContext.SetFavorites(_tag);
     }
 }
