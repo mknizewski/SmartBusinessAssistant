@@ -76,7 +76,7 @@ namespace SBA.Client.Wpf.BOL.Managers
 
             clientSocket.Connect(coreHost, Convert.ToInt32(corePort));
             clientSocket.Send(sendBytes);
-            clientSocket.ReceiveBufferSize *= 12; // Tymczasowe, ponieważ nie ma czasu jak zawsze
+            clientSocket.ReceiveBufferSize *= 12; // Tymczasowe na wieczność, ponieważ nie ma czasu jak zawsze - jeżeli zabraknie to zwiększyć
 
             byte[] serverData = new byte[clientSocket.ReceiveBufferSize];
             clientSocket.Receive(serverData);

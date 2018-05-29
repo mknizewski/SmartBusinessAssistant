@@ -12,7 +12,7 @@ namespace SBA.Client.Wpf.BOL {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
     public sealed partial class app : global::System.Configuration.ApplicationSettingsBase {
         
         private static app defaultInstance = ((app)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new app())));
@@ -47,6 +47,27 @@ namespace SBA.Client.Wpf.BOL {
         public string authGuid {
             get {
                 return ((string)(this["authGuid"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("api/client/messages/cd04d90c-ba26-463a-9f2e-40d3a3859487")]
+        public string messagesApiPath {
+            get {
+                return ((string)(this["messagesApiPath"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44323/")]
+        public string webBasePath {
+            get {
+                return ((string)(this["webBasePath"]));
+            }
+            set {
+                this["webBasePath"] = value;
             }
         }
     }

@@ -95,13 +95,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Models\MessageModel.cs" />
     <Compile Include="ViewModels\DataDetailViewModel.cs" />
+    <Compile Include="ViewModels\MessagesViewModel.cs" />
     <Compile Include="ViewModels\RecommendationViewModel.cs" />
     <Compile Include="ViewModels\BuilderViewModel.cs" />
     <Compile Include="ViewModels\FaqViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsChildViewModel.cs" />
-    <Compile Include="ViewModels\TestPageViewModel.cs" />
     <Compile Include="Views\AboutProgramChildView.xaml.cs">
       <DependentUpon>AboutProgramChildView.xaml</DependentUpon>
     </Compile>
@@ -110,6 +111,9 @@
     </Compile>
     <Compile Include="Views\DataDetailView.xaml.cs">
       <DependentUpon>DataDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessagesView.xaml.cs">
+      <DependentUpon>MessagesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecommendationView.xaml.cs">
       <DependentUpon>RecommendationView.xaml</DependentUpon>
@@ -136,7 +140,6 @@
     <Compile Include="Models\RecommendationModel.cs" />
     <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\FaqModel.cs" />
-    <Compile Include="Models\TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DataDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessagesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
