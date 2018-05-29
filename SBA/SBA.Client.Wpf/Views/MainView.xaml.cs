@@ -41,5 +41,12 @@ namespace SBA.Client.Wpf.Views
 
         private void ExitClick(object sender, RoutedEventArgs e) => 
             Close();
+
+        private void MessagesClick(object sender, RoutedEventArgs e)
+        {
+            MessagesView messagesView = new MessagesView();
+            this.Close();
+            messagesView.Show();
+        }
     }
 }

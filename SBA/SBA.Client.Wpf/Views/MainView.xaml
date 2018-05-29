@@ -94,7 +94,7 @@
             </Controls:Tile>
             <Controls:Tile Title="Wiadomości"
                                Cursor="Hand"
-                               Click="AboutProgramClick"
+                               Click="MessagesClick"
                                Background="DarkSlateGray"
                                Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}"
                                Style="{StaticResource SmallTileStyle}">

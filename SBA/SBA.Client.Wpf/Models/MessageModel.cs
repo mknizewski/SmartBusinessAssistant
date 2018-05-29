@@ -1,6 +1,6 @@
-﻿namespace SBA.BOL.Web.Models
+﻿namespace SBA.Client.Wpf.Models
 {
-    public class ContactModel
+    public class MessageModel
     {
         public string Id { get; set; }
         public string Name { get; set; }
