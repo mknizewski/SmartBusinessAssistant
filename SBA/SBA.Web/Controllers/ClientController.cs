@@ -10,9 +10,15 @@ namespace SBA.Web.Controllers
     public class ClientController : ApiController
     {
         private readonly IContactService _contactService;
+        private readonly IArticleService _articleService;
 
-        public ClientController(IContactService contactService) => 
+        public ClientController(
+            IContactService contactService,
+            IArticleService articleService)
+        {
             _contactService = contactService;
+            _articleService = articleService;
+        }
 
         [HttpGet]
         public IEnumerable<ContactModel> Messages(string id)
@@ -24,5 +30,11 @@ namespace SBA.Web.Controllers
 
             return _contactService.GetContacts();
         }
+
+        [HttpPost]
+        public IHttpActionResult SaveArticle([FromBody]Dictionary<string, string> value) => 
+            _articleService.AddArticleFromJson(value) ?
+                     Content(HttpStatusCode.OK, true) :
+                     Content(HttpStatusCode.Unauthorized, false);
     }
 }

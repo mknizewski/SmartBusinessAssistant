@@ -1,0 +1,11 @@
+﻿@using SBA.BOL.Web.Models
+@model ArticleModel
+
+@{ ViewBag.Title = Model.Title; }
+
+<h1>@Model.Title</h1>
+<hr />
+<h4><i>@Model.InsertTime</i></h4>
+<p>
+    @Html.Raw(Model.Content)
+</p>

@@ -44,7 +44,7 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Title}" Grid.Row="0" FontSize="42" VerticalAlignment="Center" Margin="10 0 0 0" FontFamily="Segoe UI" FontWeight="Light" />
-        <wpf:HtmlPanel Grid.Row="1" Margin="10 10 10 10" Text="{Binding Body}" />
+        <wpf:HtmlPanel Grid.Row="1" Margin="10 10 10 10" Text="{Binding Body}"  />
         <WrapPanel Grid.Row="2" FlowDirection="RightToLeft">
             <Button
                 Click="SetFavoritesBtn"
@@ -63,10 +63,17 @@
             <Button
                 Click="LikeBtn"
                 Cursor="Hand"
-                Margin="0 10 0 0"
+                Margin="0 10 10 0"
                 FontSize="12"
                 Width="195"
                 Style="{StaticResource AccentedSquareButtonStyle}">Podoba się</Button>
+            <Button
+                Click="ShareBtn"
+                Cursor="Hand"
+                Margin="0 10 10 0"
+                FontSize="12"
+                Width="195"
+                Style="{StaticResource AccentedSquareButtonStyle}">Udostępnij na stronie</Button>
         </WrapPanel>
     </Grid>
 </Controls:MetroWindow>

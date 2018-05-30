@@ -28,9 +28,6 @@ namespace SBA.Web.Controllers
     public partial class NewsController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public NewsController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected NewsController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -61,9 +58,9 @@ namespace SBA.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Read()
+        public virtual System.Web.Mvc.ActionResult Article()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Read);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Article);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,22 +79,30 @@ namespace SBA.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Read = "Read";
+            public readonly string Article = "Article";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Read = "Read";
+            public const string Article = "Article";
         }
 
 
-        static readonly ActionParamsClass_Read s_params_Read = new ActionParamsClass_Read();
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Read ReadParams { get { return s_params_Read; } }
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Read
+        public class ActionParamsClass_Index
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Article s_params_Article = new ActionParamsClass_Article();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Article ArticleParams { get { return s_params_Article; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Article
         {
             public readonly string id = "id";
         }
@@ -111,8 +116,10 @@ namespace SBA.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Article = "Article";
                 public readonly string Index = "Index";
             }
+            public readonly string Article = "~/Views/News/Article.cshtml";
             public readonly string Index = "~/Views/News/Index.cshtml";
         }
     }
@@ -123,25 +130,26 @@ namespace SBA.Web.Controllers
         public T4MVC_NewsController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
+        public override System.Web.Mvc.ActionResult Index(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            IndexOverride(callInfo, id);
             return callInfo;
         }
 
         [NonAction]
-        partial void ReadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+        partial void ArticleOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Read(int id)
+        public override System.Web.Mvc.ActionResult Article(int id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Read);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Article);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ReadOverride(callInfo, id);
+            ArticleOverride(callInfo, id);
             return callInfo;
         }
 

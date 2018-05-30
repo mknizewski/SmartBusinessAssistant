@@ -14,8 +14,11 @@
     <Setting Name="messagesApiPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">api/client/messages/cd04d90c-ba26-463a-9f2e-40d3a3859487</Value>
     </Setting>
-    <Setting Name="webBasePath" Type="System.String" Scope="User">
+    <Setting Name="webBasePath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://localhost:44323/</Value>
+    </Setting>
+    <Setting Name="saveArticleApiPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">api/client/savearticle</Value>
     </Setting>
   </Settings>
 </SettingsFile>

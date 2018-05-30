@@ -1,5 +1,6 @@
 ﻿using SBA.Client.Wpf.BOL.Infrastucture;
 using SBA.Client.Wpf.BOL.Managers;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -9,13 +10,17 @@ namespace SBA.Client.Wpf.ViewModels
     public class DataDetailViewModel : INotifyPropertyChanged
     {
         private readonly IClientSocketManager _clientSocketManager;
+        private readonly IWebApiManager _webApiManager;
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        public DataDetailViewModel() => 
+        public DataDetailViewModel()
+        {
             _clientSocketManager = SimpleFactory.Get<ClientSocketManager, IClientSocketManager>();
+            _webApiManager = SimpleFactory.Get<WebApiManager, IWebApiManager>();
+        }
 
         public void GetData(string dataTag)
         {
@@ -62,6 +67,22 @@ namespace SBA.Client.Wpf.ViewModels
                 MessageBox.Show("Poprawnie dodano do ulubionych!");
             else
                 MessageBox.Show("Wybrana pozycja już jest w ulubionych.");
+        }
+
+        public void ShareArticleToWeb(string dataTag)
+        {
+            var splitedTag = dataTag.Split(',');
+            string type = splitedTag[1];
+            var dataDetails = _clientSocketManager.GetDataDetails(dataTag);
+
+            _webApiManager.SaveArticleToWebAsync(new Dictionary<string, string>
+            {
+                { "Title", _title },
+                { "Description", dataDetails["Snippet"] },
+                { "Content", _body }
+            });
+
+            MessageBox.Show("Wysłano żądanie udostęnienia artykułu.");
         }
 
         private string _title;

@@ -6,8 +6,8 @@ namespace SBA.DAL.Context.WebDb.Entity
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public int FileId { get; set; }
-        public string Path { get; set; }
+        public string Description { get; set; }
+        public string Content { get; set; }
         public DateTime InsertTime { get; set; }
     }
 }

@@ -59,15 +59,24 @@ namespace SBA.Client.Wpf.BOL {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44323/")]
         public string webBasePath {
             get {
                 return ((string)(this["webBasePath"]));
             }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("api/client/savearticle")]
+        public string saveArticleApiPath {
+            get {
+                return ((string)(this["saveArticleApiPath"]));
+            }
             set {
-                this["webBasePath"] = value;
+                this["saveArticleApiPath"] = value;
             }
         }
     }

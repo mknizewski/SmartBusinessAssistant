@@ -1,14 +1,21 @@
-﻿using SBA.BOL.Web.Models;
+﻿using Newtonsoft.Json;
+using SBA.BOL.Common.Factory;
+using SBA.BOL.Web.Models;
+using SBA.DAL.Context.WebDb.Entity;
 using SBA.DAL.Context.WebDb.Repository.Articles;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 
 namespace SBA.BOL.Web.Service
 {
     public interface IArticleService
     {
-        IEnumerable<ArticleModel> GetArticlesByPage(int page = 3);
+        ArticlesModel GetArticlesByPage(int page, int itemPerPage = 5);
         ArticleModel GetArticleBy(int id);
+        bool AddArticleFromJson(Dictionary<string, string> dictionary);
     }
 
     public class ArticleService : IArticleService
@@ -24,6 +31,30 @@ namespace SBA.BOL.Web.Service
             _fileService = fileService;
         }
 
+        public bool AddArticleFromJson(Dictionary<string, string> dictionary)
+        {
+            try
+            {
+                string appGuid = ConfigurationManager.AppSettings[nameof(appGuid)];
+                if (dictionary["AppGuid"] != appGuid)
+                    return false;
+
+                _articleRepository.AddArticle(new Article
+                {
+                    Title = dictionary[nameof(Article.Title)],
+                    Description = dictionary[nameof(Article.Description)],
+                    Content = dictionary[nameof(Article.Content)],
+                    InsertTime = DateTime.Now
+                });
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public ArticleModel GetArticleBy(int id)
         {
             var article = _articleRepository.GetArticleBy(id);
@@ -31,23 +62,36 @@ namespace SBA.BOL.Web.Service
             {
                 Id = article.Id,
                 Title = article.Title,
-                Content = _fileService.GetFileContent(article.Path),
+                Content = article.Content,
+                Description = article.Description,
                 InsertTime = article.InsertTime.ToString("yyy-MM-dd")
             };
         }
 
 
-        public IEnumerable<ArticleModel> GetArticlesByPage(int page = 3) =>
-            _articleRepository
-                .GetArticles()
-                .OrderByDescending(x => x.InsertTime)
-                .Take(page)
-                .Select(x => new ArticleModel
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    Content = _fileService.GetFileContent(x.Path),
-                    InsertTime = x.InsertTime.ToString("yyyy-MM-dd")
-                });
+        public ArticlesModel GetArticlesByPage(int page, int itemPerPage = 5)
+        {
+            int totalCount = _articleRepository.GetArticles().Count();
+
+            return new ArticlesModel
+            {
+                Articles = _articleRepository
+                                .GetArticles()
+                                .OrderByDescending(x => x.InsertTime)
+                                .Skip((page - 1) * itemPerPage)
+                                .Take(itemPerPage)
+                                .ToList()
+                                .Select(x => new ArticleModel
+                                {
+                                    Id = x.Id,
+                                    Title = x.Title,
+                                    Description = x.Description,
+                                    InsertTime = x.InsertTime.ToString("yyyy-MM-dd HH:mm")
+                                }),
+                Page = page,
+                TotalCount = totalCount,
+                TotalPages = totalCount / itemPerPage - (totalCount % itemPerPage == 0 ? 1 : 0)
+            };
+        }
     }
 }

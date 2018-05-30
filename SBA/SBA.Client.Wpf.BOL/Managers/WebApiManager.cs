@@ -11,6 +11,7 @@ namespace SBA.Client.Wpf.BOL.Managers
     public interface IWebApiManager
     {
         Task<List<Dictionary<string, string>>> GetMessagesAsync();
+        void SaveArticleToWebAsync(Dictionary<string, string> dictionary);
     }
 
     public class WebApiManager : IWebApiManager
@@ -24,6 +25,14 @@ namespace SBA.Client.Wpf.BOL.Managers
             var jsonReader = SimpleFactory.Get<JsonTextReader>(SimpleFactory.Get<StringReader>(content));
 
             return jsonDeserializer.Deserialize<List<Dictionary<string, string>>>(jsonReader);
+        }
+
+        public async void SaveArticleToWebAsync(Dictionary<string, string> dictionary)
+        {
+            dictionary.Add("AppGuid", app.Default.authGuid);
+
+            var httpClient = new HttpClient { BaseAddress = SimpleFactory.Get<Uri>(app.Default.webBasePath) };
+            var response = await httpClient.PostAsJsonAsync(app.Default.saveArticleApiPath, dictionary);
         }
     }
 }
