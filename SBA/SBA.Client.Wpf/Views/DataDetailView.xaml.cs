@@ -25,15 +25,18 @@ namespace SBA.Client.Wpf.Views
 
         private void LikeBtn(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+            // TODO
         }
 
         private void DislikeBtn(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            // TODO
         }
 
         private void SetFavoritesBtn(object sender, System.Windows.RoutedEventArgs e) => 
             _dataContext.SetFavorites(_tag);
+
+        private void ShareBtn(object sender, System.Windows.RoutedEventArgs e) => 
+            _dataContext.ShareArticleToWeb(_tag);
     }
 }
