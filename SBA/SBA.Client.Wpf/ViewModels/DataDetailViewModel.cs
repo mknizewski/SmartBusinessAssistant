@@ -85,6 +85,20 @@ namespace SBA.Client.Wpf.ViewModels
             MessageBox.Show("Wysłano żądanie udostęnienia artykułu.");
         }
 
+        public Dictionary<string, string> GetDetails(string dataTag)
+        {
+            var splitedTag = dataTag.Split(',');
+            string type = splitedTag[1];
+            var dataDetails = _clientSocketManager.GetDataDetails(dataTag);
+
+            return new Dictionary<string, string>
+            {
+                { "Title", _title },
+                { "Description", dataDetails["Snippet"] },
+                { "Content", _body }
+            };
+        }
+
         private string _title;
         public string Title
         {

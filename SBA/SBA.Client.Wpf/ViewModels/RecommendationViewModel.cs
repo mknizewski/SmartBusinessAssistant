@@ -2,6 +2,7 @@
 using SBA.Client.Wpf.BOL.Managers;
 using SBA.Client.Wpf.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -13,13 +14,17 @@ namespace SBA.Client.Wpf.ViewModels
     public class RecommendationViewModel : INotifyPropertyChanged
     {
         private readonly IClientSocketManager _clientSocketManager;
+        private readonly IWebApiManager _webApiManager;
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        public RecommendationViewModel() => 
+        public RecommendationViewModel()
+        {
             _clientSocketManager = SimpleFactory.Get<ClientSocketManager, IClientSocketManager>();
+            _webApiManager = SimpleFactory.Get<WebApiManager, IWebApiManager>();
+        }
 
         public void LoadRecommendations()
         {
@@ -89,6 +94,22 @@ namespace SBA.Client.Wpf.ViewModels
             MessageBox.Show("Żądanie zostało wysłane. Prosimy o odświeżenie treści za jakiś czas.");
         }
 
+        public void ShareOnWeb()
+        {
+            _webApiManager.SaveArticleToWebAsync(new Dictionary<string, string>
+            {
+                { "Title", _title },
+                { "Description", _description },
+                { "Content", _articleBody }
+            });
+
+            Title = string.Empty;
+            Description = string.Empty;
+            ArticleBody = string.Empty;
+
+            MessageBox.Show("Wysłano żądanie do stworzenia nowego artykułu.");
+        }
+
         public ObservableCollection<RecommendationModel.Tile> Tiles { get; } = new ObservableCollection<RecommendationModel.Tile>();
         public ObservableCollection<RecommendationModel.Tile> FavoriteTiles { get; } = new ObservableCollection<RecommendationModel.Tile>();
 
@@ -122,6 +143,39 @@ namespace SBA.Client.Wpf.ViewModels
             {
                 _keywords = value;
                 OnPropertyChanged(nameof(Keywords));
+            }
+        }
+
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value;
+                OnPropertyChanged(nameof(Title));
+            }
+        }
+
+        private string _description;
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                OnPropertyChanged(nameof(Description));
+            }
+        }
+
+        private string _articleBody;
+        public string ArticleBody
+        {
+            get => _articleBody;
+            set
+            {
+                _articleBody = value;
+                OnPropertyChanged(nameof(ArticleBody));
             }
         }
     }

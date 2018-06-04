@@ -7,18 +7,20 @@ namespace SBA.Client.Wpf.Views
     public partial class DataDetailView : MetroWindow
     {
         private DataDetailViewModel _dataContext;
+        private RecommendationView _recommendationView;
         private string _tag;
 
-        public DataDetailView(string tagId)
+        public DataDetailView(string tagId, RecommendationView recommendationView)
         {
             InitializeComponent();
-            Init(tagId);
+            Init(tagId, recommendationView);
         }
 
-        private void Init(string tagId)
+        private void Init(string tagId, RecommendationView recommendationView)
         {
             DataContext = _dataContext = SimpleFactory.Get<DataDetailViewModel>();
 
+            _recommendationView = recommendationView;
             _tag = tagId;
             _dataContext.GetData(tagId);
         }
@@ -38,5 +40,8 @@ namespace SBA.Client.Wpf.Views
 
         private void ShareBtn(object sender, System.Windows.RoutedEventArgs e) => 
             _dataContext.ShareArticleToWeb(_tag);
+
+        private void EditBtn(object sender, System.Windows.RoutedEventArgs e) => 
+            _recommendationView.SetSharedTab(_dataContext.GetDetails(_tag));
     }
 }

@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
-using SBA.BOL.Common.Factory;
-using SBA.BOL.Web.Models;
+﻿using SBA.BOL.Web.Models;
 using SBA.DAL.Context.WebDb.Entity;
 using SBA.DAL.Context.WebDb.Repository.Articles;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Linq;
 
 namespace SBA.BOL.Web.Service
