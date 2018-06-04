@@ -2,6 +2,7 @@
 using MahApps.Metro.SimpleChildWindow;
 using SBA.Client.Wpf.BOL.Infrastucture;
 using SBA.Client.Wpf.ViewModels;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -47,7 +48,7 @@ namespace SBA.Client.Wpf.Views
         private void TileClick(object sender, RoutedEventArgs e)
         {
             string id = (sender as Tile).Tag.ToString();
-            var detailView = new DataDetailView(id);
+            var detailView = new DataDetailView(id, this);
 
             detailView.Show();
         }
@@ -60,5 +61,17 @@ namespace SBA.Client.Wpf.Views
 
         private void RecommendClick(object sender, RoutedEventArgs e) => 
             _dataContext.RecommendOnDemand();
+
+        private void ShareClick(object sender, RoutedEventArgs e) => 
+            _dataContext.ShareOnWeb();
+
+        public void SetSharedTab(Dictionary<string, string> dictionary)
+        {
+            _dataContext.Title = dictionary["Title"];
+            _dataContext.Description = dictionary["Description"];
+            _dataContext.ArticleBody = dictionary["Content"];
+            SharedTab.Focus();
+            UpdateLayout();
+        }
     }
 }
